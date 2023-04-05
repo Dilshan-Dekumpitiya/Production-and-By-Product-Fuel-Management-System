@@ -60,7 +60,7 @@
             <JFXTextField fx:id="txtSupplierAddress" layoutX="145.0" layoutY="112.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
             <JFXTextField fx:id="txtSupplierName" layoutX="145.0" layoutY="58.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
             <JFXTextField fx:id="txtSupplierContact" layoutX="539.0" layoutY="115.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
-            <JFXButton layoutX="564.0" layoutY="14.0" onAction="#btnSearchSupplierOnAction" prefHeight="35.0" prefWidth="37.0" text="Button" textFill="#322c2c">
+            <JFXButton layoutX="567.0" layoutY="9.0" onAction="#btnSearchSupplierOnAction" prefHeight="35.0" prefWidth="37.0" text="Button" textFill="#322c2c">
                <font>
                   <Font size="1.0" />
                </font>

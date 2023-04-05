@@ -29,6 +29,11 @@ public class SupplierDetailsFormController implements Initializable {
     @FXML
     private JFXTextField txtSupplierContact;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> txtSupplierId.requestFocus());
+    }
+
     @FXML
     void btnAddSupplierOnAction(ActionEvent event) {
         if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
@@ -149,10 +154,5 @@ public class SupplierDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(() -> txtSupplierId.requestFocus());
     }
 }
