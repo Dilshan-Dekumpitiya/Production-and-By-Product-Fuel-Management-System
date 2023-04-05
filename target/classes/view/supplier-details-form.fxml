@@ -45,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtSupplierId" layoutX="198.0" layoutY="13.0" prefHeight="25.0" prefWidth="348.0" />
+            <JFXTextField fx:id="txtSupplierId" layoutX="198.0" layoutY="13.0" onAction="#txtSupplierIdOnAction" prefHeight="25.0" prefWidth="348.0" />
             <Label layoutX="17.0" layoutY="55.0" prefHeight="31.0" prefWidth="115.0" text="Name          :" textFill="#545454">
                <font>
                   <Font size="20.0" />

@@ -1,5 +1,7 @@
 package lk.ijse.palmoilfactory.model;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.util.CrudUtil;
@@ -10,39 +12,38 @@ import java.util.List;
 
 public class SupplierModel {
     public static boolean addSupplier(String supId,String supName,String supAddress,String supContact) throws SQLException, ClassNotFoundException {
-        String sql="INSERT INTO supplier(supId,name,address,contact)"+"VALUES(?,?,?,?)";
+        String sql="INSERT INTO supplier(supId,name,address,contact) VALUES(?,?,?,?)";
 
         return CrudUtil.execute(sql, supId, supName, supAddress, supContact);
     }
 
     public static Supplier searchSupplier(String id) throws SQLException, ClassNotFoundException {
-       // String sql="SELECT * FROM supplier WHERE supId='"+id+"'";
-        ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM supplier WHERE supId='"+id+"'");
-        if(resultSet.next()){
-            return new Supplier(resultSet.getString("supId"),resultSet.getString("name"),resultSet.getString("address"),resultSet.getString("contact"));
-           // return CrudUtil.execute(sql,id);
+       String sql="SELECT * FROM supplier WHERE supId= ?";
+        ResultSet resultSet = CrudUtil.execute(sql, id);
+
+        if(resultSet.next()) {
+            String  supId = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String contact = resultSet.getString(4);
+
+            return new Supplier(supId, name, address,contact);
         }
         return null;
+
     }
 
-    public static boolean updateSupplier(Supplier supplier) throws SQLException, ClassNotFoundException {
-        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("UPDATE supplier SET name = ?, address = ?, contact = ? WHERE supId = ?");
+    public static boolean updateSupplier(String supId, String supName, String supAddress, String supContact) throws SQLException, ClassNotFoundException {
+        String sql="UPDATE supplier SET name = ?, address = ?, contact = ? WHERE supId = ?";
 
-        preparedStatement.setString(1, supplier.getSupName());
-        preparedStatement.setString(2, supplier.getSupAddress());
-        preparedStatement.setString(3, supplier.getSupContact());
-        preparedStatement.setString(4, supplier.getSupId());
-
-        int affectedRows = preparedStatement.executeUpdate();
-        return affectedRows>0;
+        return CrudUtil.execute(sql,  supName, supAddress, supContact,supId);
 
     }
 
     public static boolean deleteSupplier(String supId) throws SQLException, ClassNotFoundException {
         String sql="DELETE FROM supplier WHERE supId=? ";
-        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1,supId);
-        return preparedStatement.executeUpdate()>0;
+       
+        return CrudUtil.execute(sql,supId);
     }
 
     public static List<String> getIDs() throws SQLException, ClassNotFoundException {

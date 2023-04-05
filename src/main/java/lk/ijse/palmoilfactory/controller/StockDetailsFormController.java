@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,6 +51,7 @@ public class StockDetailsFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadSupplierIds();
+        Platform.runLater(() -> txtStockId.requestFocus());
 
     }
     private void loadSupplierIds() {
@@ -78,11 +80,12 @@ public class StockDetailsFormController implements Initializable {
             txtTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
-            Stock stock = new Stock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
+           Stock stock = new Stock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
             boolean isAdded;
 
             try {
-                isAdded = StockModel.addStock(stock);
+               isAdded = StockModel.addStock(stock);
+               // isAdded = StockModel.addStock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
                     txtStockId.clear();
@@ -121,6 +124,11 @@ public class StockDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
         }
+    }
+
+    @FXML
+    void txtStockIdOnAction(ActionEvent event) {
+        btnSearchStockOnAction(event);
     }
 
     @FXML
@@ -171,7 +179,7 @@ public class StockDetailsFormController implements Initializable {
 
                 boolean isDeleted = StockModel.deleteStock(stockId);
                 if (isDeleted) {
-                    new Alert(Alert.AlertType.WARNING, "Stock Deleted Successfully").show();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
                     txtDate.clear();
