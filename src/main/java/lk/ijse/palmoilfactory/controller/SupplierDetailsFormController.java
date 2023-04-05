@@ -61,6 +61,39 @@ public class SupplierDetailsFormController implements Initializable {
     }
 
     @FXML
+    void btnSearchSupplierOnAction(ActionEvent event) {
+        if(txtSupplierId.getText().isEmpty() && txtSupplierName.getText().isEmpty() && txtSupplierAddress.getText().isEmpty() && txtSupplierContact.getText().isEmpty()){
+            new Alert(Alert.AlertType.WARNING,"Please Input Supplier ID to Search Supplier ").show();
+        }else {
+            String id = txtSupplierId.getText();
+            try {
+                Supplier supplier = SupplierModel.searchSupplier(id);
+
+                if (supplier != null) {
+                    txtSupplierId.setText(supplier.getSupId());
+                    txtSupplierName.setText(supplier.getSupName());
+                    txtSupplierAddress.setText(supplier.getSupAddress());
+                    txtSupplierContact.setText(supplier.getSupContact());
+
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Supplier Not Found Please Try Again").show();
+                }
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+            } catch (ClassNotFoundException e) {
+                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+            }
+        }
+    }
+
+    @FXML
+    void txtSupplierIdOnAction(ActionEvent event) {
+        btnSearchSupplierOnAction(event);
+    }
+
+    @FXML
     void btnDeleteSupplierOnAction(ActionEvent event) {
         if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Supplier ID and Search Supplier is exist").show();
@@ -85,39 +118,6 @@ public class SupplierDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
         }
-    }
-
-    @FXML
-    void btnSearchSupplierOnAction(ActionEvent event) {
-        if(txtSupplierId.getText().isEmpty() && txtSupplierName.getText().isEmpty() && txtSupplierAddress.getText().isEmpty() && txtSupplierContact.getText().isEmpty()){
-            new Alert(Alert.AlertType.WARNING,"Please Input Supplier ID to Search Supplier ").show();
-        }else {
-            String id = txtSupplierId.getText();
-            try {
-                Supplier supplier = SupplierModel.searchSupplier(id);
-
-                if (supplier != null) {
-                    txtSupplierId.setText(supplier.getSupId());
-                    txtSupplierName.setText(supplier.getSupName());
-                    txtSupplierAddress.setText(supplier.getSupAddress());
-                    txtSupplierContact.setText(supplier.getSupContact());
-
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Supplier Not Found Please Try Again").show();
-                }
-
-            } catch (SQLException e) {
-               new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
-
-            } catch (ClassNotFoundException e) {
-               new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
-            }
-        }
-    }
-
-    @FXML
-    void txtSupplierIdOnAction(ActionEvent event) {
-        btnSearchSupplierOnAction(event);
     }
 
     @FXML

@@ -12,14 +12,17 @@ import java.util.List;
 
 public class SupplierModel {
     public static boolean addSupplier(String supId,String supName,String supAddress,String supContact) throws SQLException, ClassNotFoundException {
+
         String sql="INSERT INTO supplier(supId,name,address,contact) VALUES(?,?,?,?)";
 
         return CrudUtil.execute(sql, supId, supName, supAddress, supContact);
     }
 
     public static Supplier searchSupplier(String id) throws SQLException, ClassNotFoundException {
+
        String sql="SELECT * FROM supplier WHERE supId= ?";
-        ResultSet resultSet = CrudUtil.execute(sql, id);
+
+       ResultSet resultSet = CrudUtil.execute(sql, id);
 
         if(resultSet.next()) {
             String  supId = resultSet.getString(1);
@@ -34,6 +37,7 @@ public class SupplierModel {
     }
 
     public static boolean updateSupplier(String supId, String supName, String supAddress, String supContact) throws SQLException, ClassNotFoundException {
+
         String sql="UPDATE supplier SET name = ?, address = ?, contact = ? WHERE supId = ?";
 
         return CrudUtil.execute(sql,  supName, supAddress, supContact,supId);
@@ -41,18 +45,20 @@ public class SupplierModel {
     }
 
     public static boolean deleteSupplier(String supId) throws SQLException, ClassNotFoundException {
+
         String sql="DELETE FROM supplier WHERE supId=? ";
-       
+
         return CrudUtil.execute(sql,supId);
     }
 
     public static List<String> getIDs() throws SQLException, ClassNotFoundException {
-        Connection con = DBConnection.getInstance().getConnection();
 
         List<String> ids = new ArrayList<>();
 
         String sql = "SELECT supId FROM supplier";
-        ResultSet resultSet = con.createStatement().executeQuery(sql);
+
+        ResultSet resultSet=CrudUtil.execute(sql);
+
         while(resultSet.next()) {
             ids.add(resultSet.getString(1));
         }

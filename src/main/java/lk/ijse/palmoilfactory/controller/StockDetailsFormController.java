@@ -80,16 +80,19 @@ public class StockDetailsFormController implements Initializable {
             txtTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
-           Stock stock = new Stock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
             boolean isAdded;
 
             try {
-               isAdded = StockModel.addStock(stock);
-               // isAdded = StockModel.addStock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
+               isAdded = StockModel.addStock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
+
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
+                    txtDate.clear();
+                    txtTime.clear();
+                    cmbSupplierId.getItems().clear();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();
                 }
@@ -113,6 +116,7 @@ public class StockDetailsFormController implements Initializable {
                     txtFFBInput.setText(String.valueOf(stock.getFfbInput()));
                     txtDate.setText(stock.getDate());
                     txtTime.setText(stock.getTime());
+                    cmbSupplierId.setValue(StockModel.searchByStockId(stockId));
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Found Please Try Again").show();
@@ -147,17 +151,17 @@ public class StockDetailsFormController implements Initializable {
                 supId=cmbSupplierId.getSelectionModel().getSelectedItem();
             }
 
-            Stock stock = new Stock(stockId, ffbInput, date, time, supId);
             boolean isUpdated;
 
             try {
-                isUpdated = StockModel.updateStock(stock);
+                isUpdated = StockModel.updateStock(stockId, ffbInput, date, time, supId);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Updated").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
                     txtDate.clear();
                     txtTime.clear();
+                    cmbSupplierId.getItems().clear();
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Updated Please Try Again").show();
                 }
@@ -184,6 +188,8 @@ public class StockDetailsFormController implements Initializable {
                     txtFFBInput.clear();
                     txtDate.clear();
                     txtTime.clear();
+                    cmbSupplierId.getItems().clear();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
                 }

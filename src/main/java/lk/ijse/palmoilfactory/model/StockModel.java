@@ -3,6 +3,7 @@ package lk.ijse.palmoilfactory.model;
 import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Stock;
 import lk.ijse.palmoilfactory.dto.Supplier;
+import lk.ijse.palmoilfactory.util.CrudUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,59 +13,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StockModel {
-    public static boolean addStock(Stock stock) throws SQLException, ClassNotFoundException {
+
+    public static boolean addStock(String stockId, int ffbInput, String date, String time ,String supId) throws SQLException, ClassNotFoundException {
 
         String sql="INSERT INTO ffbstock(stockId,ffbInput,date,time,supId)"+"VALUES(?,?,?,?,?)";
 
-        Connection connection = DBConnection.getInstance().getConnection(); //Singleton use
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,stock.getStockId() );
-        preparedStatement.setInt(2, stock.getFfbInput());
-        preparedStatement.setString(3, stock.getDate());
-        preparedStatement.setString(4,stock.getTime());
-        preparedStatement.setString(5,stock.getSupId());
-
-        int affectedRows = preparedStatement.executeUpdate();
-        return affectedRows>0;
+        return CrudUtil.execute(sql,stockId,ffbInput,date,time,supId);
     }
 
     public static Stock searchStock(String stockId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT * FROM ffbstock WHERE stockId='"+stockId+"'");
-        if(resultSet.next()){
-            return new Stock(resultSet.getString("stockId"),resultSet.getInt("ffbInput"),resultSet.getString("date"),resultSet.getString("time"),resultSet.getString("supId"));
+
+        String sql="SELECT * FROM ffbstock WHERE stockId=?";
+
+        ResultSet resultSet = CrudUtil.execute(sql, stockId);
+
+        if(resultSet.next()) {
+            String  stkId = resultSet.getString(1);
+            int ffbInput = resultSet.getInt(2);
+            String date = resultSet.getString(3);
+            String time = resultSet.getString(4);
+            String supId = resultSet.getString(5);
+
+            return new Stock(stkId,ffbInput, date,time,supId);
         }
         return null;
     }
 
-    public static boolean updateStock(Stock stock) throws SQLException, ClassNotFoundException {
-        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("UPDATE ffbstock SET ffbInput = ?, date = ?, time = ? , supId = ? WHERE stockId = ?");
+    public static boolean updateStock(String stockId, int ffbInput, String date, String time, String supId) throws SQLException, ClassNotFoundException {
 
-        preparedStatement.setInt(1, stock.getFfbInput());
-        preparedStatement.setString(2, stock.getDate());
-        preparedStatement.setString(3, stock.getTime());
-        preparedStatement.setString(4, stock.getSupId());
-        preparedStatement.setString(5, stock.getStockId());
+        String sql="UPDATE ffbstock SET ffbInput = ?, date = ?, time = ? , supId = ? WHERE stockId = ?";
 
-        int affectedRows = preparedStatement.executeUpdate();
-        return affectedRows>0;
+        return CrudUtil.execute(sql,ffbInput,date,time,supId,stockId);
+
+    }
+
+    public static boolean deleteStock(String stockId) throws SQLException, ClassNotFoundException {
+
+        String sql="DELETE FROM ffbstock WHERE stockId=? ";
+
+        return CrudUtil.execute(sql,stockId);
     }
 
     public static String searchByStockId(String stockId) throws SQLException, ClassNotFoundException {
+
         String sql="SELECT supId FROM ffbstock WHERE stockId = ?";
-        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1,stockId);
-        ResultSet resultSet = preparedStatement.executeQuery();
+
+        ResultSet resultSet=CrudUtil.execute(sql,stockId);
+
         if(resultSet.next()){
             return resultSet.getString("supId");
         }
         return null;
-    }
-
-    public static boolean deleteStock(String stockId) throws SQLException, ClassNotFoundException {
-        String sql="DELETE FROM ffbstock WHERE stockId=? ";
-        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement(sql);
-        preparedStatement.setString(1,stockId);
-        return preparedStatement.executeUpdate()>0;
     }
 }
