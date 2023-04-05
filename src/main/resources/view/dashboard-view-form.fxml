@@ -57,7 +57,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="452.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Employee" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="452.0" onAction="#btnEmployeeOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Employee" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

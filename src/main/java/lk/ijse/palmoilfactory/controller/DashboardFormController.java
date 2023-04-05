@@ -81,4 +81,11 @@ public class DashboardFormController implements Initializable {
         dashboardDetailsPane.getChildren().clear();
         dashboardDetailsPane.getChildren().add(load);
     }
+
+    @FXML
+    void btnEmployeeOnAction(ActionEvent event) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/employee-details-form.fxml"));
+        dashboardDetailsPane.getChildren().clear();
+        dashboardDetailsPane.getChildren().add(load);
+    }
 }
