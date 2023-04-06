@@ -17,7 +17,7 @@
          </font></Label>
       <Pane layoutX="14.0" layoutY="47.0" prefHeight="639.0" prefWidth="275.0" style="-fx-background-radius: 20; -fx-background-color: #1F2127;">
          <children>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="82.0" onAction="#btnSupplierDetailOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Supplier " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="75.0" onAction="#btnSupplierDetailOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Supplier " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -25,7 +25,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="156.0" onAction="#btnStockDetailsOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Stock " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="135.0" onAction="#btnStockDetailsOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Stock " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -33,7 +33,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="29.0" layoutY="380.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="315.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,7 +41,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="230.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Steam " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="195.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Steam " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -49,7 +49,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="306.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="255.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -57,7 +57,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="452.0" onAction="#btnEmployeeOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Employee" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="375.0" onAction="#btnEmployeeOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Employee" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -65,7 +65,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="586.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="                   Logout" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="586.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="                   Logout" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -86,32 +86,32 @@
                   <Image url="@../img/dashboard-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="36.0" fitWidth="32.0" layoutX="35.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="32.0" layoutX="35.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/supplier-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/stock-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/steam-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/fuel-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/oil-production-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/employee-img.png" />
                </image>
@@ -121,7 +121,7 @@
                   <Image url="@../img/logout-img.gif" />
                </image>
             </ImageView>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="520.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Get Report" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="515.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Get Report" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -129,9 +129,22 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/report-img.png" />
+               </image>
+            </ImageView>
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="445.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Order Details" textAlignment="CENTER" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/orders-img.png" />
                </image>
             </ImageView>
          </children>
