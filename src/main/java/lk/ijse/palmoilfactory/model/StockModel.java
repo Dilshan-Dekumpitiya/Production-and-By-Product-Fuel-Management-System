@@ -54,7 +54,7 @@ public class StockModel {
         return CrudUtil.execute(sql,stockId);
     }
 
-    public static String searchByStockId(String stockId) throws SQLException, ClassNotFoundException {
+    public static String searchByStockIdSupId(String stockId) throws SQLException, ClassNotFoundException {
 
         String sql="SELECT supId FROM ffbstock WHERE stockId = ?";
 
@@ -64,5 +64,41 @@ public class StockModel {
             return resultSet.getString("supId");
         }
         return null;
+    }
+
+    public static int searchByStockIdFFBInput(String stockId) throws SQLException, ClassNotFoundException {
+
+        String sql="SELECT ffbInput from ffbstock WHERE stockId = ? ";
+
+        ResultSet resultSet=CrudUtil.execute(sql,stockId);
+
+        if(resultSet.next()){
+            return resultSet.getInt("ffbInput");
+        }
+        return 0;
+    }
+
+    public static String searchByStockIdDate(String stockId) throws SQLException, ClassNotFoundException {
+        String sql="SELECT date FROM ffbstock WHERE stockId = ?";
+
+        ResultSet resultSet=CrudUtil.execute(sql,stockId);
+
+        if(resultSet.next()){
+            return resultSet.getString("date");
+        }
+        return null;
+
+    }
+
+    public static String searchByStockIdTime(String stockId) throws SQLException, ClassNotFoundException {
+        String sql="SELECT time FROM ffbstock WHERE stockId = ?";
+
+        ResultSet resultSet=CrudUtil.execute(sql,stockId);
+
+        if(resultSet.next()){
+            return resultSet.getString("time");
+        }
+        return null;
+
     }
 }

@@ -116,7 +116,7 @@ public class StockDetailsFormController implements Initializable {
                     txtFFBInput.setText(String.valueOf(stock.getFfbInput()));
                     txtDate.setText(stock.getDate());
                     txtTime.setText(stock.getTime());
-                    cmbSupplierId.setValue(StockModel.searchByStockId(stockId));
+                    cmbSupplierId.setValue(StockModel.searchByStockIdSupId(stockId));
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Found Please Try Again").show();
@@ -146,7 +146,7 @@ public class StockDetailsFormController implements Initializable {
             String time = txtTime.getText();
             String supId;
             if(cmbSupplierId.getSelectionModel().isEmpty()){
-                supId = StockModel.searchByStockId(stockId);
+                supId = StockModel.searchByStockIdSupId(stockId);
             }else {
                 supId=cmbSupplierId.getSelectionModel().getSelectedItem();
             }

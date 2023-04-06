@@ -96,7 +96,7 @@
                   <Image url="@../img/stock-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/steam-img.png" />
                </image>
