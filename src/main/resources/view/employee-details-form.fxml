@@ -92,7 +92,7 @@
             </Label>
             <JFXComboBox fx:id="cmbEmployeetype" layoutX="133.0" layoutY="169.0" prefHeight="25.0" prefWidth="176.0" unFocusColor="BLACK" />
             <JFXComboBox fx:id="cmbEmployeeSchId" layoutX="449.0" layoutY="169.0" prefHeight="25.0" prefWidth="153.0" unFocusColor="BLACK" />
-            <JFXButton layoutX="646.0" layoutY="169.0" onAction="#btnEditScheduleDetailsOnAction" prefHeight="30.0" prefWidth="164.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Edit Schedule Details">
+            <JFXButton layoutX="646.0" layoutY="169.0" onAction="#btnEditScheduleDetailsOnAction" prefHeight="30.0" prefWidth="132.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Schedule Details">
                <font>
                   <Font size="14.0" />
                </font>

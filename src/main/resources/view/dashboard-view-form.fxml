@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: #1F2127;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
+<AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #1F2127;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
    <children>
       <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textAlignment="CENTER" textFill="#ffffffa8">
          <font>
@@ -33,7 +33,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="315.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="315.0" onAction="#btnByProductFuelOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -41,7 +41,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="195.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Steam " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="195.0" onAction="#btnSteamOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Steam " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -49,7 +49,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="255.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="255.0" onAction="#btnOilProductionOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -121,7 +121,7 @@
                   <Image url="@../img/logout-img.gif" />
                </image>
             </ImageView>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="515.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Get Report" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="515.0" onAction="#btnGetReportOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Get Report" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -134,7 +134,7 @@
                   <Image url="@../img/report-img.png" />
                </image>
             </ImageView>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="445.0" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Order Details" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="445.0" onAction="#btnOrderDetailsOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Order Details" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
