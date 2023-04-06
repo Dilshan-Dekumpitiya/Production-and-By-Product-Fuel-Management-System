@@ -79,4 +79,17 @@ public class SteamDetailsFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
         }
     }
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        if(cmbStockId.getSelectionModel().isEmpty()){
+            new Alert(Alert.AlertType.ERROR, "No Stock ID Selected! Please Select Stock ID").show();
+        }else {
+            cmbStockId.getItems().clear();
+            txtStockTime.clear();
+            txtStockDate.clear();
+            txtFruitOutput.clear();
+            txtEmptyBunchOutput.clear();
+            loadStockIds();
+        }
+    }
 }

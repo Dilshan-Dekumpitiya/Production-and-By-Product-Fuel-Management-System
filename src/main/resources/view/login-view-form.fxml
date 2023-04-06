@@ -13,7 +13,7 @@
    <children>
       <Pane prefHeight="532.0" prefWidth="353.0">
          <children>
-            <ImageView fitHeight="532.0" fitWidth="353.0" opacity="0.57" pickOnBounds="true">
+            <ImageView fitHeight="532.0" fitWidth="353.0" opacity="0.95" pickOnBounds="true">
                <image>
                   <Image url="@../img/login-photo.jpg" />
                </image>
