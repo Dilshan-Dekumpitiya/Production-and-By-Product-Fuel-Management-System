@@ -40,10 +40,10 @@ public class StockDetailsFormController implements Initializable {
     private JFXTextField txtFFBInput;
 
     @FXML
-    private JFXTextField txtDate;
+    private Label lblDate;
 
     @FXML
-    private JFXTextField txtTime;
+    private Label lblTime;
     @FXML
     private JFXComboBox<String> cmbSupplierId;
 
@@ -53,7 +53,19 @@ public class StockDetailsFormController implements Initializable {
         loadSupplierIds();
         Platform.runLater(() -> txtStockId.requestFocus());
 
+        lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
+
+        loadTime();
+
     }
+
+    private void loadTime() {
+        lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss a")));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss a")))));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
     private void loadSupplierIds() {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
@@ -76,21 +88,19 @@ public class StockDetailsFormController implements Initializable {
         }else {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
-            txtDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
-            txtTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
+            lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
+            lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
             boolean isAdded;
 
             try {
-               isAdded = StockModel.addStock(stockId, ffbInput, txtDate.getText(), txtTime.getText(),supId);
+               isAdded = StockModel.addStock(stockId, ffbInput, lblDate.getText(), lblTime.getText(),supId);
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
-                    txtDate.clear();
-                    txtTime.clear();
                     cmbSupplierId.getItems().clear();
 
                 } else {
@@ -114,8 +124,8 @@ public class StockDetailsFormController implements Initializable {
                 Stock stock = StockModel.searchStock(stockId);
                 if (stock != null) {
                     txtFFBInput.setText(String.valueOf(stock.getFfbInput()));
-                    txtDate.setText(stock.getDate());
-                    txtTime.setText(stock.getTime());
+                    lblDate.setText(stock.getDate());
+                    lblTime.setText(stock.getTime());
                     cmbSupplierId.setValue(StockModel.searchByStockIdSupId(stockId));
 
                 } else {
@@ -137,13 +147,13 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void btnUpdateStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-       if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || txtDate.getText().isEmpty() || txtTime.getText().isEmpty()) {
+       if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || lblDate.getText().isEmpty() || lblTime.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
         } else {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
-            String date = txtDate.getText();
-            String time = txtTime.getText();
+            String date = lblDate.getText();
+            String time = lblTime.getText();
             String supId;
             if(cmbSupplierId.getSelectionModel().isEmpty()){
                 supId = StockModel.searchByStockIdSupId(stockId);
@@ -159,8 +169,6 @@ public class StockDetailsFormController implements Initializable {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Updated").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
-                    txtDate.clear();
-                    txtTime.clear();
                     cmbSupplierId.getItems().clear();
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Updated Please Try Again").show();
@@ -175,7 +183,7 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void btnDeleteStockOnAction(ActionEvent event) {
-        if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || txtDate.getText().isEmpty() || txtTime.getText().isEmpty()){
+        if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || lblDate.getText().isEmpty() || lblTime.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Stock ID and Search Stock is exist").show();
         }else {
             String stockId = txtStockId.getText();
@@ -186,8 +194,6 @@ public class StockDetailsFormController implements Initializable {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
                     txtStockId.clear();
                     txtFFBInput.clear();
-                    txtDate.clear();
-                    txtTime.clear();
                     cmbSupplierId.getItems().clear();
 
                 } else {

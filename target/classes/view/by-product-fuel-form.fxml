@@ -15,7 +15,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="75.0" layoutY="122.0" prefHeight="331.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
+      <Pane layoutX="61.0" layoutY="79.0" prefHeight="331.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
          <children>
             <Label layoutX="23.0" layoutY="61.0" prefHeight="36.0" prefWidth="301.0" text="Total Press Fiber (MT)     : ">
                <font>

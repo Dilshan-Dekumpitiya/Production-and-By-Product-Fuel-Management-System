@@ -2,12 +2,8 @@ package lk.ijse.palmoilfactory.dto;
 
 import lombok.*;
 
+@Data
 @AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
-
 public class Supplier {
     String supId;
     String supName;

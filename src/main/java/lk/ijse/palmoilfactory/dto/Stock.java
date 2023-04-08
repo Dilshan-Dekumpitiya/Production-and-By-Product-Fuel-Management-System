@@ -2,12 +2,8 @@ package lk.ijse.palmoilfactory.dto;
 
 import lombok.*;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
-
 public class Stock {
     String stockId;
     int ffbInput;
