@@ -24,7 +24,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXComboBox layoutX="199.0" layoutY="89.0" prefHeight="25.0" prefWidth="188.0" />
-      <JFXComboBox layoutX="199.0" layoutY="137.0" prefHeight="25.0" prefWidth="188.0" />
+      <JFXComboBox fx:id="cmbSchId" layoutX="199.0" layoutY="89.0" onAction="#cmbSchIdOnAction" prefHeight="25.0" prefWidth="188.0" styleClass="cmb" />
+      <JFXComboBox fx:id="cmbTimeRange" layoutX="199.0" layoutY="137.0" onAction="#cmbTimeRange" prefHeight="25.0" prefWidth="188.0" styleClass="cmb" />
    </children>
 </Pane>

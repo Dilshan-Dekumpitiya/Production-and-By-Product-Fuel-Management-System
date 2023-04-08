@@ -6,3 +6,7 @@
     -fx-background-color:  #2d3436;
     -fx-background-radius: 20;
 }
+.cmb{
+    -fx-prompt-text-fill: black;
+     -fx-font-weight: bolder;
+}
