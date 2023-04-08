@@ -2,16 +2,24 @@ package lk.ijse.palmoilfactory.controller;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import lk.ijse.palmoilfactory.model.EmployeeModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +27,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeeDetailsFormController implements Initializable {
+
+    @FXML
+    private Pane empdetailsPane;
+
     @FXML
     private JFXTextField txtEmployeeId;
 
@@ -100,7 +112,17 @@ public class EmployeeDetailsFormController implements Initializable {
     }
 
     @FXML
-    void btnEditScheduleDetailsOnAction(ActionEvent event) {
+    void btnEditScheduleDetailsOnAction(ActionEvent event) throws IOException {
+        TranslateTransition transition = new TranslateTransition();
+        Parent load = FXMLLoader.load(getClass().getResource("/view/schedule-details-form.fxml"));
+        transition.setNode(load);
+        transition.setDuration(Duration.seconds(0.5));
+
+        transition.setToX(380);
+
+        empdetailsPane.getChildren().add(load);
+
+        transition.play();
 
     }
 

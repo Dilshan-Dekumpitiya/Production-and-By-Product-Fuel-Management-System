@@ -19,6 +19,6 @@ public class EmployeeModel {
             schIds.add(resultSet.getString(1));
         }
         return schIds;
-
     }
+
 }

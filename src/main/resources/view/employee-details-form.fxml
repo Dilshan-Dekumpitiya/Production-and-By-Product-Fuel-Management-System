@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="639.0" prefWidth="1054.0" style="-fx-background-color: #2d3436; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.EmployeeDetailsFormController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="204.0" text="Employee Details" textFill="WHITE">
@@ -20,7 +19,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="44.0" layoutY="101.0" prefHeight="303.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
+      <Pane fx:id="empdetailsPane" layoutX="44.0" layoutY="101.0" prefHeight="303.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
          <children>
             <JFXButton layoutX="54.0" layoutY="240.0" onAction="#btnAddEmployeeOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Add Employee">
                <font>
