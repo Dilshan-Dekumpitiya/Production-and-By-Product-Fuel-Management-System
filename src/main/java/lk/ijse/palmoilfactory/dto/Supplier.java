@@ -5,9 +5,9 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 public class Supplier {
-    String supId;
-    String supName;
-    String supAddress;
-    String supContact;
+    private String supId;
+    private String supName;
+    private String supAddress;
+    private String supContact;
 
 }

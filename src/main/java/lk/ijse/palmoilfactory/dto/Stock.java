@@ -5,9 +5,9 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 public class Stock {
-    String stockId;
-    int ffbInput;
-    String date;
-    String time;
-    String supId;
+    private String stockId;
+    private int ffbInput;
+    private String date;
+    private String time;
+    private String supId;
 }

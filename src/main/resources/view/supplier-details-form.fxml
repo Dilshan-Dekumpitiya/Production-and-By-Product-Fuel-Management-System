@@ -74,12 +74,13 @@
             </JFXButton>
          </children>
       </Pane>
-      <TableView layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0" style="-fx-background-color: #718093;">
+      <TableView fx:id="tblSupplier" layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0" style="-fx-background-color: #718093;">
         <columns>
-          <TableColumn prefWidth="251.0" text="Supplier  ID" />
-          <TableColumn prefWidth="275.0" text="Supplier Name" />
-            <TableColumn prefWidth="245.0" text="Supplier Address" />
-            <TableColumn prefWidth="230.0" text="Supplier Contact" />
+          <TableColumn fx:id="colSupId" prefWidth="168.0" text="Supplier  ID" />
+          <TableColumn fx:id="colSupName" prefWidth="249.0" text="Supplier Name" />
+            <TableColumn fx:id="colSupAddress" prefWidth="243.0" text="Supplier Address" />
+            <TableColumn fx:id="colSupContact" prefWidth="172.0" text="Supplier Contact" />
+            <TableColumn fx:id="colSupAction" prefWidth="152.0" text="Action" />
         </columns>
       </TableView>
    </children>

@@ -2,17 +2,25 @@ package lk.ijse.palmoilfactory.controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.palmoilfactory.dto.Supplier;
+import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 import lk.ijse.palmoilfactory.util.CrudUtil;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SupplierDetailsFormController implements Initializable {
@@ -29,9 +37,59 @@ public class SupplierDetailsFormController implements Initializable {
     @FXML
     private JFXTextField txtSupplierContact;
 
+    @FXML
+    private TableColumn<?, ?> colSupId;
+
+    @FXML
+    private TableColumn<?, ?> colSupName;
+
+    @FXML
+    private TableColumn<?, ?> colSupAddress;
+
+    @FXML
+    private TableColumn<?, ?> colSupContact;
+
+    @FXML
+    private TableColumn<?, ?> colSupAction;
+
+    @FXML
+    private TableView<SupplierTM> tblSupplier;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> txtSupplierId.requestFocus());
+        setCellValueFactory(); //To show table data
+        getAllSupplierToTable(); //To get all supplier details to table(Not show)
+    }
+
+    void setCellValueFactory() {
+        colSupId.setCellValueFactory(new PropertyValueFactory<>("supId"));
+        colSupName.setCellValueFactory(new PropertyValueFactory<>("supName"));
+        colSupAddress.setCellValueFactory(new PropertyValueFactory<>("supAddress"));
+        colSupContact.setCellValueFactory(new PropertyValueFactory<>("supContact"));
+        colSupAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+    }
+
+    void getAllSupplierToTable() {
+        try {
+            ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
+            List<Supplier> supList = SupplierModel.getAll();
+            for(Supplier supplier : supList) {
+                Button btn=new Button("Delete");
+                SupplierTM tm=new SupplierTM(
+                        supplier.getSupId(),
+                        supplier.getSupName(),
+                        supplier.getSupAddress(),
+                        supplier.getSupContact(),btn);
+                obList.add(tm);
+
+            }
+            tblSupplier.setItems(obList);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Query error!").show();
+        }
     }
 
     @FXML

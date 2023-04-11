@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierModel {
+
     public static boolean addSupplier(String supId,String supName,String supAddress,String supContact) throws SQLException, ClassNotFoundException {
 
         String sql="INSERT INTO supplier(supId,name,address,contact) VALUES(?,?,?,?)";
@@ -63,5 +64,24 @@ public class SupplierModel {
             ids.add(resultSet.getString(1));
         }
         return ids;
+    }
+
+    public static List<Supplier> getAll() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT * FROM supplier";
+
+        List<Supplier> supData = new ArrayList<>();
+
+        ResultSet resultSet = CrudUtil.execute(sql);
+        while (resultSet.next()) {
+            supData.add(new Supplier(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4)
+            ));
+        }
+        return supData;
+
     }
 }

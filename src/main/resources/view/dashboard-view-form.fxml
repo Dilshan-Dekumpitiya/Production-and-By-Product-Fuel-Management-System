@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #1F2127;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
    <children>
-      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textAlignment="CENTER" textFill="#ffffffa8">
+      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
@@ -159,11 +159,11 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="lblTime" alignment="CENTER" contentDisplay="CENTER" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textFill="#ffffffa8">
+      <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textAlignment="RIGHT" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Separator layoutX="1257.0" layoutY="21.0" orientation="VERTICAL" prefHeight="13.0" prefWidth="6.0" />
+      <Separator layoutX="1248.0" layoutY="22.0" orientation="VERTICAL" prefHeight="13.0" prefWidth="6.0" />
    </children>
 </AnchorPane>
