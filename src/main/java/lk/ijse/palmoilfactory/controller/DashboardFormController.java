@@ -52,6 +52,14 @@ public class DashboardFormController implements Initializable {
         timeline2.play();
     }
 
+    private void setUI(String location) throws IOException {
+
+        Parent load = FXMLLoader.load(getClass().getResource(location));
+        dashboardDetailsPane.getChildren().clear();
+        dashboardDetailsPane.getChildren().add(load);
+
+    }
+
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
         Stage thisStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -62,58 +70,42 @@ public class DashboardFormController implements Initializable {
     }
 
     public void btnSupplierDetailOnAction(ActionEvent actionEvent) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/supplier-details-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/supplier-details-form.fxml");
     }
 
     @FXML
     void btnStockDetailsOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/stock-details-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/stock-details-form.fxml");
     }
 
     @FXML
     void btnSteamOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/steam-details-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/steam-details-form.fxml");
     }
 
     @FXML
     void btnOilProductionOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/oil-production-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/oil-production-form.fxml");
     }
 
     @FXML
     void btnByProductFuelOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/by-product-fuel-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/by-product-fuel-form.fxml");
     }
 
     @FXML
     void btnEmployeeOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/employee-details-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/employee-details-form.fxml");
     }
 
     @FXML
     void btnOrderDetailsOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/order-details-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/order-details-form.fxml");
     }
 
     @FXML
     void btnGetReportOnAction(ActionEvent event) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("/view/get-report-form.fxml"));
-        dashboardDetailsPane.getChildren().clear();
-        dashboardDetailsPane.getChildren().add(load);
+        setUI("/view/get-report-form.fxml");
     }
 
     @FXML

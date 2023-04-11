@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -38,5 +40,9 @@
       </JFXButton>
       <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="411.0" layoutY="187.0" prefHeight="25.0" prefWidth="203.0" promptText="username here" />
       <JFXTextField fx:id="txtPassword" focusColor="WHITE" layoutX="411.0" layoutY="234.0" prefHeight="25.0" prefWidth="203.0" promptText="password here" />
+      <Label text="Label" />
+      <Label layoutX="662.0" layoutY="501.0" opacity="0.48" text="Version : 1.0.0" textFill="WHITE" />
+      <Label layoutX="362.0" layoutY="501.0" opacity="0.48" text="Developed by : Dilshan Dekumpitiya" textFill="WHITE" />
+      <Separator layoutX="362.0" layoutY="490.0" opacity="0.48" prefHeight="0.0" prefWidth="375.0" />
    </children>
 </AnchorPane>
