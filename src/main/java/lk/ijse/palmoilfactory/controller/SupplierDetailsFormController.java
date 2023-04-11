@@ -64,10 +64,21 @@ public class SupplierDetailsFormController implements Initializable {
         Platform.runLater(() -> txtSupplierId.requestFocus());
         setCellValueFactory(); //To show table data
         getAllSupplierToTable(); //To get all supplier details to table(Not show)
+
+        tblSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
+            setData(newValue); //Set data to text field of selected row data of table
+        });
+    }
+
+    private void setData(SupplierTM supplierTM) {
+        txtSupplierId.setText(supplierTM.getSupId());
+        txtSupplierName.setText(supplierTM.getSupName());
+        txtSupplierAddress.setText(supplierTM.getSupAddress());
+        txtSupplierContact.setText(supplierTM.getSupContact());
     }
 
     void setCellValueFactory() {
-        colSupId.setCellValueFactory(new PropertyValueFactory<>("supId"));
+        colSupId.setCellValueFactory(new PropertyValueFactory<>("supId")); //SupplierTM class attributes names
         colSupName.setCellValueFactory(new PropertyValueFactory<>("supName"));
         colSupAddress.setCellValueFactory(new PropertyValueFactory<>("supAddress"));
         colSupContact.setCellValueFactory(new PropertyValueFactory<>("supContact"));
@@ -83,16 +94,19 @@ public class SupplierDetailsFormController implements Initializable {
                 btnDel.setAlignment(Pos.CENTER);
                 btnDel.setStyle("-fx-background-color: #686de0; ");
                 btnDel.setCursor(Cursor.HAND);
+
                 SupplierTM tm=new SupplierTM(
                         supplier.getSupId(),
                         supplier.getSupName(),
                         supplier.getSupAddress(),
                         supplier.getSupContact(),btnDel);
+
                 obList.add(tm);
 
                 setDeleteButtonOnAction(btnDel);
 
             }
+
             tblSupplier.setItems(obList);
 
 
@@ -107,9 +121,9 @@ public class SupplierDetailsFormController implements Initializable {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
 
-            if (result.orElse(no) == yes) {
+            if (buttonType.get() == yes) {
                 txtSupplierId.setText(tblSupplier.getSelectionModel().getSelectedItem().getSupId());
                 int index = tblSupplier.getSelectionModel().getSelectedIndex();
                 obList.remove(index);
@@ -137,11 +151,11 @@ public class SupplierDetailsFormController implements Initializable {
             try {
                 isAdded = SupplierModel.addSupplier(supId, supName, supAddress, supContact);
                 if (isAdded) {
+
                     new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added").show();
-                    txtSupplierName.clear();
-                    txtSupplierId.clear();
-                    txtSupplierAddress.clear();
-                    txtSupplierContact.clear();
+                    clearFields();
+                  //  getAllSupplierToTable();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Supplier Not Added Please Try Again").show();
                 }
@@ -197,10 +211,8 @@ public class SupplierDetailsFormController implements Initializable {
                 boolean isDeleted = SupplierModel.deleteSupplier(supId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted Successfully").show();
-                    txtSupplierName.clear();
-                    txtSupplierId.clear();
-                    txtSupplierAddress.clear();
-                    txtSupplierContact.clear();
+                    clearFields();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
                 }
@@ -229,10 +241,8 @@ public class SupplierDetailsFormController implements Initializable {
                 isUpdated = SupplierModel.updateSupplier(supId, supName, supAddress, supContact);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated").show();
-                    txtSupplierName.clear();
-                    txtSupplierId.clear();
-                    txtSupplierAddress.clear();
-                    txtSupplierContact.clear();
+                    clearFields();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Supplier Not Updated Please Try Again").show();
                 }
@@ -242,5 +252,12 @@ public class SupplierDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
         }
+    }
+
+    private void clearFields(){
+        txtSupplierName.clear();
+        txtSupplierId.clear();
+        txtSupplierAddress.clear();
+        txtSupplierContact.clear();
     }
 }
