@@ -1,5 +1,6 @@
 package lk.ijse.palmoilfactory.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,6 +22,10 @@ import java.time.format.DateTimeFormatter;
 public class LoginFormController {
 
     public AnchorPane loginContext;
+
+    public JFXTextField txtUsername;
+
+    public JFXTextField txtPassword;
 
 
     @FXML

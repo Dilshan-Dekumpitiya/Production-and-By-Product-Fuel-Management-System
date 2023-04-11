@@ -1,5 +1,6 @@
 package lk.ijse.palmoilfactory.dto.tm;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,5 +12,5 @@ public class SupplierTM {
     private String supName;
     private String supAddress;
     private String supContact;
-    private Button btn;
+    private JFXButton btn;
 }
