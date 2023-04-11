@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -158,10 +159,11 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="lblTime" alignment="CENTER" contentDisplay="CENTER" layoutX="1109.0" layoutY="16.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textFill="#ffffffa8">
+      <Label fx:id="lblTime" alignment="CENTER" contentDisplay="CENTER" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <Separator layoutX="1257.0" layoutY="21.0" orientation="VERTICAL" prefHeight="13.0" prefWidth="6.0" />
    </children>
 </AnchorPane>
