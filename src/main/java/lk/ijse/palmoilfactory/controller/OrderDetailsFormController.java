@@ -75,7 +75,6 @@ public class OrderDetailsFormController implements Initializable {
             getOrderDetailToTable(text);
         });
 
-
     }
 
     private void setOrderDate() {
