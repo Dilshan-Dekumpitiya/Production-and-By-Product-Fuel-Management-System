@@ -18,49 +18,49 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="34.0" layoutY="91.0" prefHeight="243.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
+      <Pane layoutX="34.0" layoutY="64.0" prefHeight="270.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
          <children>
-            <JFXButton fx:id="btnSaveSupplier" layoutX="49.0" layoutY="176.0" onAction="#btnSaveSupplierOnAction" prefHeight="30.0" prefWidth="156.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Save Supplier">
+            <JFXButton fx:id="btnSaveSupplier" layoutX="48.0" layoutY="216.0" onAction="#btnSaveSupplierOnAction" prefHeight="30.0" prefWidth="156.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Save Supplier">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="665.0" layoutY="176.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Clear">
+            <JFXButton layoutX="666.0" layoutY="216.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="364.0" layoutY="176.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Delete Supplier">
+            <JFXButton layoutX="364.0" layoutY="216.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Delete Supplier">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="15.0" layoutY="9.0" prefHeight="35.0" prefWidth="183.0" text="Search Supplier ID  :">
+            <Label layoutX="17.0" layoutY="69.0" prefHeight="35.0" prefWidth="183.0" text="Supplier ID  :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtSupplierId" layoutX="198.0" layoutY="13.0" onAction="#txtSupplierIdOnAction" prefHeight="25.0" prefWidth="348.0" promptText="supplier id" unFocusColor="BLACK" />
-            <Label layoutX="17.0" layoutY="55.0" prefHeight="31.0" prefWidth="115.0" text="Name          :">
+            <JFXTextField fx:id="txtSupplierId" layoutX="151.0" layoutY="74.0" onAction="#txtSupplierIdOnAction" prefHeight="25.0" prefWidth="213.0" promptText="supplier id" unFocusColor="BLACK" />
+            <Label layoutX="17.0" layoutY="112.0" prefHeight="31.0" prefWidth="115.0" text="Name          :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="112.0" prefHeight="31.0" prefWidth="115.0" text="Address      :">
+            <Label layoutX="17.0" layoutY="153.0" prefHeight="31.0" prefWidth="115.0" text="Address      :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="404.0" layoutY="112.0" prefHeight="31.0" prefWidth="115.0" text="Contact      :">
+            <Label layoutX="403.0" layoutY="138.0" prefHeight="31.0" prefWidth="115.0" text="Contact      :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <JFXButton layoutX="553.0" layoutY="26.0" visible="false" />
-            <JFXTextField fx:id="txtSupplierAddress" layoutX="145.0" layoutY="112.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
-            <JFXTextField fx:id="txtSupplierName" layoutX="145.0" layoutY="58.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
-            <JFXTextField fx:id="txtSupplierContact" layoutX="539.0" layoutY="115.0" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
-            <JFXButton layoutX="567.0" layoutY="9.0" onAction="#btnSearchSupplierOnAction" prefHeight="35.0" prefWidth="37.0" text="Button" textFill="#322c2c">
+            <JFXTextField fx:id="txtSupplierAddress" layoutX="151.0" layoutY="153.0" onAction="#txtSupplierAddressOnAction" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
+            <JFXTextField fx:id="txtSupplierName" layoutX="151.0" layoutY="115.0" onAction="#txtSupplierNameOnAction" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
+            <JFXTextField fx:id="txtSupplierContact" layoutX="538.0" layoutY="141.0" onAction="#txtSupplierContactOnAction" prefHeight="25.0" prefWidth="213.0" unFocusColor="BLACK" />
+            <JFXButton layoutX="384.0" layoutY="69.0" onAction="#btnSearchSupplierOnAction" prefHeight="35.0" prefWidth="37.0" text="Button" textFill="#322c2c">
                <font>
                   <Font size="1.0" />
                </font>
@@ -72,6 +72,12 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXTextField fx:id="txtSearch" layoutX="109.0" layoutY="26.0" prefHeight="25.0" prefWidth="347.0" promptText="search here" />
+            <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="478.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/search-img.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <TableView fx:id="tblSupplier" layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0" style="-fx-background-color: #718093;">

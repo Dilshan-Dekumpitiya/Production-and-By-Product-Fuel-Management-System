@@ -61,12 +61,17 @@ public class SupplierDetailsFormController implements Initializable {
     @FXML
     private JFXButton btnSaveSupplier;
 
+    @FXML
+    private JFXTextField txtSearch;
+
+    private String searchText="";
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(() -> txtSupplierId.requestFocus());
+        Platform.runLater(() -> txtSearch.requestFocus());
         setCellValueFactory(); //To show table data
-        getAllSupplierToTable(); //To get all supplier details to table(Not show)
+        getAllSupplierToTable(searchText); //To get all supplier details to table(Not show)
 
         tblSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
             //Check select value is not null
@@ -74,6 +79,12 @@ public class SupplierDetailsFormController implements Initializable {
                 btnSaveSupplier.setText("Update Supplier");
                 setDataToTextFields(newValue); //Set data to text field of selected row data of table
             }
+        });
+
+        txtSearch.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
+            tblSupplier.getItems().clear();
+            searchText=newValue;
+            getAllSupplierToTable(searchText);
         });
     }
 
@@ -92,25 +103,27 @@ public class SupplierDetailsFormController implements Initializable {
         colSupAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
-    void getAllSupplierToTable() {
+    void getAllSupplierToTable(String text) {
         try {
 
             List<Supplier> supList = SupplierModel.getAll();
             for(Supplier supplier : supList) {
-                JFXButton btnDel=new JFXButton("Delete");
-                btnDel.setAlignment(Pos.CENTER);
-                btnDel.setStyle("-fx-background-color: #686de0; ");
-                btnDel.setCursor(Cursor.HAND);
+                if (supplier.getSupName().contains(text) || supplier.getSupAddress().contains(text)){  //Check pass text contains of the supName
+                    JFXButton btnDel=new JFXButton("Delete");
+                    btnDel.setAlignment(Pos.CENTER);
+                    btnDel.setStyle("-fx-background-color: #686de0; ");
+                    btnDel.setCursor(Cursor.HAND);
 
-                SupplierTM tm=new SupplierTM(
-                        supplier.getSupId(),
-                        supplier.getSupName(),
-                        supplier.getSupAddress(),
-                        supplier.getSupContact(),btnDel);
+                    SupplierTM tm=new SupplierTM(
+                            supplier.getSupId(),
+                            supplier.getSupName(),
+                            supplier.getSupAddress(),
+                            supplier.getSupContact(),btnDel);
 
-                obList.add(tm);
+                    obList.add(tm);
 
-                setDeleteButtonTableOnAction(btnDel);
+                    setDeleteButtonTableOnAction(btnDel);
+                }
 
             }
 
@@ -132,11 +145,11 @@ public class SupplierDetailsFormController implements Initializable {
 
             if (buttonType.get() == yes) {
                 txtSupplierId.setText(tblSupplier.getSelectionModel().getSelectedItem().getSupId());
-                int index = tblSupplier.getSelectionModel().getSelectedIndex();
-                obList.remove(index);
                 btnSearchSupplierOnAction(e);
                 btnDeleteSupplierOnAction(e);
-                tblSupplier.refresh();
+
+                tblSupplier.getItems().clear();
+                getAllSupplierToTable(searchText);
 
             }
 
@@ -159,8 +172,10 @@ public class SupplierDetailsFormController implements Initializable {
                 try {
                     isAdded = SupplierModel.addSupplier(supId, supName, supAddress, supContact);
                     if (isAdded) {
+                        tblSupplier.getItems().clear();
                         new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added").show();
                         clearFields();
+                        getAllSupplierToTable(searchText);
 
                     } else {
                         new Alert(Alert.AlertType.WARNING, "Supplier Not Added Please Try Again").show();
@@ -172,21 +187,18 @@ public class SupplierDetailsFormController implements Initializable {
                 }
 
             }else{
+
                 if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
                     new Alert(Alert.AlertType.CONFIRMATION,"Please Input Supplier ID and Search Supplier is exist").show();
                 }else {
-                    String suppId = txtSupplierId.getText();
-                    String suppName = txtSupplierName.getText();
-                    String suppAddress = txtSupplierAddress.getText();
-                    String suppContact = txtSupplierContact.getText();
-
                     boolean isUpdated;
-
                     try {
-                        isUpdated = SupplierModel.updateSupplier(suppId, suppName, suppAddress, suppContact);
+                        isUpdated = SupplierModel.updateSupplier(supId, supName, supAddress, supContact);
                         if (isUpdated) {
+                            tblSupplier.getItems().clear();
                             new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated").show();
                             clearFields();
+                            getAllSupplierToTable(searchText);
 
                         } else {
                             new Alert(Alert.AlertType.WARNING, "Supplier Not Updated Please Try Again").show();
@@ -218,6 +230,7 @@ public class SupplierDetailsFormController implements Initializable {
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Supplier Not Found Please Try Again").show();
+                    txtSupplierName.requestFocus();
                 }
 
             } catch (SQLException e) {
@@ -231,7 +244,23 @@ public class SupplierDetailsFormController implements Initializable {
 
     @FXML
     void txtSupplierIdOnAction(ActionEvent event) {
-        btnSearchSupplierOnAction(event);
+        txtSupplierName.requestFocus();
+    }
+
+    @FXML
+    void txtSupplierNameOnAction(ActionEvent event) {
+        txtSupplierAddress.requestFocus();
+    }
+
+    @FXML
+    void txtSupplierAddressOnAction(ActionEvent event) {
+        txtSupplierContact.requestFocus();
+    }
+
+    @FXML
+    void txtSupplierContactOnAction(ActionEvent event) {
+        btnSaveSupplierOnAction(event);
+        txtSearch.requestFocus();
     }
 
     @FXML
@@ -246,8 +275,10 @@ public class SupplierDetailsFormController implements Initializable {
 
                 boolean isDeleted = SupplierModel.deleteSupplier(supId);
                 if (isDeleted) {
+                    tblSupplier.getItems().clear();
                     new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted Successfully").show();
                     clearFields();
+                    getAllSupplierToTable(searchText);
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
@@ -270,6 +301,8 @@ public class SupplierDetailsFormController implements Initializable {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearFields();
+        txtSearch.clear();
+        txtSearch.requestFocus();
         btnSaveSupplier.setText("Save Supplier");
     }
 }
