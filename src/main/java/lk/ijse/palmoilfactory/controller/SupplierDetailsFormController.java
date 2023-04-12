@@ -58,6 +58,9 @@ public class SupplierDetailsFormController implements Initializable {
 
     private ObservableList<SupplierTM> obList = FXCollections.observableArrayList();
 
+    @FXML
+    private JFXButton btnSaveSupplier;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,11 +69,15 @@ public class SupplierDetailsFormController implements Initializable {
         getAllSupplierToTable(); //To get all supplier details to table(Not show)
 
         tblSupplier.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
-            setData(newValue); //Set data to text field of selected row data of table
+            //Check select value is not null
+            if(null!=newValue) { //newValue!=null --> Get more time to compare (newValue object compare)
+                btnSaveSupplier.setText("Update Supplier");
+                setDataToTextFields(newValue); //Set data to text field of selected row data of table
+            }
         });
     }
 
-    private void setData(SupplierTM supplierTM) {
+    private void setDataToTextFields(SupplierTM supplierTM) {
         txtSupplierId.setText(supplierTM.getSupId());
         txtSupplierName.setText(supplierTM.getSupName());
         txtSupplierAddress.setText(supplierTM.getSupAddress());
@@ -103,7 +110,7 @@ public class SupplierDetailsFormController implements Initializable {
 
                 obList.add(tm);
 
-                setDeleteButtonOnAction(btnDel);
+                setDeleteButtonTableOnAction(btnDel);
 
             }
 
@@ -116,7 +123,7 @@ public class SupplierDetailsFormController implements Initializable {
         }
     }
 
-    private void setDeleteButtonOnAction(JFXButton btnDel) {
+    private void setDeleteButtonTableOnAction(JFXButton btnDel) {
         btnDel.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -137,7 +144,7 @@ public class SupplierDetailsFormController implements Initializable {
     }
 
     @FXML
-    void btnAddSupplierOnAction(ActionEvent event) {
+    void btnSaveSupplierOnAction(ActionEvent event) {
         if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Data to Add Supplier").show();
         }else {
@@ -148,21 +155,48 @@ public class SupplierDetailsFormController implements Initializable {
 
             boolean isAdded;
 
-            try {
-                isAdded = SupplierModel.addSupplier(supId, supName, supAddress, supContact);
-                if (isAdded) {
+            if(btnSaveSupplier.getText().equalsIgnoreCase("Save Supplier")){
+                try {
+                    isAdded = SupplierModel.addSupplier(supId, supName, supAddress, supContact);
+                    if (isAdded) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added").show();
+                        clearFields();
 
-                    new Alert(Alert.AlertType.CONFIRMATION, "Supplier Added").show();
-                    clearFields();
-                  //  getAllSupplierToTable();
-
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Supplier Not Added Please Try Again").show();
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Supplier Not Added Please Try Again").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                } catch (ClassNotFoundException e) {
+                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+
+            }else{
+                if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Please Input Supplier ID and Search Supplier is exist").show();
+                }else {
+                    String suppId = txtSupplierId.getText();
+                    String suppName = txtSupplierName.getText();
+                    String suppAddress = txtSupplierAddress.getText();
+                    String suppContact = txtSupplierContact.getText();
+
+                    boolean isUpdated;
+
+                    try {
+                        isUpdated = SupplierModel.updateSupplier(suppId, suppName, suppAddress, suppContact);
+                        if (isUpdated) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated").show();
+                            clearFields();
+
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Supplier Not Updated Please Try Again").show();
+                        }
+                    } catch (SQLException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    } catch (ClassNotFoundException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    }
+                }
             }
         }
     }
@@ -202,6 +236,8 @@ public class SupplierDetailsFormController implements Initializable {
 
     @FXML
     void btnDeleteSupplierOnAction(ActionEvent event) {
+
+        txtSupplierId.setText(tblSupplier.getSelectionModel().getSelectedItem().getSupId());
         if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Supplier ID and Search Supplier is exist").show();
         }else {
@@ -225,39 +261,15 @@ public class SupplierDetailsFormController implements Initializable {
         }
     }
 
-    @FXML
-    void btnUpdateSupplierOnAction(ActionEvent event) {
-        if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
-            new Alert(Alert.AlertType.CONFIRMATION,"Please Input Supplier ID and Search Supplier is exist").show();
-        }else {
-            String supId = txtSupplierId.getText();
-            String supName = txtSupplierName.getText();
-            String supAddress = txtSupplierAddress.getText();
-            String supContact = txtSupplierContact.getText();
-
-            boolean isUpdated;
-
-            try {
-                isUpdated = SupplierModel.updateSupplier(supId, supName, supAddress, supContact);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Supplier Updated").show();
-                    clearFields();
-
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Supplier Not Updated Please Try Again").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            }
-        }
-    }
-
     private void clearFields(){
         txtSupplierName.clear();
         txtSupplierId.clear();
         txtSupplierAddress.clear();
         txtSupplierContact.clear();
+    }
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        clearFields();
+        btnSaveSupplier.setText("Save Supplier");
     }
 }
