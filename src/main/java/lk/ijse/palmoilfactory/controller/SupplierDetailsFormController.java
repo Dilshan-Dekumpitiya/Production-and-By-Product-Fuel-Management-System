@@ -105,7 +105,6 @@ public class SupplierDetailsFormController implements Initializable {
 
     void getAllSupplierToTable(String text) {
         try {
-
             List<Supplier> supList = SupplierModel.getAll();
             for(Supplier supplier : supList) {
                 if (supplier.getSupName().contains(text) || supplier.getSupAddress().contains(text)){  //Check pass text contains of the supName
@@ -124,12 +123,8 @@ public class SupplierDetailsFormController implements Initializable {
 
                     setDeleteButtonTableOnAction(btnDel);
                 }
-
             }
-
             tblSupplier.setItems(obList);
-
-
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Query error!").show();
@@ -150,9 +145,7 @@ public class SupplierDetailsFormController implements Initializable {
 
                 tblSupplier.getItems().clear();
                 getAllSupplierToTable(searchText);
-
             }
-
         });
     }
 
@@ -243,7 +236,14 @@ public class SupplierDetailsFormController implements Initializable {
     }
 
     @FXML
+    void txtSearchOnAction(ActionEvent event) {
+        btnClearOnAction(event);
+        txtSupplierId.requestFocus();
+    }
+    @FXML
     void txtSupplierIdOnAction(ActionEvent event) {
+        btnSearchSupplierOnAction(event);
+      //  if ()
         txtSupplierName.requestFocus();
     }
 

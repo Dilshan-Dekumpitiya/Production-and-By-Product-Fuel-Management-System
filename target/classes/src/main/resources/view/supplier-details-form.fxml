@@ -72,7 +72,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXTextField fx:id="txtSearch" layoutX="109.0" layoutY="26.0" prefHeight="25.0" prefWidth="347.0" promptText="search here" />
+            <JFXTextField fx:id="txtSearch" layoutX="109.0" layoutY="26.0" onAction="#txtSearchOnAction" prefHeight="25.0" prefWidth="347.0" promptText="search here" />
             <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="478.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/search-img.png" />
