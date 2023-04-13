@@ -1,6 +1,5 @@
 package lk.ijse.palmoilfactory.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -8,16 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.palmoilfactory.dto.Orders;
-import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.dto.tm.OrderTM;
-import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.OrderModel;
-import lk.ijse.palmoilfactory.model.SupplierModel;
 
 import java.net.URL;
 import java.sql.SQLException;

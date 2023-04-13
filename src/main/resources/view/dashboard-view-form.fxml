@@ -16,7 +16,7 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Pane layoutX="14.0" layoutY="47.0" prefHeight="639.0" prefWidth="275.0" styleClass="anchorPane" stylesheets="@../stylesheet/stylesheet.css">
+      <Pane layoutX="14.0" layoutY="47.0" prefHeight="650.0" prefWidth="275.0" styleClass="dashboardleftsidepane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
             <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnSupplierDetailOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Supplier " textAlignment="CENTER" textFill="WHITE">
                <cursor>
