@@ -66,7 +66,6 @@ public class SupplierDetailsFormController implements Initializable {
 
     private String searchText="";
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> txtSearch.requestFocus());
