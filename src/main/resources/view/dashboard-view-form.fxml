@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #1F2127;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
+<AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
    <children>
-      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textFill="#ffffffa8">
+      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #02030A; -fx-background-radius: 15;" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Pane layoutX="14.0" layoutY="47.0" prefHeight="639.0" prefWidth="275.0" style="-fx-background-radius: 20; -fx-background-color: #1F2127;">
+      <Pane layoutX="14.0" layoutY="47.0" prefHeight="639.0" prefWidth="275.0" styleClass="anchorPane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="75.0" onAction="#btnSupplierDetailOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Supplier " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnSupplierDetailOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Supplier " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -26,7 +26,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="135.0" onAction="#btnStockDetailsOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Stock " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="135.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnStockDetailsOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Stock " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -34,7 +34,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="315.0" onAction="#btnByProductFuelOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="315.0" onAction="#btnByProductFuelOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="  By-Product Fuel " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -42,7 +42,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="195.0" onAction="#btnSteamOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Steam " textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="195.0" onAction="#btnSteamOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Steam " textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -50,7 +50,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="255.0" onAction="#btnOilProductionOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="255.0" onAction="#btnOilProductionOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -58,7 +58,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="375.0" onAction="#btnEmployeeOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Employee" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="375.0" onAction="#btnEmployeeOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Employee" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -66,7 +66,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="586.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="                   Logout" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="586.0" onAction="#btnLogoutOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="                   Logout" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -74,7 +74,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="15.0" onAction="#btnDashboardOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#btnDashboardOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -122,7 +122,7 @@
                   <Image url="@../img/logout-img.gif" />
                </image>
             </ImageView>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="515.0" onAction="#btnGetReportOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Get Report" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="515.0" onAction="#btnGetReportOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Get Report" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -135,7 +135,7 @@
                   <Image url="@../img/report-img.png" />
                </image>
             </ImageView>
-            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="445.0" onAction="#btnOrderDetailsOnAction" prefHeight="44.0" prefWidth="217.0" style="-fx-background-radius: 50; -fx-background-color: #1F2127;" text="Order Details" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="20.0" layoutY="445.0" onAction="#btnOrderDetailsOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Order Details" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -150,7 +150,7 @@
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane fx:id="dashboardDetailsPane" layoutX="300.0" layoutY="47.0" prefHeight="639.0" prefWidth="1054.0" style="-fx-background-radius: 20;">
+      <AnchorPane fx:id="dashboardDetailsPane" layoutX="300.0" layoutY="47.0" prefHeight="639.0" prefWidth="1054.0" styleClass="anchorPane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
             <Label layoutX="8.0" layoutY="8.0" prefHeight="32.0" prefWidth="217.0" text="Dashboard" textFill="WHITE">
                <font>
@@ -159,7 +159,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #1F2127; -fx-background-radius: 15;" textAlignment="RIGHT" textFill="#ffffffa8">
+      <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #02030A; -fx-background-radius: 15;" textAlignment="RIGHT" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

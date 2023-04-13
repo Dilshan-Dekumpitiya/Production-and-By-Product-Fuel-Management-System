@@ -254,7 +254,7 @@ public class EmployeeDetailsFormController implements Initializable {
         transition.setNode(load);
         transition.setDuration(Duration.seconds(0.5));
 
-        transition.setToX(380);
+        transition.setToX(390);
 
         empdetailsPane.getChildren().add(load);
 

@@ -3,10 +3,32 @@
     -fx-background-radius: 20;
 }
 .anchorPane{
-    -fx-background-color:  #2d3436;
-    -fx-background-radius: 20;
+    -fx-background-color:   #02030A;
+    -fx-background-radius: 10;
+}
+.pane{
+    -fx-background-color:  #1F2127;
+    -fx-background-radius: 10;
 }
 .cmb{
-    -fx-prompt-text-fill: black;
-     -fx-font-weight: bolder;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+    -fx-background-color: white;
+}
+.dashboardbtn{
+    -fx-background-color:  #1F2127;
+    -fx-background-radius: 10;
+}
+
+.textfield{
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+.table{
+    -fx-background-color: white;
 }
