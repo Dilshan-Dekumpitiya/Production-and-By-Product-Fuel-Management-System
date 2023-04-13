@@ -36,7 +36,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="17.0" layoutY="112.0" prefHeight="31.0" prefWidth="115.0" text="Qty          :">
+            <Label layoutX="17.0" layoutY="112.0" prefHeight="31.0" prefWidth="115.0" text="Qty (kL)   :">
                <font>
                   <Font size="20.0" />
                </font>
@@ -59,17 +59,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="285.0" layoutY="214.0" prefHeight="35.0" prefWidth="237.0" text="Oil Quantity On Hand  :">
+            <Label layoutX="250.0" layoutY="214.0" prefHeight="35.0" prefWidth="255.0" text="Oil Quantity On Hand (kL)  :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Label fx:id="lblOrderId" layoutX="130.0" layoutY="69.0" prefHeight="35.0" prefWidth="183.0" textFill="#eab543">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblOrderDate" layoutX="718.0" layoutY="21.0" prefHeight="35.0" prefWidth="183.0" textFill="#eab543">
+            <Label fx:id="lblOrderDate" layoutX="718.0" layoutY="21.0" prefHeight="35.0" prefWidth="183.0" style="-fx-font-weight: bold;" textFill="#eab543">
                <font>
                   <Font size="20.0" />
                </font>
@@ -87,11 +87,11 @@
             <DatePicker fx:id="dtpckrOrdersDate" layoutX="165.0" layoutY="26.0" prefHeight="25.0" prefWidth="237.0" />
          </children>
       </Pane>
-      <TableView fx:id="tblOrderDetails" layoutX="44.0" layoutY="365.0" prefHeight="270.0" prefWidth="986.0" style="-fx-background-color: #718093;">
+      <TableView fx:id="tblOrderDetails" layoutX="44.0" layoutY="365.0" prefHeight="253.0" prefWidth="986.0" style="-fx-background-color: #718093;">
          <columns>
             <TableColumn fx:id="colOrderId" prefWidth="305.0" text="Order  ID" />
             <TableColumn fx:id="colOrderDate" prefWidth="245.0" text="Date" />
-            <TableColumn fx:id="colQty" prefWidth="236.0" text="Qty" />
+            <TableColumn fx:id="colQty" prefWidth="236.0" text="Qty (kL)" />
             <TableColumn fx:id="colPrice" prefWidth="199.0" text="Price" />
          </columns>
       </TableView>

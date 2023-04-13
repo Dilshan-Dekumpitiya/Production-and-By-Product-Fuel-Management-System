@@ -102,7 +102,7 @@
                   <Image url="@../img/steam-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/fuel-img.png" />
                </image>
@@ -112,12 +112,12 @@
                   <Image url="@../img/oil-production-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/employee-img.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="592.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="592.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logout-img.gif" />
                </image>
@@ -130,7 +130,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="42.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="35.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/report-img.png" />
                </image>

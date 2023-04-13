@@ -2,6 +2,7 @@ package lk.ijse.palmoilfactory.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,10 +65,11 @@ public class OrderDetailsFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(() -> txtQty.requestFocus());
         setOrderDate();
         generateNextOrderId();
-        setCellValueFactory();
-        getOrderDetailToTable(text);
+        setCellValueFactory(); //To show table data
+        getOrderDetailToTable(text);  //To get all orders details to table(Not show)
 
         dtpckrOrdersDate.setOnAction(actionEvent -> { //Add action listener to dtpckrOrdersDate to search and display table
             tblOrderDetails.getItems().clear();
@@ -86,7 +88,7 @@ public class OrderDetailsFormController implements Initializable {
             String nextId = OrderModel.generateNextOrderId();
             lblOrderId.setText(nextId);
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
         }
     }
 
@@ -101,7 +103,7 @@ public class OrderDetailsFormController implements Initializable {
         try {
             List<Orders> orderList = OrderModel.getAll();
             for(Orders orders : orderList) {
-                if (orders.getOrderDate().contains(text) ){  //Check pass text contains of the supName
+                if (orders.getOrderDate().contains(text) ){  //Check pass text contains of the order date
 
                     OrderTM tm=new OrderTM(
                             orders.getOrderId(),
@@ -114,8 +116,8 @@ public class OrderDetailsFormController implements Initializable {
                 }
             }
             tblOrderDetails.setItems(obList);
+
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Query error!").show();
         }
     }
@@ -127,17 +129,22 @@ public class OrderDetailsFormController implements Initializable {
 
     @FXML
     void txtPriceOnAction(ActionEvent event) {
-
+        btnPlaceOrderOnAction(event);
     }
 
     @FXML
     void txtQtyOnAction(ActionEvent event) {
-
+        txtPrice.requestFocus();
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        txtQty.clear();
+        txtPrice.clear();
+        dtpckrOrdersDate.getEditor().clear();
+        tblOrderDetails.getItems().clear();
+        getOrderDetailToTable("");
+        txtQty.requestFocus();
     }
 
 }

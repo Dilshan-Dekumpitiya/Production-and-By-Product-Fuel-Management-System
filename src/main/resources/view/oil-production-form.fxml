@@ -17,7 +17,7 @@
       </Label>
       <Pane layoutX="65.0" layoutY="112.0" prefHeight="266.0" prefWidth="986.0" style="-fx-background-color: #718093; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="23.0" layoutY="61.0" prefHeight="36.0" prefWidth="301.0" text="Total EB Liquid Output (MT)     : ">
+            <Label layoutX="23.0" layoutY="61.0" prefHeight="36.0" prefWidth="301.0" text="Total EB Liquid Output (kL)     : ">
                <font>
                   <Font size="20.0" />
                </font>
@@ -41,7 +41,7 @@
                </font>
             </Label>
             <JFXComboBox fx:id="cmbStockId" layoutX="227.0" layoutY="20.0" onAction="#cmbStockIdOnAction" prefHeight="25.0" prefWidth="220.0" unFocusColor="BLACK" />
-            <Label layoutX="493.0" layoutY="59.0" prefHeight="36.0" prefWidth="324.0" text="Total Press Liquid Output  (MT)   : ">
+            <Label layoutX="493.0" layoutY="59.0" prefHeight="36.0" prefWidth="324.0" text="Total Press Liquid Output  (kL)   : ">
                <font>
                   <Font size="20.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="23.0" layoutY="158.0" prefHeight="36.0" prefWidth="301.0" text="Total Oil Output (MT)     : " textFill="#f80303">
+            <Label layoutX="23.0" layoutY="158.0" prefHeight="36.0" prefWidth="301.0" text="Total Oil Output (kL)     : " textFill="#f80303">
                <font>
                   <Font size="20.0" />
                </font>

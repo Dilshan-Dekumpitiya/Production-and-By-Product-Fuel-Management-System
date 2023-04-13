@@ -243,7 +243,6 @@ public class SupplierDetailsFormController implements Initializable {
     @FXML
     void txtSupplierIdOnAction(ActionEvent event) {
         btnSearchSupplierOnAction(event);
-      //  if ()
         txtSupplierName.requestFocus();
     }
 
@@ -298,6 +297,7 @@ public class SupplierDetailsFormController implements Initializable {
         txtSupplierAddress.clear();
         txtSupplierContact.clear();
     }
+
     @FXML
     void btnClearOnAction(ActionEvent event) {
         clearFields();

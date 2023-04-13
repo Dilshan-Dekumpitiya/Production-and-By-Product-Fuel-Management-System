@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderModel {
+
     public static String generateNextOrderId() throws SQLException, ClassNotFoundException {
 
         String sql = "SELECT orderId FROM Orders ORDER BY orderId DESC LIMIT 1";
@@ -31,11 +32,13 @@ public class OrderModel {
     }
 
     public static List<Orders> getAll() throws SQLException, ClassNotFoundException {
+
         String sql = "SELECT * FROM orders";
 
         List<Orders> orderData = new ArrayList<>();
 
         ResultSet resultSet = CrudUtil.execute(sql);
+
         while (resultSet.next()) {
             orderData.add(new Orders(
                     resultSet.getString(1),
@@ -45,6 +48,5 @@ public class OrderModel {
             ));
         }
         return orderData;
-
     }
 }
