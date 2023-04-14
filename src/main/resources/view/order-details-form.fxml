@@ -74,7 +74,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblOilQuantityOnHand" layoutX="284.0" layoutY="200.0" prefHeight="35.0" prefWidth="154.0" stylesheets="@../stylesheet/stylesheet.css" textFill="#eab543">
+            <Label fx:id="lblOilQuantityOnHand" layoutX="284.0" layoutY="200.0" prefHeight="35.0" prefWidth="154.0" style="-fx-font-weight: bold; -fx-text-fill: #8c7ae6;" textFill="#eab543">
                <font>
                   <Font size="20.0" />
                </font>
@@ -84,10 +84,10 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dtpckrOrdersDate" layoutX="165.0" layoutY="26.0" prefHeight="25.0" prefWidth="237.0" />
+            <DatePicker fx:id="dtpckrOrdersDate" layoutX="165.0" layoutY="26.0" prefHeight="25.0" prefWidth="237.0" promptText="search by date" />
          </children>
       </Pane>
-      <TableView fx:id="tblOrderDetails" layoutX="44.0" layoutY="365.0" prefHeight="253.0" prefWidth="986.0" styleClass="table">
+      <TableView fx:id="tblOrderDetails" layoutX="44.0" layoutY="365.0" prefHeight="253.0" prefWidth="986.0" stylesheets="@../stylesheet/stylesheet.css">
          <columns>
             <TableColumn fx:id="colOrderId" prefWidth="305.0" text="Order  ID" />
             <TableColumn fx:id="colOrderDate" prefWidth="245.0" text="Date" />

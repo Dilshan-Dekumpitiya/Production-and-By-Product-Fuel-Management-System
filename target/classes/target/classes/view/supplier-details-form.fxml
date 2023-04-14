@@ -80,7 +80,7 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="tblSupplier" layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0" styleClass="table">
+      <TableView fx:id="tblSupplier" layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0">
         <columns>
           <TableColumn fx:id="colSupId" prefWidth="168.0" text="Supplier  ID" />
           <TableColumn fx:id="colSupName" prefWidth="249.0" text="Supplier Name" />

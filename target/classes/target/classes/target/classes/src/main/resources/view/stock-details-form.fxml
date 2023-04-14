@@ -70,8 +70,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="cmbSupplierId" layoutX="194.0" layoutY="170.0" prefHeight="25.0" prefWidth="153.0" styleClass="cmb" unFocusColor="BLACK" />
-            <Label fx:id="lblDate" layoutX="201.0" layoutY="118.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@../stylesheet/stylesheet.css" />
+            <JFXComboBox fx:id="cmbSupplierId" layoutX="194.0" layoutY="170.0" prefHeight="25.0" prefWidth="153.0" promptText="supplier id" styleClass="cmb" unFocusColor="BLACK" />
+            <Label fx:id="lblDate" layoutX="194.0" layoutY="119.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@../stylesheet/stylesheet.css" />
             <Label fx:id="lblTime" layoutX="631.0" layoutY="110.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@../stylesheet/stylesheet.css" />
          </children>
       </Pane>

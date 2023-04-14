@@ -40,7 +40,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="cmbStockId" layoutX="227.0" layoutY="20.0" onAction="#cmbStockIdOnAction" prefHeight="25.0" prefWidth="220.0" styleClass="cmb" unFocusColor="BLACK" />
+            <JFXComboBox fx:id="cmbStockId" layoutX="227.0" layoutY="20.0" onAction="#cmbStockIdOnAction" prefHeight="25.0" prefWidth="220.0" promptText="stock id" styleClass="cmb" unFocusColor="BLACK" />
             <Label layoutX="493.0" layoutY="59.0" prefHeight="36.0" prefWidth="324.0" text="Total Press Liquid Output  (kL)   : ">
                <font>
                   <Font size="20.0" />
