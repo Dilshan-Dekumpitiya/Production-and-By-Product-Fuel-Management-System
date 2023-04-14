@@ -80,7 +80,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="44.0" layoutY="357.0" prefHeight="270.0" prefWidth="986.0" styleClass="table">
+      <TableView layoutX="44.0" layoutY="357.0" prefHeight="270.0" prefWidth="986.0">
         <columns>
           <TableColumn prefWidth="203.0" text="Stock ID" />
           <TableColumn prefWidth="173.0" text="FFB Input(MT)" />
