@@ -60,6 +60,7 @@ public class OrderDetailsFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> txtQty.requestFocus());
+
         setOrderDate();
         generateNextOrderId();
         setCellValueFactory(); //To show table data
@@ -118,7 +119,36 @@ public class OrderDetailsFormController implements Initializable {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        String orderId = lblOrderId.getText();
+        String orderDate = lblOrderDate.getText();
+        double qty = Double.parseDouble(txtQty.getText());
+        double price = Double.parseDouble(txtPrice.getText());
 
+        boolean isAdded;
+
+            try {
+                isAdded = OrderModel.addOrder(orderId, orderDate, qty, price);
+                if (isAdded) {
+                    tblOrderDetails.getItems().clear();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Order Added").show();
+                    clearFields();
+                    txtQty.requestFocus();
+                    generateNextOrderId();
+                    getOrderDetailToTable("");
+
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Order Not Added Please Try Again").show();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+            } catch (ClassNotFoundException e) {
+                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+            }
+    }
+
+    private void clearFields() {
+        txtQty.clear();
+        txtPrice.clear();
     }
 
     @FXML
@@ -140,5 +170,4 @@ public class OrderDetailsFormController implements Initializable {
         getOrderDetailToTable("");
         txtQty.requestFocus();
     }
-
 }

@@ -20,17 +20,17 @@
       </Label>
       <Pane layoutX="34.0" layoutY="64.0" prefHeight="270.0" prefWidth="986.0" styleClass="pane">
          <children>
-            <JFXButton fx:id="btnSaveSupplier" layoutX="48.0" layoutY="216.0" onAction="#btnSaveSupplierOnAction" prefHeight="30.0" prefWidth="156.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Save Supplier">
+            <JFXButton fx:id="btnSaveSupplier" layoutX="48.0" layoutY="216.0" onAction="#btnSaveSupplierOnAction" prefHeight="30.0" prefWidth="156.0" styleClass="btn" text="Save Supplier">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="666.0" layoutY="216.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Clear">
+            <JFXButton layoutX="666.0" layoutY="216.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" styleClass="btn" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="364.0" layoutY="216.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Delete Supplier">
+            <JFXButton layoutX="364.0" layoutY="216.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Delete Supplier">
                <font>
                   <Font size="14.0" />
                </font>

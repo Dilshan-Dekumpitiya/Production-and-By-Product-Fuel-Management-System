@@ -21,17 +21,17 @@
       </Label>
       <Pane fx:id="empdetailsPane" layoutX="44.0" layoutY="101.0" prefHeight="303.0" prefWidth="986.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
-            <JFXButton layoutX="54.0" layoutY="240.0" onAction="#btnAddEmployeeOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Add Employee">
+            <JFXButton layoutX="54.0" layoutY="240.0" onAction="#btnAddEmployeeOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Add Employee">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="386.0" layoutY="240.0" onAction="#btnUpdateEmployeeOnAction" prefHeight="30.0" prefWidth="153.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Update Employee">
+            <JFXButton layoutX="386.0" layoutY="240.0" onAction="#btnUpdateEmployeeOnAction" prefHeight="30.0" prefWidth="153.0" styleClass="btn" text="Update Employee">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="799.0" layoutY="240.0" onAction="#btnDeleteEmployeeOnAction" prefHeight="30.0" prefWidth="143.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Delete Employee">
+            <JFXButton layoutX="799.0" layoutY="240.0" onAction="#btnDeleteEmployeeOnAction" prefHeight="30.0" prefWidth="143.0" styleClass="btn" text="Delete Employee">
                <font>
                   <Font size="14.0" />
                </font>
@@ -91,7 +91,7 @@
             </Label>
             <JFXComboBox fx:id="cmbEmployeetype" layoutX="133.0" layoutY="169.0" prefHeight="25.0" prefWidth="176.0" promptText="emp type" styleClass="cmb" stylesheets="@../stylesheet/stylesheet.css" unFocusColor="WHITE" />
             <JFXComboBox fx:id="cmbEmployeeSchId" layoutX="449.0" layoutY="169.0" prefHeight="25.0" prefWidth="153.0" promptText="sch id" styleClass="cmb" stylesheets="@../stylesheet/stylesheet.css" unFocusColor="WHITE" />
-            <JFXButton layoutX="646.0" layoutY="169.0" onAction="#btnEditScheduleDetailsOnAction" prefHeight="30.0" prefWidth="132.0" style="-fx-background-radius: 20; -fx-background-color: #d2dae2;" text="Schedule Details">
+            <JFXButton layoutX="646.0" layoutY="169.0" onAction="#btnEditScheduleDetailsOnAction" prefHeight="30.0" prefWidth="132.0" styleClass="btn" text="Schedule Details">
                <font>
                   <Font size="14.0" />
                </font>

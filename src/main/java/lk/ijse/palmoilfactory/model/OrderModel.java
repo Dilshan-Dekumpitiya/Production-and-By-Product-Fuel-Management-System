@@ -12,7 +12,7 @@ public class OrderModel {
 
     public static String generateNextOrderId() throws SQLException, ClassNotFoundException {
 
-        String sql = "SELECT orderId FROM Orders ORDER BY orderId DESC LIMIT 1";
+        String sql = "SELECT orderId FROM orders ORDER BY orderId DESC LIMIT 1";
 
         ResultSet resultSet = CrudUtil.execute(sql);
         if(resultSet.next()) {
@@ -20,15 +20,16 @@ public class OrderModel {
         }
         return splitOrderId(null);
     }
-    public static String splitOrderId(String currentOrderId) {
-        if(currentOrderId != null) {
-            String[] strings = currentOrderId.split("OD");
-            int id = Integer.parseInt(strings[1]);
-            id++;
 
-            return "OD"+id;
+    public static String splitOrderId(String currentOrderId) { //D-001
+        if(currentOrderId != null) {
+            String[] strings = currentOrderId.split("-"); //["D","001"]
+            int id = Integer.parseInt(strings[1]) + 1; //001 + 1 --> 002
+            String nextId = String.format("%03d", id); //002
+
+            return strings[0] + "-" + nextId;
         }
-        return "OD1";
+        return "D-001";
     }
 
     public static List<Orders> getAll() throws SQLException, ClassNotFoundException {
@@ -48,5 +49,12 @@ public class OrderModel {
             ));
         }
         return orderData;
+    }
+
+    public static boolean addOrder(String orderId, String orderDate, double qty, double price) throws SQLException, ClassNotFoundException {
+        String sql="INSERT INTO orders(orderId,date,quantity,price) VALUES(?,?,?,?)";
+
+        return CrudUtil.execute(sql, orderId, orderDate, qty, price);
+
     }
 }

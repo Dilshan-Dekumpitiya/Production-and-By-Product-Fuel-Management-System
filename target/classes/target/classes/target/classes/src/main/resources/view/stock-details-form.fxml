@@ -50,17 +50,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXButton layoutX="392.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #d2dae2; -fx-background-radius: 20;" text="Add Stock">
+            <JFXButton layoutX="392.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Add Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="586.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #d2dae2; -fx-background-radius: 20;" text="Delete Stock">
+            <JFXButton layoutX="586.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Delete Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="767.0" layoutY="167.0" onAction="#btnUpdateStockOnAction" prefHeight="30.0" prefWidth="115.0" style="-fx-background-color: #d2dae2; -fx-background-radius: 20;" text="Update Stock">
+            <JFXButton layoutX="767.0" layoutY="167.0" onAction="#btnUpdateStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Update Stock">
                <font>
                   <Font size="14.0" />
                </font>
