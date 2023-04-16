@@ -26,4 +26,10 @@ public class OilProductionModel {
         return CrudUtil.execute(sql,qty);
 
     }
+
+    public static boolean updateAddQty(double totalOilOutput) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE totaloilqty SET totalQty = (totalQty + ?) ";
+
+        return CrudUtil.execute(sql,totalOilOutput);
+    }
 }

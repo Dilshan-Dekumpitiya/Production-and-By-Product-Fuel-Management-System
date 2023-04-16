@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+
 public class DashboardFormController implements Initializable {
     public Pane dashboardContext;
     public AnchorPane dashboardDetailsPane;
@@ -43,18 +44,31 @@ public class DashboardFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateTimeInit();
 
-        calculateOilProductionqty();
+       // OilProductionFormController.getTotalOilQty();
+       // calculateOilProductionqty();
+        String totaloil = OilProductionFormController.getUpdatedOilQuantity();
+        lblTotalOilQtyOnHand.setText(totaloil);
 
     }
 
-    private void calculateOilProductionqty() {
+    /*private void calculateOilProductionqty() {
+        try {
+        //    boolean isAdded = OilProductionModel.updateAddQty(Double.parseDouble(getTotalOilQtyOnAllStockIDs));
+            String oilQty = OilProductionModel.getOilQtyOnHand();
+            lblTotalOilQtyOnHand.setText(oilQty);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
+        }
+    }*/
+
+   /* private void calculateOilProductionqty() {
         try {
             String oilQty = OilProductionModel.getOilQtyOnHand();
             lblTotalOilQtyOnHand.setText(oilQty);
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
         }
-    }
+    }*/
 
     private void dateTimeInit() {
         //set time

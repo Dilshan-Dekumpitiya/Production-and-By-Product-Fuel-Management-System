@@ -67,7 +67,8 @@ public class OrderDetailsFormController implements Initializable {
         setCellValueFactory(); //To show table data
         getOrderDetailToTable(text);  //To get all orders details to table(Not show)
 
-        calculateOilProductionqty();
+        String totaloil = OilProductionFormController.getUpdatedOilQuantity();
+        lblOilQuantityOnHand.setText(totaloil);
 
         dtpckrOrdersDate.setOnAction(actionEvent -> { //Add action listener to dtpckrOrdersDate to search and display table
             tblOrderDetails.getItems().clear();
@@ -77,14 +78,14 @@ public class OrderDetailsFormController implements Initializable {
 
     }
 
-    private void calculateOilProductionqty() {
+    /*private void calculateOilProductionqty() {
         try {
             String oilQty = OilProductionModel.getOilQtyOnHand();
             lblOilQuantityOnHand.setText(oilQty);
         } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
         }
-    }
+    }*/
 
     private void setOrderDate() {
         lblOrderDate.setText(String.valueOf(LocalDate.now()));
@@ -147,7 +148,7 @@ public class OrderDetailsFormController implements Initializable {
                     clearFields();
                     txtQty.requestFocus();
                     generateNextOrderId();
-                    calculateOilProductionqty();
+                    OilProductionFormController.getUpdatedOilQuantity();
 
                     getOrderDetailToTable("");
 

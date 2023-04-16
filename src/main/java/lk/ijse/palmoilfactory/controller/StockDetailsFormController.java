@@ -99,6 +99,7 @@ public class StockDetailsFormController implements Initializable {
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
+
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
@@ -107,9 +108,11 @@ public class StockDetailsFormController implements Initializable {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();
                 }
             } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                System.out.println(e);
+                // new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                System.out.println(e);
+                //  new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
         }
     }

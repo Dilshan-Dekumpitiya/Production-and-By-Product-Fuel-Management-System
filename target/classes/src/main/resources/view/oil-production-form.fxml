@@ -47,17 +47,27 @@
                </font>
             </Label>
             <JFXTextField fx:id="txtTotalPressLiquid" layoutX="801.0" layoutY="66.0" prefHeight="25.0" prefWidth="147.0" styleClass="textfield" unFocusColor="BLACK" />
-            <JFXButton layoutX="378.0" layoutY="214.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Clear">
+            <JFXButton layoutX="613.0" layoutY="211.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="23.0" layoutY="158.0" prefHeight="36.0" prefWidth="301.0" text="Total Oil Output (kL)     : " textFill="#f80303">
+            <Label layoutX="23.0" layoutY="158.0" prefHeight="36.0" prefWidth="349.0" text="Total Oil Output as Stock ID(kL)      : " textFill="#f80303">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtTotalOilOutput" layoutX="262.0" layoutY="164.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
+            <JFXTextField fx:id="txtTotalOilOutput" layoutX="360.0" layoutY="164.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
+            <Label layoutX="23.0" layoutY="208.0" prefHeight="36.0" prefWidth="349.0" text="Total Oil Qty On Hand (kL)      : " textFill="#f80303">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalOilQtyOnHand" layoutX="319.0" layoutY="208.0" prefHeight="36.0" prefWidth="204.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" textFill="#f80303">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

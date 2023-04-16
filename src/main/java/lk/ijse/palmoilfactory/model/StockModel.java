@@ -101,4 +101,16 @@ public class StockModel {
         return null;
 
     }
+
+    public static double getTotalFFBInput() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT SUM(ffbInput) AS total FROM ffbstock";
+
+        ResultSet resultSet=CrudUtil.execute(sql);
+
+        if(resultSet.next()){
+            return Double.parseDouble(resultSet.getString("total"));
+        }
+        return -1;
+
+    }
 }
