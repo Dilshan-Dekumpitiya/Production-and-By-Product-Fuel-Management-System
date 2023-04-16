@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.palmoilfactory.dto.Orders;
 import lk.ijse.palmoilfactory.dto.tm.OrderTM;
+import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.OrderModel;
 
 import java.net.URL;
@@ -66,12 +67,23 @@ public class OrderDetailsFormController implements Initializable {
         setCellValueFactory(); //To show table data
         getOrderDetailToTable(text);  //To get all orders details to table(Not show)
 
+        calculateOilProductionqty();
+
         dtpckrOrdersDate.setOnAction(actionEvent -> { //Add action listener to dtpckrOrdersDate to search and display table
             tblOrderDetails.getItems().clear();
             text= String.valueOf(dtpckrOrdersDate.getValue());
             getOrderDetailToTable(text);
         });
 
+    }
+
+    private void calculateOilProductionqty() {
+        try {
+            String oilQty = OilProductionModel.getOilQtyOnHand();
+            lblOilQuantityOnHand.setText(oilQty);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
+        }
     }
 
     private void setOrderDate() {
@@ -124,25 +136,26 @@ public class OrderDetailsFormController implements Initializable {
         double qty = Double.parseDouble(txtQty.getText());
         double price = Double.parseDouble(txtPrice.getText());
 
-        boolean isAdded;
+        boolean isPlaced;
 
             try {
-                isAdded = OrderModel.addOrder(orderId, orderDate, qty, price);
-                if (isAdded) {
+
+                isPlaced = OrderModel.placeOrder(orderId, orderDate, qty, price); //transaction --> autoCommit(false)
+                if (isPlaced) {
                     tblOrderDetails.getItems().clear();
-                    new Alert(Alert.AlertType.CONFIRMATION, "Order Added").show();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Order Added and Place Order").show();
                     clearFields();
                     txtQty.requestFocus();
                     generateNextOrderId();
+                    calculateOilProductionqty();
+
                     getOrderDetailToTable("");
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Order Not Added Please Try Again").show();
                 }
             } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                   new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
     }
 

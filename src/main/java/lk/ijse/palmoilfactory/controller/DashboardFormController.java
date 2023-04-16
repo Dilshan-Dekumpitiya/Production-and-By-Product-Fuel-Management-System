@@ -10,15 +10,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.palmoilfactory.model.OilProductionModel;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -33,10 +36,24 @@ public class DashboardFormController implements Initializable {
     @FXML
     private Label lblTime;
 
+    @FXML
+    private Label lblTotalOilQtyOnHand;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateTimeInit();
 
+        calculateOilProductionqty();
+
+    }
+
+    private void calculateOilProductionqty() {
+        try {
+            String oilQty = OilProductionModel.getOilQtyOnHand();
+            lblTotalOilQtyOnHand.setText(oilQty);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
+        }
     }
 
     private void dateTimeInit() {

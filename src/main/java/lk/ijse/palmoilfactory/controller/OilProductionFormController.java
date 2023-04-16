@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.SteamModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 
@@ -35,9 +37,24 @@ public class OilProductionFormController implements Initializable {
     @FXML
     private JFXTextField txtTotalOilOutput;
 
+    @FXML
+    private Label lblTotalOilQtyOnHand;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadStockIds();
+
+        calculateOilProductionqty();
+    }
+
+    private void calculateOilProductionqty() {
+        try {
+            String oilQty = OilProductionModel.getOilQtyOnHand();
+            lblTotalOilQtyOnHand.setText(oilQty);
+        } catch (SQLException | ClassNotFoundException e) {
+            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
+        }
     }
 
     private void loadStockIds() {

@@ -82,6 +82,5 @@ public class SupplierModel {
             ));
         }
         return supData;
-
     }
 }

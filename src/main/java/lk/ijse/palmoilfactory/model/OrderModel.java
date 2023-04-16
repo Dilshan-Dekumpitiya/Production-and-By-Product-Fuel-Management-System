@@ -1,10 +1,13 @@
 package lk.ijse.palmoilfactory.model;
 
+import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Orders;
 import lk.ijse.palmoilfactory.util.CrudUtil;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +59,32 @@ public class OrderModel {
 
         return CrudUtil.execute(sql, orderId, orderDate, qty, price);
 
+    }
+
+    public static boolean placeOrder(String orderId, String orderDate , double qty , double price) throws SQLException {
+
+        Connection con = null;
+        try {
+            con = DBConnection.getInstance().getConnection();
+
+            con.setAutoCommit(false);
+
+            boolean isAdded = OrderModel.addOrder(orderId,orderDate,qty,price);
+            if (isAdded) {
+                boolean isUpdated = OilProductionModel.updateQty(qty);
+                if (isUpdated) {
+                        con.commit();
+                        return true;
+                }
+            }
+            return false;
+        } catch (SQLException | ClassNotFoundException er) {
+            er.printStackTrace();
+            con.rollback();
+            return false;
+
+        } finally { //update or not AutoCommit should true
+            con.setAutoCommit(true);
+        }
     }
 }
