@@ -67,8 +67,13 @@ public class OrderDetailsFormController implements Initializable {
         setCellValueFactory(); //To show table data
         getOrderDetailToTable(text);  //To get all orders details to table(Not show)
 
-        String totaloil = OilProductionFormController.getUpdatedOilQuantity();
-        lblOilQuantityOnHand.setText(totaloil);
+        try {
+            lblOilQuantityOnHand.setText(OilProductionModel.getUpdatedOilqty());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         dtpckrOrdersDate.setOnAction(actionEvent -> { //Add action listener to dtpckrOrdersDate to search and display table
             tblOrderDetails.getItems().clear();
@@ -77,15 +82,6 @@ public class OrderDetailsFormController implements Initializable {
         });
 
     }
-
-    /*private void calculateOilProductionqty() {
-        try {
-            String oilQty = OilProductionModel.getOilQtyOnHand();
-            lblOilQuantityOnHand.setText(oilQty);
-        } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
-        }
-    }*/
 
     private void setOrderDate() {
         lblOrderDate.setText(String.valueOf(LocalDate.now()));
@@ -148,14 +144,15 @@ public class OrderDetailsFormController implements Initializable {
                     clearFields();
                     txtQty.requestFocus();
                     generateNextOrderId();
-                    OilProductionFormController.getUpdatedOilQuantity();
+                    lblOilQuantityOnHand.setText(OilProductionModel.getUpdatedOilqty());
+                //    OilProductionModel.updateQty(qty);
 
                     getOrderDetailToTable("");
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Order Not Added Please Try Again").show();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
     }

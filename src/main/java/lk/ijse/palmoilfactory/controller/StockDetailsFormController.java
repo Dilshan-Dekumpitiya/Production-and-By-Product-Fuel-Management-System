@@ -1,5 +1,6 @@
 package lk.ijse.palmoilfactory.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
@@ -11,12 +12,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
 import lk.ijse.palmoilfactory.dto.Stock;
 import lk.ijse.palmoilfactory.dto.Supplier;
+import lk.ijse.palmoilfactory.dto.tm.StockTM;
+import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
+import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 
@@ -31,6 +36,7 @@ import java.util.ResourceBundle;
 
 import static java.time.LocalDateTime.*;
 import static java.time.format.DateTimeFormatter.*;
+import static lk.ijse.palmoilfactory.controller.OilProductionFormController.getTotalOilQtyOnAllStockIDs;
 
 public class StockDetailsFormController implements Initializable {
     @FXML
@@ -40,12 +46,43 @@ public class StockDetailsFormController implements Initializable {
     private JFXTextField txtFFBInput;
 
     @FXML
-    private Label lblDate;
+    private Label lblTime;
 
     @FXML
-    private Label lblTime;
-    @FXML
     private JFXComboBox<String> cmbSupplierId;
+
+    @FXML
+    private TableView<StockTM> tblStockDetails;
+
+    @FXML
+    private TableColumn<?, ?> colStockID;
+
+    @FXML
+    private TableColumn<?, ?> colFFBInput;
+
+    @FXML
+    private TableColumn<?, ?> colDate;
+
+    @FXML
+    private TableColumn<?, ?> colTime;
+
+    @FXML
+    private TableColumn<?, ?> colSupplierId;
+
+    @FXML
+    private TableColumn<?, ?> colAction;
+
+    private Timeline timeline;
+
+    @FXML
+    private DatePicker dtpckrDate;
+
+    private String searchText="";
+
+    @FXML
+    private JFXButton btnAddStock;
+
+    private ObservableList<StockTM> obList = FXCollections.observableArrayList();
 
 
     @Override
@@ -53,17 +90,94 @@ public class StockDetailsFormController implements Initializable {
         loadSupplierIds();
         Platform.runLater(() -> txtStockId.requestFocus());
 
-        lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
+        dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
 
-        loadTime();
+        setCellValueFactory(); //To show table data
+        getAllStocksToTable(searchText); //To get all supplier details to table(Not show)
+
+        tblStockDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
+            //Check select value is not null
+            if(null!=newValue) { //newValue!=null --> Get more time to compare (newValue object compare)
+                btnAddStock.setText("Update Stock");
+                setDataToTextFields(newValue); //Set data to text field of selected row data of table
+                stopTimeline();
+            }
+        });
+
+        txtStockId.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
+            tblStockDetails.getItems().clear();
+            searchText=newValue;
+            getAllStocksToTable(searchText);
+        });
+
+        startTimeline();
 
     }
 
-    private void loadTime() {
-        lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss a")));
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss a")))));
+    private void getAllStocksToTable(String searchText) {
+        try {
+            List<Stock> stockList = StockModel.getAll();
+            for(Stock stock : stockList) {
+                if (stock.getStockId().contains(searchText) ){  //Check pass text contains of the supName
+                    JFXButton btnDel=new JFXButton("Delete");
+                    btnDel.setAlignment(Pos.CENTER);
+                    btnDel.setStyle("-fx-background-color: #686de0; ");
+                    btnDel.setCursor(Cursor.HAND);
+
+                    StockTM tm=new StockTM(
+                            stock.getStockId(),
+                            stock.getFfbInput(),
+                            stock.getDate(),
+                            stock.getTime(),
+                            stock.getSupId(),
+                            btnDel);
+
+                    obList.add(tm);
+
+                    setDeleteButtonTableOnAction(btnDel);
+                }
+            }
+
+            tblStockDetails.setItems(obList);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Query error!").show();
+        }
+    }
+
+    private void setDeleteButtonTableOnAction(JFXButton btnDel) {
+
+    }
+
+    private void setDataToTextFields(StockTM stockTM) {
+        txtStockId.setText(stockTM.getStockId());
+        txtFFBInput.setText(String.valueOf(stockTM.getFfbInput()));
+        dtpckrDate.setValue(LocalDate.parse(stockTM.getDate()));
+        lblTime.setText(stockTM.getTime());
+        cmbSupplierId.setValue(stockTM.getSupplierID());
+
+    }
+
+    private void setCellValueFactory() {
+        colStockID.setCellValueFactory(new PropertyValueFactory<>("stockId")); //StockTM class attributes names
+        colFFBInput.setCellValueFactory(new PropertyValueFactory<>("ffbInput"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        colSupplierId.setCellValueFactory(new PropertyValueFactory<>("supplierID"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
+    }
+
+    public void startTimeline() {
+        lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss a")))));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    public void stopTimeline() {
+        if (timeline != null) {
+            timeline.stop();
+        }
     }
 
     private void loadSupplierIds() {
@@ -88,18 +202,20 @@ public class StockDetailsFormController implements Initializable {
         }else {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
-            lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
+            dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+          //  lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
             lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
             boolean isAdded;
 
             try {
-               isAdded = StockModel.addStock(stockId, ffbInput, lblDate.getText(), lblTime.getText(),supId);
+               isAdded = StockModel.addStock(stockId, ffbInput, String.valueOf(dtpckrDate.getValue()), lblTime.getText(),supId);
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
-
+                    String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                    OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
@@ -108,11 +224,9 @@ public class StockDetailsFormController implements Initializable {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();
                 }
             } catch (SQLException e) {
-                System.out.println(e);
-                // new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             } catch (ClassNotFoundException e) {
-                System.out.println(e);
-                //  new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
         }
     }
@@ -127,7 +241,8 @@ public class StockDetailsFormController implements Initializable {
                 Stock stock = StockModel.searchStock(stockId);
                 if (stock != null) {
                     txtFFBInput.setText(String.valueOf(stock.getFfbInput()));
-                    lblDate.setText(stock.getDate());
+                    dtpckrDate.setValue(LocalDate.parse(stock.getDate()));
+                    stopTimeline();
                     lblTime.setText(stock.getTime());
                     cmbSupplierId.setValue(StockModel.searchByStockIdSupId(stockId));
 
@@ -150,12 +265,13 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void btnUpdateStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-       if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || lblDate.getText().isEmpty() || lblTime.getText().isEmpty()) {
+       if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
         } else {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
-            String date = lblDate.getText();
+            String date = String.valueOf(dtpckrDate.getValue());
+         //   String date = lblDate.getText();
             String time = lblTime.getText();
             String supId;
             if(cmbSupplierId.getSelectionModel().isEmpty()){
@@ -186,15 +302,20 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void btnDeleteStockOnAction(ActionEvent event) {
-        if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || lblDate.getText().isEmpty() || lblTime.getText().isEmpty()){
+        if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Stock ID and Search Stock is exist").show();
         }else {
             String stockId = txtStockId.getText();
+
+            boolean isDeleted;
             try {
 
-                boolean isDeleted = StockModel.deleteStock(stockId);
+                isDeleted = StockModel.deleteStock(stockId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
+                    int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
+                    String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                    OilProductionModel.subtractionOilQty(Double.parseDouble(ffbInputOilQty));
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
@@ -209,6 +330,10 @@ public class StockDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
         }
+    }
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+
     }
 
 }

@@ -113,4 +113,23 @@ public class StockModel {
         return -1;
 
     }
+
+    public static List<Stock> getAll() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM ffbstock";
+
+        List<Stock> stockData = new ArrayList<>();
+
+        ResultSet resultSet = CrudUtil.execute(sql);
+        while (resultSet.next()) {
+            stockData.add(new Stock(
+                    resultSet.getString(1),
+                    resultSet.getInt(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5)
+            ));
+        }
+        return stockData;
+
+    }
 }

@@ -44,31 +44,18 @@ public class DashboardFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateTimeInit();
 
-       // OilProductionFormController.getTotalOilQty();
-       // calculateOilProductionqty();
-        String totaloil = OilProductionFormController.getUpdatedOilQuantity();
-        lblTotalOilQtyOnHand.setText(totaloil);
+        try {
+            lblTotalOilQtyOnHand.setText(OilProductionModel.getUpdatedOilqty());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        /*String totaloil = OilProductionFormController.getUpdatedOilQuantity();
+        lblTotalOilQtyOnHand.setText(totaloil);*/
 
     }
-
-    /*private void calculateOilProductionqty() {
-        try {
-        //    boolean isAdded = OilProductionModel.updateAddQty(Double.parseDouble(getTotalOilQtyOnAllStockIDs));
-            String oilQty = OilProductionModel.getOilQtyOnHand();
-            lblTotalOilQtyOnHand.setText(oilQty);
-        } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
-        }
-    }*/
-
-   /* private void calculateOilProductionqty() {
-        try {
-            String oilQty = OilProductionModel.getOilQtyOnHand();
-            lblTotalOilQtyOnHand.setText(oilQty);
-        } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR, "Something Happened!").show();
-        }
-    }*/
 
     private void dateTimeInit() {
         //set time

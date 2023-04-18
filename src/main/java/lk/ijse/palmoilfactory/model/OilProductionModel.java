@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class OilProductionModel {
 
-    public static String getOilQtyOnHand() throws SQLException, ClassNotFoundException {
+    public static String getUpdatedOilqty() throws SQLException, ClassNotFoundException {
 
         String sql="SELECT totalQty from totaloilqty";
         ResultSet resultSet= CrudUtil.execute(sql);
@@ -19,7 +19,7 @@ public class OilProductionModel {
         return "-1";
     }
 
-    public static boolean updateQty(double qty) throws SQLException, ClassNotFoundException {
+    public static boolean subtractionOilQtyTototalOil(double qty) throws SQLException, ClassNotFoundException {
 
         String sql = "UPDATE totaloilqty SET totalQty = (totalQty - ?) ";
 
@@ -27,9 +27,18 @@ public class OilProductionModel {
 
     }
 
-    public static boolean updateAddQty(double totalOilOutput) throws SQLException, ClassNotFoundException {
+    public static void subtractionOilQty(double qty) throws SQLException, ClassNotFoundException {
+
+        String sql = "UPDATE totaloilqty SET totalQty = (totalQty - ?) ";
+
+         CrudUtil.execute(sql,qty);
+
+    }
+
+    public static void addOilQtyTototalOil(double qty) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE totaloilqty SET totalQty = (totalQty + ?) ";
 
-        return CrudUtil.execute(sql,totalOilOutput);
+        CrudUtil.execute(sql,qty);
     }
+
 }

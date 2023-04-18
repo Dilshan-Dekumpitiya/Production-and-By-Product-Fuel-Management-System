@@ -71,7 +71,7 @@ public class OrderModel {
 
             boolean isAdded = OrderModel.addOrder(orderId,orderDate,qty,price);
             if (isAdded) {
-                boolean isUpdated = OilProductionModel.updateQty(qty);
+                boolean isUpdated = OilProductionModel.subtractionOilQtyTototalOil(qty);
                 if (isUpdated) {
                         con.commit();
                         return true;

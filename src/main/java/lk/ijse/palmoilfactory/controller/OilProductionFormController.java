@@ -40,29 +40,19 @@ public class OilProductionFormController implements Initializable {
     @FXML
     private Label lblTotalOilQtyOnHand;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadStockIds();
 
-        calculateOilProductionqty();
+        try {
+            lblTotalOilQtyOnHand.setText(OilProductionModel.getUpdatedOilqty());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void calculateOilProductionqty() {
-        //  String oilQty = OilProductionModel.getOilQtyOnHand();
-        String oilQty = getTotalOilQtyOnAllStockIDs();
-        lblTotalOilQtyOnHand.setText(oilQty);
-    }
-
-    public static String getUpdatedOilQuantity(){
-        String oilQty = getTotalOilQtyOnAllStockIDs();
-        return oilQty;
-    }
-
-    /*public String getTotalOilQty(){
-        String getTotalOilQty = getTotalOilQtyOnAllStockIDs();
-        return getTotalOilQty;
-    }*/
     public static String getTotalOilQtyOnAllStockIDs() {
 
         try {
@@ -70,33 +60,32 @@ public class OilProductionFormController implements Initializable {
             double ffbinput = StockModel.getTotalFFBInput();
 
             double totalPressLiquid=ffbinput*0.3*0.88;
-          //  txtTotalPressLiquid.setText(String.valueOf(totalPressLiquid));
+
             double totalEBLiquidOutput=ffbinput*0.7*0.72;
-         //   txtTotalEBLiquidOutput.setText(String.valueOf(totalEBLiquidOutput));
-
-        //    String date= StockModel.searchByStockIdDate(stockId);
-         //   txtStockDate.setText(date);
-
-       //     String time = StockModel.searchByStockIdTime(stockId);
-       //     txtStockTime.setText(time);
 
             String totalOilOutput = Double.toString(totalPressLiquid+totalEBLiquidOutput);
-            boolean isAdded = OilProductionModel.updateAddQty(Double.parseDouble(totalOilOutput));
-
 
 
             return totalOilOutput;
 
-       //     txtTotalOilOutput.setText(totalOilOutput);
-
         } catch (SQLException e) {
-            System.out.println(e);
-            //   new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
+             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
         } catch (ClassNotFoundException e) {
-            System.out.println(e);
-            // new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
+             new Alert(Alert.AlertType.ERROR, "SQL Error!").show();
         }
         return null;
+    }
+
+    public static String ffbInputOilQty(int ffbInput) {
+
+        double totalPressLiquid=ffbInput*0.3*0.88;
+
+        double totalEBLiquidOutput=ffbInput*0.7*0.72;
+
+        String oilOutput = Double.toString(totalPressLiquid+totalEBLiquidOutput);
+
+        return oilOutput;
+
     }
 
     private void loadStockIds() {
