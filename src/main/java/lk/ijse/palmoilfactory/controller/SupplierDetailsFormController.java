@@ -116,7 +116,8 @@ public class SupplierDetailsFormController implements Initializable {
                             supplier.getSupId(),
                             supplier.getSupName(),
                             supplier.getSupAddress(),
-                            supplier.getSupContact(),btnDel);
+                            supplier.getSupContact(),
+                            btnDel);
 
                     obList.add(tm);
 

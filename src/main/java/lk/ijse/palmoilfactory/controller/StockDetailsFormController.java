@@ -84,34 +84,38 @@ public class StockDetailsFormController implements Initializable {
 
     private ObservableList<StockTM> obList = FXCollections.observableArrayList();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadSupplierIds();
         Platform.runLater(() -> txtStockId.requestFocus());
-
+        startTimeline();
         dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
 
-        setCellValueFactory(); //To show table data
-        getAllStocksToTable(searchText); //To get all supplier details to table(Not show)
+        setCellValueFactory();
+        getAllStocksToTable(searchText);
 
-        /*tblStockDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
+        tblStockDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
             //Check select value is not null
             if(null!=newValue) { //newValue!=null --> Get more time to compare (newValue object compare)
                 btnAddStock.setText("Update Stock");
                 setDataToTextFields(newValue); //Set data to text field of selected row data of table
-                stopTimeline();
             }
-        });*/
+        });
 
-        txtStockId.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
+        /*txtStockId.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
             tblStockDetails.getItems().clear();
             searchText=newValue;
             getAllStocksToTable(searchText);
-        });
+        });*/
+    }
 
-        startTimeline();
-
+    private void setDataToTextFields(StockTM stockTM) {
+        txtStockId.setText(stockTM.getStockId());
+        txtFFBInput.setText(String.valueOf(stockTM.getFfbInput()));
+        dtpckrDate.setValue(LocalDate.parse(stockTM.getDate()));
+        stopTimeline();
+        lblTime.setText(stockTM.getTime());
+        cmbSupplierId.setValue(stockTM.getSupplierID());
     }
 
     private void getAllStocksToTable(String searchText) {
@@ -146,15 +150,6 @@ public class StockDetailsFormController implements Initializable {
     }
 
     private void setDeleteButtonTableOnAction(JFXButton btnDel) {
-
-    }
-
-    private void setDataToTextFields(StockTM stockTM) {
-        txtStockId.setText(stockTM.getStockId());
-        txtFFBInput.setText(String.valueOf(stockTM.getFfbInput()));
-        dtpckrDate.setValue(LocalDate.parse(stockTM.getDate()));
-        lblTime.setText(stockTM.getTime());
-        cmbSupplierId.setValue(stockTM.getSupplierID());
 
     }
 
@@ -196,29 +191,31 @@ public class StockDetailsFormController implements Initializable {
         }
     }
     @FXML
-    void btnAddStockOnAction(ActionEvent event) {
+    void btnAddStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() ){
             new Alert(Alert.AlertType.WARNING,"Please Input data to Add Stock").show();
         }else {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
             dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
-          //  lblDate.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     yyyy-MM-dd")));
             lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
             boolean isAdded;
 
+            if (btnAddStock.getText().equalsIgnoreCase("Save Stock")){
             try {
                isAdded = StockModel.addStock(stockId, ffbInput, String.valueOf(dtpckrDate.getValue()), lblTime.getText(),supId);
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
-                    String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
-                    OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
+                   // String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                   // OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
+                    tblStockDetails.getItems().clear();
+                    getAllStocksToTable("");
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();
@@ -227,6 +224,43 @@ public class StockDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             } catch (ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+            }
+        } else {
+                if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()) {
+                    new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
+                } else {
+                    /*String stockId = txtStockId.getText();
+                    int ffbInput = Integer.parseInt(txtFFBInput.getText());
+                    String date = String.valueOf(dtpckrDate.getValue());
+                    String time = lblTime.getText();
+                    String supId;*/
+                    if(cmbSupplierId.getSelectionModel().isEmpty()){
+                        supId = StockModel.searchByStockIdSupId(stockId);
+                    }else {
+                        supId=cmbSupplierId.getSelectionModel().getSelectedItem();
+                    }
+
+                    boolean isUpdated;
+
+                    try {
+                        isUpdated = StockModel.updateStock(stockId, ffbInput, String.valueOf(dtpckrDate.getValue()), lblTime.getText(), supId);
+                        if (isUpdated) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Stock Updated").show();
+                            txtStockId.clear();
+                            txtFFBInput.clear();
+                            cmbSupplierId.getItems().clear();
+                            tblStockDetails.getItems().clear();
+                            getAllStocksToTable("");
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Stock Not Updated Please Try Again").show();
+                        }
+                    } catch (SQLException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    } catch (ClassNotFoundException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    }
+                }
+
             }
         }
     }
@@ -263,7 +297,7 @@ public class StockDetailsFormController implements Initializable {
         btnSearchStockOnAction(event);
     }
 
-    @FXML
+    /*@FXML
     void btnUpdateStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
        if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
@@ -271,7 +305,6 @@ public class StockDetailsFormController implements Initializable {
             String stockId = txtStockId.getText();
             int ffbInput = Integer.parseInt(txtFFBInput.getText());
             String date = String.valueOf(dtpckrDate.getValue());
-         //   String date = lblDate.getText();
             String time = lblTime.getText();
             String supId;
             if(cmbSupplierId.getSelectionModel().isEmpty()){
@@ -298,7 +331,7 @@ public class StockDetailsFormController implements Initializable {
                 new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
             }
         }
-    }
+    }*/
 
     @FXML
     void btnDeleteStockOnAction(ActionEvent event) {
@@ -313,9 +346,9 @@ public class StockDetailsFormController implements Initializable {
                 isDeleted = StockModel.deleteStock(stockId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
-                    int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
-                    String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
-                    OilProductionModel.subtractionOilQty(Double.parseDouble(ffbInputOilQty));
+                    //int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
+                    /*String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                    OilProductionModel.subtractionOilQty(Double.parseDouble(ffbInputOilQty));*/
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
@@ -331,9 +364,19 @@ public class StockDetailsFormController implements Initializable {
             }
         }
     }
+
+    private void clearFields(){
+        txtStockId.clear();
+        txtFFBInput.clear();
+        cmbSupplierId.getItems().clear();
+    }
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        clearFields();
+        txtStockId.clear();
+        txtStockId.requestFocus();
+        btnAddStock.setText("Save Stock");
     }
+
 
 }

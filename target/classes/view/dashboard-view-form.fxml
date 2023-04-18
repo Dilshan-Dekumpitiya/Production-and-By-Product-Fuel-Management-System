@@ -2,6 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -171,6 +174,14 @@
                   </Label>
                </children>
             </Pane>
+            <LineChart layoutX="58.0" layoutY="216.0" prefHeight="400.0" prefWidth="939.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
          </children>
       </AnchorPane>
       <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #02030A; -fx-background-radius: 15;" textAlignment="RIGHT" textFill="#ffffffa8">
