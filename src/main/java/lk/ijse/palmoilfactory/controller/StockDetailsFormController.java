@@ -95,14 +95,14 @@ public class StockDetailsFormController implements Initializable {
         setCellValueFactory(); //To show table data
         getAllStocksToTable(searchText); //To get all supplier details to table(Not show)
 
-        tblStockDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
+        /*tblStockDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
             //Check select value is not null
             if(null!=newValue) { //newValue!=null --> Get more time to compare (newValue object compare)
                 btnAddStock.setText("Update Stock");
                 setDataToTextFields(newValue); //Set data to text field of selected row data of table
                 stopTimeline();
             }
-        });
+        });*/
 
         txtStockId.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
             tblStockDetails.getItems().clear();

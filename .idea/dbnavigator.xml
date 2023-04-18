@@ -20,15 +20,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/oilproduction" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/supplier" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/ffbstock" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/orders" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/orderdetail" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/steam" />
-      <object connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" object-ref="schemas/palmoilfactory/tables/schedule" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="0504e26b-c986-4b7e-8fe1-ec303655b1cf" dataset="palmoilfactory.orderdetail" active-filter-id="EMPTY_FILTER" />
@@ -262,12 +254,19 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="GSP" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="AIDL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
