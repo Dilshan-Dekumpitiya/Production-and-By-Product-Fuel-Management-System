@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -40,6 +41,9 @@ public class DashboardFormController implements Initializable {
     @FXML
     private Label lblTotalOilQtyOnHand;
 
+    @FXML
+    private Label lblGreeting;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateTimeInit();
@@ -52,9 +56,31 @@ public class DashboardFormController implements Initializable {
             e.printStackTrace();
         }
 
-        /*String totaloil = OilProductionFormController.getUpdatedOilQuantity();
-        lblTotalOilQtyOnHand.setText(totaloil);*/
+        String totaloil = null;
+        try {
+            totaloil = OilProductionModel.getUpdatedOilqty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        lblTotalOilQtyOnHand.setText(totaloil);
 
+        LocalTime currentTime = LocalTime.now();
+
+        // Extract the hour and minute from the current time
+        int hour = currentTime.getHour();
+    //    int minute = currentTime.getMinute();
+
+        // Display a greetings message based on the time of day
+        String greetingsMessage;
+        if (hour >= 0 && hour < 12) {
+            lblGreeting.setText("Good Morning !!!");
+        } else if (hour >= 12 && hour < 17) {
+            lblGreeting.setText("Good Afternoon !!!");
+        } else {
+            greetingsMessage = "Good evening!";
+        }
     }
 
     private void dateTimeInit() {

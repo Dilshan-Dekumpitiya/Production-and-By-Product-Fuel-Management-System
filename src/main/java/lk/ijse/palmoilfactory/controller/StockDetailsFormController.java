@@ -209,8 +209,8 @@ public class StockDetailsFormController implements Initializable {
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
-                   // String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
-                   // OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
+                   String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                   OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
@@ -229,11 +229,6 @@ public class StockDetailsFormController implements Initializable {
                 if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()) {
                     new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
                 } else {
-                    /*String stockId = txtStockId.getText();
-                    int ffbInput = Integer.parseInt(txtFFBInput.getText());
-                    String date = String.valueOf(dtpckrDate.getValue());
-                    String time = lblTime.getText();
-                    String supId;*/
                     if(cmbSupplierId.getSelectionModel().isEmpty()){
                         supId = StockModel.searchByStockIdSupId(stockId);
                     }else {
@@ -297,42 +292,6 @@ public class StockDetailsFormController implements Initializable {
         btnSearchStockOnAction(event);
     }
 
-    /*@FXML
-    void btnUpdateStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-       if (txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please Input Stock ID and Search Stock is exist").show();
-        } else {
-            String stockId = txtStockId.getText();
-            int ffbInput = Integer.parseInt(txtFFBInput.getText());
-            String date = String.valueOf(dtpckrDate.getValue());
-            String time = lblTime.getText();
-            String supId;
-            if(cmbSupplierId.getSelectionModel().isEmpty()){
-                supId = StockModel.searchByStockIdSupId(stockId);
-            }else {
-                supId=cmbSupplierId.getSelectionModel().getSelectedItem();
-            }
-
-            boolean isUpdated;
-
-            try {
-                isUpdated = StockModel.updateStock(stockId, ffbInput, date, time, supId);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Stock Updated").show();
-                    txtStockId.clear();
-                    txtFFBInput.clear();
-                    cmbSupplierId.getItems().clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Stock Not Updated Please Try Again").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            }
-        }
-    }*/
-
     @FXML
     void btnDeleteStockOnAction(ActionEvent event) {
         if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() || dtpckrDate.getValue() == null || lblTime.getText().isEmpty()){
@@ -352,6 +311,8 @@ public class StockDetailsFormController implements Initializable {
                     txtStockId.clear();
                     txtFFBInput.clear();
                     cmbSupplierId.getItems().clear();
+                    tblStockDetails.getItems().clear();
+                    getAllStocksToTable("");
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Delete Fail").show();

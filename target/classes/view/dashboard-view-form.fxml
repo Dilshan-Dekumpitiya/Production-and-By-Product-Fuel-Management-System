@@ -182,6 +182,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
+            <Label layoutX="102.0" layoutY="186.0" prefHeight="30.0" prefWidth="275.0" text="Stock vs Oil Output" />
+            <Label fx:id="lblGreeting" layoutX="102.0" layoutY="69.0" prefHeight="64.0" prefWidth="313.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" />
          </children>
       </AnchorPane>
       <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1130.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #02030A; -fx-background-radius: 15;" textAlignment="RIGHT" textFill="#ffffffa8">
