@@ -34,6 +34,11 @@
     -fx-font-size: 20px;
 }
 
+.loginlabel{
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
 .dashboardleftsidepane{
     -fx-background-color: #05071F ;
 }

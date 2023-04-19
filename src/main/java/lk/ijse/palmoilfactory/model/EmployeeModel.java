@@ -2,6 +2,7 @@ package lk.ijse.palmoilfactory.model;
 
 import lk.ijse.palmoilfactory.dto.Employee;
 import lk.ijse.palmoilfactory.dto.Stock;
+import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -85,6 +86,27 @@ public class EmployeeModel {
         String sql="DELETE FROM employee WHERE empId=? ";
 
         return CrudUtil.execute(sql,empId);
+
+    }
+
+    public static List<Employee> getAll() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * FROM employee";
+
+        List<Employee> empData = new ArrayList<>();
+
+        ResultSet resultSet = CrudUtil.execute(sql);
+        while (resultSet.next()) {
+            empData.add(new Employee(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getDouble(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7)
+            ));
+        }
+        return empData;
 
     }
 }

@@ -88,7 +88,7 @@
             <TableColumn fx:id="colDate" prefWidth="187.0" text="Date" />
             <TableColumn fx:id="colTime" prefWidth="132.0" text="Time" />
             <TableColumn fx:id="colSupplierId" prefWidth="153.0" text="Supplier ID" />
-            <TableColumn fx:id="colAction" prefWidth="189.0" text="Action" />
+            <TableColumn fx:id="colAction" prefWidth="136.0" text="Action" />
         </columns>
       </TableView>
    </children>

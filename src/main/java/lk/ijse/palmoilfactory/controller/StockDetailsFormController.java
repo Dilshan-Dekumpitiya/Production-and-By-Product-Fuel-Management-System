@@ -32,6 +32,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static java.time.LocalDateTime.*;
@@ -150,7 +151,21 @@ public class StockDetailsFormController implements Initializable {
     }
 
     private void setDeleteButtonTableOnAction(JFXButton btnDel) {
+        btnDel.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+
+            if (buttonType.get() == yes) {
+                txtStockId.setText(tblStockDetails.getSelectionModel().getSelectedItem().getStockId());
+                btnSearchStockOnAction(e);
+                btnDeleteStockOnAction(e);
+
+                tblStockDetails.getItems().clear();
+                getAllStocksToTable(searchText);
+            }
+        });
     }
 
     private void setCellValueFactory() {

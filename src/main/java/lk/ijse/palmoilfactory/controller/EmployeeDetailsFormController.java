@@ -1,5 +1,6 @@
 package lk.ijse.palmoilfactory.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
@@ -11,13 +12,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import lk.ijse.palmoilfactory.dto.Employee;
 import lk.ijse.palmoilfactory.dto.Stock;
+import lk.ijse.palmoilfactory.dto.Supplier;
+import lk.ijse.palmoilfactory.dto.tm.EmployeeTM;
+import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.EmployeeModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
@@ -27,6 +34,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeeDetailsFormController implements Initializable {
@@ -55,11 +63,136 @@ public class EmployeeDetailsFormController implements Initializable {
     @FXML
     private JFXComboBox<String> cmbEmployeeSchId;
 
+    @FXML
+    private TableView<EmployeeTM> tblEmployeeDetails;
+
+    @FXML
+    private TableColumn<?, ?> colEMPID;
+
+    @FXML
+    private TableColumn<?, ?> colEMPName;
+
+    @FXML
+    private TableColumn<?, ?> colEMPAddress;
+
+    @FXML
+    private TableColumn<?, ?> colEMPContact;
+
+    @FXML
+    private TableColumn<?, ?> colEMPSalary;
+
+    @FXML
+    private TableColumn<?, ?> colEMPType;
+
+    @FXML
+    private TableColumn<?, ?> colSCHId;
+
+    @FXML
+    private TableColumn<?, ?> colAction;
+
+    @FXML
+    private JFXButton btnAddEmployee;
+
+    private ObservableList<EmployeeTM> obList = FXCollections.observableArrayList();
+
+
+    private String searchText="";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> txtEmployeeId.requestFocus());
         loadSchIds();
         loadEmpType();
+
+        setCellValueFactory(); //To show table data
+        getAllEmployeesToTable(searchText); //To get all supplier details to table(Not show)
+
+        tblEmployeeDetails.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> { //Add ActionListener to selected column and display text field values
+            //Check select value is not null
+            if(null!=newValue) { //newValue!=null --> Get more time to compare (newValue object compare)
+                btnAddEmployee.setText("Update Employee");
+                setDataToTextFields(newValue); //Set data to text field of selected row data of table
+            }
+        });
+
+        /*txtEmployeeId.textProperty().addListener((observable, oldValue, newValue) -> { //Add action listener to txtSearch to search and display table
+            tblEmployeeDetails.getItems().clear();
+            searchText=newValue;
+            getAllEmployeesToTable(searchText);
+        });*/
+    }
+
+    private void setDataToTextFields(EmployeeTM employeeTM) {
+        txtEmployeeId.setText(employeeTM.getEmpId());
+        txtEmployeeName.setText(employeeTM.getEmpName());
+        txtEmployeeAddress.setText(employeeTM.getEmpAddress());
+        txtEmployeeContact.setText(employeeTM.getEmpContact());
+        txtEmployeeSalary.setText(String.valueOf(employeeTM.getEmpSalary()));
+        cmbEmployeetype.setValue(employeeTM.getEmpType());
+        cmbEmployeeSchId.setValue(employeeTM.getSchId());
+    }
+
+    private void getAllEmployeesToTable(String searchText) {
+        try {
+            List<Employee> empList = EmployeeModel.getAll();
+            for(Employee employee : empList) {
+                if (employee.getEmpName().contains(searchText) || employee.getEmpAddress().contains(searchText)){  //Check pass text contains of the supName
+                    JFXButton btnDel=new JFXButton("Delete");
+                    btnDel.setAlignment(Pos.CENTER);
+                    btnDel.setStyle("-fx-background-color: #686de0; ");
+                    btnDel.setCursor(Cursor.HAND);
+
+                    EmployeeTM tm=new EmployeeTM(
+                            employee.getEmpId(),
+                            employee.getEmpName(),
+                            employee.getEmpAddress(),
+                            employee.getEmpContact(),
+                            employee.getEmpSalary(),
+                            employee.getEmpType(),
+                            employee.getEmpSchId(),
+                            btnDel);
+
+                    obList.add(tm);
+
+                    setDeleteButtonTableOnAction(btnDel);
+                }
+            }
+            tblEmployeeDetails.setItems(obList);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Query error!").show();
+        }
+    }
+
+    private void setDeleteButtonTableOnAction(JFXButton btnDel) {
+        btnDel.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+
+            if (buttonType.get() == yes) {
+                txtEmployeeId.setText(tblEmployeeDetails.getSelectionModel().getSelectedItem().getEmpId());
+                btnSearchEmployeeOnAction(e);
+                btnDeleteEmployeeOnAction(e);
+
+                tblEmployeeDetails.getItems().clear();
+                getAllEmployeesToTable("");
+            }
+        });
+
+    }
+
+    private void setCellValueFactory() {
+        colEMPID.setCellValueFactory(new PropertyValueFactory<>("empId")); //EmployeeTM class attributes names
+        colEMPName.setCellValueFactory(new PropertyValueFactory<>("empName"));
+        colEMPAddress.setCellValueFactory(new PropertyValueFactory<>("empAddress"));
+        colEMPContact.setCellValueFactory(new PropertyValueFactory<>("empContact"));
+        colEMPSalary.setCellValueFactory(new PropertyValueFactory<>("empSalary"));
+        colEMPContact.setCellValueFactory(new PropertyValueFactory<>("empContact"));
+        colEMPType.setCellValueFactory(new PropertyValueFactory<>("empType"));
+        colSCHId.setCellValueFactory(new PropertyValueFactory<>("schId"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btn"));
     }
 
     private void loadEmpType() {
@@ -104,26 +237,85 @@ public class EmployeeDetailsFormController implements Initializable {
 
             boolean isAdded;
 
-            try {
-                isAdded = EmployeeModel.addEmployee(empId, empName, empAddress, empContact,empSalary,empType,empSchId);
-                if (isAdded) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Employee Added").show();
-                    txtEmployeeId.clear();
-                    txtEmployeeName.clear();
-                    txtEmployeeAddress.clear();
-                    txtEmployeeContact.clear();
-                    txtEmployeeSalary.clear();
-                    cmbEmployeetype.getItems().clear();
-                    cmbEmployeeSchId.getItems().clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Employee Not Added Please Try Again").show();
+            if(btnAddEmployee.getText().equalsIgnoreCase("Add Employee")) {
+
+                try {
+                    isAdded = EmployeeModel.addEmployee(empId, empName, empAddress, empContact, empSalary, empType, empSchId);
+                    if (isAdded) {
+                        tblEmployeeDetails.getItems().clear();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Employee Added").show();
+                        clearFields();
+                        getAllEmployeesToTable(searchText);
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Employee Not Added Please Try Again").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                } catch (ClassNotFoundException e) {
+                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+            }else {
+                if (txtEmployeeId.getText().isEmpty() || txtEmployeeName.getText().isEmpty() || txtEmployeeAddress.getText().isEmpty() || txtEmployeeContact.getText().isEmpty() || txtEmployeeSalary.getText().isEmpty() || cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()) {
+                    new Alert(Alert.AlertType.WARNING, "Please Input Employee ID and Search Employee is exist").show();
+                } else {
+                    /*String empId = txtEmployeeId.getText();
+                    String empName = txtEmployeeName.getText();
+                    String empAddress = txtEmployeeAddress.getText();
+                    String empContact = txtEmployeeContact.getText();
+                    double empSalary = Double.parseDouble(txtEmployeeSalary.getText());
+                    String empType = null;
+                    String empSchId = null;*/
+
+                    if(cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()){
+                        try {
+                            empType = EmployeeModel.searchByempIdEmployeeType(empId);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            empSchId=EmployeeModel.searchByempIdEmployeeSchId(empId);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        empType=cmbEmployeetype.getSelectionModel().getSelectedItem();
+                        empSchId=cmbEmployeeSchId.getSelectionModel().getSelectedItem();
+                    }
+
+                    boolean isUpdated;
+
+                    try {
+                        isUpdated = EmployeeModel.updateEmployee(empId, empName, empAddress, empContact, empSalary,empType,empSchId);
+                        if (isUpdated) {
+                            tblEmployeeDetails.getItems().clear();
+                            new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated").show();
+                            clearFields();
+                            getAllEmployeesToTable(searchText);
+                        } else {
+                            new Alert(Alert.AlertType.WARNING, "Employee Not Updated Please Try Again").show();
+                        }
+                    } catch (SQLException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    } catch (ClassNotFoundException e) {
+                        new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
+                    }
+                }
             }
         }
+    }
+
+    private void clearFields() {
+        txtEmployeeId.clear();
+        txtEmployeeName.clear();
+        txtEmployeeAddress.clear();
+        txtEmployeeContact.clear();
+        txtEmployeeSalary.clear();
+        cmbEmployeetype.getItems().clear();
+        cmbEmployeeSchId.getItems().clear();
     }
 
     @FXML
@@ -160,60 +352,18 @@ public class EmployeeDetailsFormController implements Initializable {
     }
 
     @FXML
-    void btnUpdateEmployeeOnAction(ActionEvent event) {
-        if (txtEmployeeId.getText().isEmpty() || txtEmployeeName.getText().isEmpty() || txtEmployeeAddress.getText().isEmpty() || txtEmployeeContact.getText().isEmpty() || txtEmployeeSalary.getText().isEmpty() || cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please Input Employee ID and Search Employee is exist").show();
-        } else {
-            String empId = txtEmployeeId.getText();
-            String empName = txtEmployeeName.getText();
-            String empAddress = txtEmployeeAddress.getText();
-            String empContact = txtEmployeeContact.getText();
-            double empSalary = Double.parseDouble(txtEmployeeSalary.getText());
-            String empType = null;
-            String empSchId = null;
+    void txtEmployeeNameOnAction(ActionEvent event) {
+        txtEmployeeAddress.requestFocus();
+    }
 
-            if(cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()){
-                try {
-                    empType = EmployeeModel.searchByempIdEmployeeType(empId);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    empSchId=EmployeeModel.searchByempIdEmployeeSchId(empId);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }else {
-                empType=cmbEmployeetype.getSelectionModel().getSelectedItem();
-                empSchId=cmbEmployeeSchId.getSelectionModel().getSelectedItem();
-            }
+    @FXML
+    void txtEmployeeAddressOnAction(ActionEvent event) {
+        txtEmployeeContact.requestFocus();
+    }
 
-            boolean isUpdated;
-
-            try {
-                isUpdated = EmployeeModel.updateEmployee(empId, empName, empAddress, empContact, empSalary,empType,empSchId);
-                if (isUpdated) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Employee Updated").show();
-                    txtEmployeeId.clear();
-                    txtEmployeeName.clear();
-                    txtEmployeeAddress.clear();
-                    txtEmployeeContact.clear();
-                    txtEmployeeSalary.clear();
-                    cmbEmployeetype.getItems().clear();
-                    cmbEmployeeSchId.getItems().clear();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Employee Not Updated Please Try Again").show();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
-            }
-        }
+    @FXML
+    void txtEmployeeContactOnAction(ActionEvent event) {
+        txtEmployeeSalary.requestFocus();
     }
 
     @FXML
@@ -227,13 +377,9 @@ public class EmployeeDetailsFormController implements Initializable {
                 boolean isDeleted = EmployeeModel.deleteEmployee(empId);
                 if (isDeleted) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Employee Deleted Successfully").show();
-                    txtEmployeeId.clear();
-                    txtEmployeeName.clear();
-                    txtEmployeeAddress.clear();
-                    txtEmployeeContact.clear();
-                    txtEmployeeSalary.clear();
-                    cmbEmployeetype.getItems().clear();
-                    cmbEmployeeSchId.getItems().clear();
+                    clearFields();
+                    tblEmployeeDetails.getItems().clear();
+                    getAllEmployeesToTable("");
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
@@ -260,6 +406,14 @@ public class EmployeeDetailsFormController implements Initializable {
 
         transition.play();
 
+    }
+
+    @FXML
+    void btnClearOnAction(ActionEvent event) {
+        clearFields();
+        txtEmployeeId.clear();
+        txtEmployeeId.requestFocus();
+        btnAddEmployee.setText("Add Employee");
     }
 
 }
