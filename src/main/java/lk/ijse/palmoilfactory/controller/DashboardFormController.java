@@ -81,6 +81,10 @@ public class DashboardFormController implements Initializable {
         } else {
             greetingsMessage = "Good evening!";
         }
+
+        // Chart Initialize
+
+
     }
 
     private void dateTimeInit() {
@@ -148,10 +152,10 @@ public class DashboardFormController implements Initializable {
         setUI("/view/order-details-form.fxml");
     }
 
-    @FXML
+    /*@FXML
     void btnGetReportOnAction(ActionEvent event) throws IOException {
         setUI("/view/get-report-form.fxml");
-    }
+    }*/
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) throws IOException {

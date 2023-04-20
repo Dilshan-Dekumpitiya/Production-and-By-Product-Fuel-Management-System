@@ -68,14 +68,14 @@ public class LoginFormController implements Initializable {
         if(Regex.validateUsername(username)&&Regex.validatePassword(password)){
 
             try {
-                boolean isUserVerified = LoginModel.userVerifiedInDB(username,password); //check in the DB
+                boolean isUserVerified = LoginModel.userCheckedInDB(username,password); //check in the DB
                 if (isUserVerified) {
 
                     new Alert(Alert.AlertType.CONFIRMATION,"Login successful!").showAndWait();
                     stage.close();
                     stage2.show();
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "User Not Found!!!").show();
+                    new Alert(Alert.AlertType.WARNING, "User Not Found in DB!!!").show();
                 }
             }catch (SQLException | ClassNotFoundException e){
                 new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();

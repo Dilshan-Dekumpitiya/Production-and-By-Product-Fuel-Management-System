@@ -46,6 +46,7 @@
 
 .dashboardleftsidepane{
     -fx-background-color: #05071F ;
+    -fx-background-radius: 10;
 }
 
 /* Table Modify */
