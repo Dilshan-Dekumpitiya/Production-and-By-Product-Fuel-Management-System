@@ -36,6 +36,11 @@
 
 .loginlabel{
     -fx-text-fill: white;
+    -fx-font-size: 10px;
+}
+
+.loginlabel{
+    -fx-text-fill: white;
     -fx-font-size: 14px;
 }
 

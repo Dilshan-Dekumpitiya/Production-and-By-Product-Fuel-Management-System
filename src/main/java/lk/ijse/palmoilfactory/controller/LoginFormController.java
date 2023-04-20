@@ -18,9 +18,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.palmoilfactory.model.LoginModel;
+import lk.ijse.palmoilfactory.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -34,8 +37,8 @@ public class LoginFormController implements Initializable {
     @FXML
     private JFXPasswordField txtPassword;
 
-    private static final String VALID_USERNAME = "admin";
-    private static final String VALID_PASSWORD = "admin";
+   // private static final String VALID_USERNAME = "admin";
+  //  private static final String VALID_PASSWORD = "admin";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,18 +64,29 @@ public class LoginFormController implements Initializable {
 
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        if (username.equals(VALID_USERNAME) && password.equals(VALID_PASSWORD)) {
-            new Alert(Alert.AlertType.CONFIRMATION,"Login successful!").showAndWait();
-            stage.close();
-            stage2.show();
-        } else {
-            new Alert(Alert.AlertType.WARNING,"Invalid username or password").show();
+
+        if(Regex.validateUsername(username)&&Regex.validatePassword(password)){
+
+            try {
+                boolean isUserVerified = LoginModel.userVerifiedInDB(username,password); //check in the DB
+                if (isUserVerified) {
+
+                    new Alert(Alert.AlertType.CONFIRMATION,"Login successful!").showAndWait();
+                    stage.close();
+                    stage2.show();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "User Not Found!!!").show();
+                }
+            }catch (SQLException | ClassNotFoundException e){
+                new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Invalid Input !").show();
             txtUsername.clear();
             txtPassword.clear();
             txtUsername.requestFocus();
             stage.show();
         }
-
 
     }
 
@@ -86,13 +100,6 @@ public class LoginFormController implements Initializable {
         btnLoginOnAction(event);
     }
 
-    /*@FXML
-    void btnNeedSignUpOnAction(ActionEvent event) {
-
-    }*/
-
-    /*@FXML
-    void btnShowPasswordOnAction(ActionEvent event) {
-        //txtPassword.textProperty().bindBidirectional(txtPasswordText.textProperty());
-    }*/
 }
+
+
