@@ -38,8 +38,8 @@
          </cursor>
       </JFXButton>
       <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="411.0" layoutY="187.0" onAction="#txtUsernameOnAction" prefHeight="25.0" prefWidth="203.0" promptText="username here" styleClass="loginlabel" stylesheets="@../stylesheet/stylesheet.css" />
-      <Label layoutX="662.0" layoutY="501.0" opacity="0.48" text="Version : 1.0.0" textFill="WHITE" />
-      <Label layoutX="362.0" layoutY="501.0" opacity="0.48" text="Developed by : Dilshan Dekumpitiya" textFill="WHITE" />
+      <Label layoutX="650.0" layoutY="501.0" opacity="0.48" styleClass="loginlabel" text="Version : 1.0.0" textFill="WHITE" />
+      <Label layoutX="362.0" layoutY="501.0" opacity="0.48" styleClass="loginlabel" text="Developed by : Dilshan Dekumpitiya" textFill="WHITE" />
       <Separator layoutX="362.0" layoutY="490.0" opacity="0.48" prefHeight="0.0" prefWidth="375.0" />
       <JFXPasswordField fx:id="txtPassword" layoutX="411.0" layoutY="237.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="203.0" promptText="password here" styleClass="loginlabel" />
    </children>
