@@ -1,8 +1,19 @@
-.btn{
+.btnclear{
     -fx-background-color:  #d2dae2;
     -fx-background-radius: 10;
 }
-
+.btnadd{
+    -fx-background-color:  #2980b9;
+    -fx-background-radius: 10;
+}
+.btndelete{
+    -fx-background-color:  #e74c3c;
+    -fx-background-radius: 10;
+}
+.btnPlaceOrder{
+    -fx-background-color: #9b59b6;
+    -fx-background-radius: 10;
+}
 .anchorPane{
     -fx-background-color:   #02030A;
     -fx-background-radius: 10;

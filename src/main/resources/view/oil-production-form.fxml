@@ -47,7 +47,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="txtTotalPressLiquid" layoutX="338.0" layoutY="112.0" prefHeight="25.0" prefWidth="165.0" styleClass="textfield" unFocusColor="BLACK" />
-            <JFXButton layoutX="568.0" layoutY="179.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Clear">
+            <JFXButton layoutX="568.0" layoutY="179.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnclear" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>

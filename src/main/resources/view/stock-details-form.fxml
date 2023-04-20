@@ -51,17 +51,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnAddStock" layoutX="392.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Save Stock">
+            <JFXButton fx:id="btnAddStock" layoutX="392.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnadd" text="Save Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="586.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Delete Stock">
+            <JFXButton layoutX="586.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btndelete" text="Delete Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="767.0" layoutY="167.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btn" text="Clear">
+            <JFXButton layoutX="767.0" layoutY="167.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnclear" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>

@@ -37,9 +37,6 @@ public class LoginFormController implements Initializable {
     @FXML
     private JFXPasswordField txtPassword;
 
-   // private static final String VALID_USERNAME = "admin";
-  //  private static final String VALID_PASSWORD = "admin";
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> txtUsername.requestFocus());
