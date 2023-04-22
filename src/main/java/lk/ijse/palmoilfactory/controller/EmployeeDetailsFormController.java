@@ -139,7 +139,7 @@ public class EmployeeDetailsFormController implements Initializable {
                 if (employee.getEmpName().contains(searchText) || employee.getEmpAddress().contains(searchText)){  //Check pass text contains of the supName
                     JFXButton btnDel=new JFXButton("Delete");
                     btnDel.setAlignment(Pos.CENTER);
-                    btnDel.setStyle("-fx-background-color: #686de0; ");
+                    btnDel.setStyle("-fx-background-color: #e74c3c; ");
                     btnDel.setCursor(Cursor.HAND);
 
                     EmployeeTM tm=new EmployeeTM(

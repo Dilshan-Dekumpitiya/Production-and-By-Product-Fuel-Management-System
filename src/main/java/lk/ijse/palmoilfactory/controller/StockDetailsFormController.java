@@ -224,6 +224,7 @@ public class StockDetailsFormController implements Initializable {
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
+
                    String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
                    OilProductionModel.addOilQtyTototalOil(Double.parseDouble(ffbInputOilQty));
                     txtStockId.clear();
@@ -231,6 +232,7 @@ public class StockDetailsFormController implements Initializable {
                     cmbSupplierId.getItems().clear();
                     tblStockDetails.getItems().clear();
                     getAllStocksToTable("");
+                    loadSupplierIds();
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();

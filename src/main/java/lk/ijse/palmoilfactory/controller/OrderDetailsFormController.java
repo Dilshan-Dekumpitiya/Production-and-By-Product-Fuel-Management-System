@@ -125,6 +125,20 @@ public class OrderDetailsFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Query error!").show();
         }
     }
+    private boolean checkOilQty(){
+        try {
+            String totalOilQuantity=OilProductionModel.getUpdatedOilqty();
+            double value= Double.parseDouble(totalOilQuantity);
+            if (value<=0){
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return true;
+      }
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
@@ -137,20 +151,25 @@ public class OrderDetailsFormController implements Initializable {
 
             try {
 
-                isPlaced = OrderModel.placeOrder(orderId, orderDate, qty, price); //transaction --> autoCommit(false)
-                if (isPlaced) {
-                    tblOrderDetails.getItems().clear();
-                    new Alert(Alert.AlertType.CONFIRMATION, "Order Added and Place Order").show();
-                    clearFields();
-                    txtQty.requestFocus();
-                    generateNextOrderId();
-                    lblOilQuantityOnHand.setText(OilProductionModel.getUpdatedOilqty());
-                //    OilProductionModel.updateQty(qty);
+                boolean isExistOil = checkOilQty();
+                if (isExistOil){
+                    isPlaced = OrderModel.placeOrder(orderId, orderDate, qty, price); //transaction --> autoCommit(false)
+                    if (isPlaced) {
+                        tblOrderDetails.getItems().clear();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Order Added and Place Order").show();
+                        clearFields();
+                        txtQty.requestFocus();
+                        generateNextOrderId();
+                        lblOilQuantityOnHand.setText(OilProductionModel.getUpdatedOilqty());
+                        //    OilProductionModel.updateQty(qty);
 
-                    getOrderDetailToTable("");
+                        getOrderDetailToTable("");
 
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Order Not Added Please Try Again").show();
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Order Not Added Please Try Again").show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.WARNING,"Not Efficient Oil Quantitiy to place Order");
                 }
             } catch (SQLException | ClassNotFoundException e) {
                    new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
