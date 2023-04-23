@@ -61,7 +61,7 @@
                   <Font name="Arial Rounded MT Bold" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton contentDisplay="CENTER" layoutX="51.0" layoutY="255.0" onAction="#btnOilProductionOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Oil Production" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="20.0" layoutY="255.0" onAction="#btnOilProductionOnAction" prefHeight="44.0" prefWidth="217.0" styleClass="dashboardbtn" stylesheets="@../stylesheet/stylesheet.css" text="Oil Production" textAlignment="RIGHT" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

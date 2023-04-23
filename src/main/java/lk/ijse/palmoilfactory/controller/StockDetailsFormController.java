@@ -205,6 +205,7 @@ public class StockDetailsFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();
         }
     }
+
     @FXML
     void btnAddStockOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         if(txtStockId.getText().isEmpty() || txtFFBInput.getText().isEmpty() ){
@@ -294,6 +295,7 @@ public class StockDetailsFormController implements Initializable {
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Found Please Try Again").show();
+                    txtFFBInput.requestFocus();
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
