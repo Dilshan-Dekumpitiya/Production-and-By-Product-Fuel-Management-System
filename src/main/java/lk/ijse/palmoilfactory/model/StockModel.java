@@ -132,4 +132,26 @@ public class StockModel {
         return stockData;
 
     }
+
+    public static int getStockIdsCount() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT COUNT(stockId) as stockIdCount from ffbstock";
+
+        return CrudUtil.execute(sql);
+    }
+
+    public static List<String> getStockIds() throws SQLException, ClassNotFoundException {
+
+        List<String> stockIds = new ArrayList<>();
+
+        String sql = "SELECT stockId FROM ffbstock";
+
+        ResultSet resultSet = CrudUtil.execute(sql);
+
+        while (resultSet.next()) {
+            stockIds.add(resultSet.getString(1));
+        }
+        return stockIds;
+
+    }
+
 }

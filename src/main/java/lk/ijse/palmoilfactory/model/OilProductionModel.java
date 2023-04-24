@@ -4,6 +4,7 @@ import lk.ijse.palmoilfactory.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class OilProductionModel {
@@ -41,4 +42,30 @@ public class OilProductionModel {
         CrudUtil.execute(sql,qty);
     }
 
+    public static String getTotalOileveryStock(String stockId) throws SQLException, ClassNotFoundException {
+        int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+
+        double totalPressLiquid=ffbinput*0.3*0.88;
+
+        double totalEBLiquidOutput=ffbinput*0.7*0.72;
+
+        String totalOilOutput = Double.toString(totalPressLiquid+totalEBLiquidOutput);
+
+        return totalOilOutput;
+    }
+
+    public static String getTotalFueleveryStock(String stockId) throws SQLException, ClassNotFoundException {
+        int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+
+        double totalPressFiber=ffbinput*0.135;
+       // txtTotalPressFiber.setText(String.valueOf(totalPressFiber));
+        double totalShell=ffbinput*0.03;
+     //   txtTotalShell.setText(String.valueOf(totalShell));
+        double totalEBFiber=ffbinput*0.03;
+      //  txtTotalEBFiber.setText(String.valueOf(totalEBFiber));
+
+        String totalFuel = String.valueOf(totalPressFiber+totalShell+totalEBFiber);
+
+        return totalFuel;
+    }
 }

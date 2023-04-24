@@ -161,18 +161,8 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="102.0" layoutY="186.0" prefHeight="30.0" prefWidth="275.0" text="Stock vs Oil Output" />
             <Label fx:id="lblGreeting" layoutX="102.0" layoutY="69.0" prefHeight="64.0" prefWidth="313.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" />
-            <BarChart layoutX="1.0" layoutY="216.0" prefHeight="412.0" prefWidth="516.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <Label layoutX="616.0" layoutY="186.0" prefHeight="30.0" prefWidth="275.0" text="Stock vs By Product Fuel" />
-            <BarChart layoutX="501.0" layoutY="216.0" prefHeight="412.0" prefWidth="539.0">
+            <BarChart fx:id="barChartStockvsOilFuel" layoutX="1.0" layoutY="176.0" prefHeight="462.0" prefWidth="1030.0" styleClass="bar-chart" stylesheets="@../stylesheet/stylesheet.css" title="Stock vs Oil Output,By Product Fuel">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

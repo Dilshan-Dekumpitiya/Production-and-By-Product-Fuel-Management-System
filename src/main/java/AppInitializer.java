@@ -15,7 +15,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent load = FXMLLoader.load(getClass().getResource("./view/login-view-form.fxml"));
+        Parent load = FXMLLoader.load(getClass().getResource("./view/dashboard-view-form.fxml"));
         Scene scene = new Scene(load);
         stage.setScene(scene);
 
