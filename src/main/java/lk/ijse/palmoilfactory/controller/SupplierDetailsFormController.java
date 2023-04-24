@@ -17,6 +17,7 @@ import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 import lk.ijse.palmoilfactory.util.CrudUtil;
+import lk.ijse.palmoilfactory.util.Regex;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -154,6 +155,7 @@ public class SupplierDetailsFormController implements Initializable {
         if(txtSupplierId.getText().isEmpty() || txtSupplierName.getText().isEmpty() || txtSupplierAddress.getText().isEmpty() || txtSupplierContact.getText().isEmpty()){
             new Alert(Alert.AlertType.WARNING,"Please Input Data to Add Supplier").show();
         }else {
+
             String supId = txtSupplierId.getText();
             String supName = txtSupplierName.getText();
             String supAddress = txtSupplierAddress.getText();
@@ -242,8 +244,15 @@ public class SupplierDetailsFormController implements Initializable {
     }
     @FXML
     void txtSupplierIdOnAction(ActionEvent event) {
-        btnSearchSupplierOnAction(event);
-        txtSupplierName.requestFocus();
+        String supId=txtSupplierId.getText();
+        if (Regex.validateSupplierId(supId)){
+            btnSearchSupplierOnAction(event);
+            txtSupplierName.requestFocus();
+        }else {
+            txtSupplierId.clear();
+            new Alert(Alert.AlertType.WARNING, "No matching supplier ID please Input SUP format!!!").show();
+        }
+
     }
 
     @FXML
@@ -258,8 +267,15 @@ public class SupplierDetailsFormController implements Initializable {
 
     @FXML
     void txtSupplierContactOnAction(ActionEvent event) {
-        btnSaveSupplierOnAction(event);
-        txtSearch.requestFocus();
+        String contact=txtSupplierContact.getText();
+        if (Regex.validateContact(contact)){
+            btnSaveSupplierOnAction(event);
+            txtSearch.requestFocus();
+        }else {
+            txtSupplierContact.clear();
+            new Alert(Alert.AlertType.WARNING, "No matching contact please Input contact format!!!").show();
+        }
+
     }
 
     @FXML
