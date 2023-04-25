@@ -43,11 +43,6 @@ public class LoginFormController implements Initializable {
     }
 
     @FXML
-    void btnForgotPasswordOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
 
         Stage stage = (Stage) loginContext.getScene().getWindow();
@@ -73,6 +68,9 @@ public class LoginFormController implements Initializable {
                     stage2.show();
                 } else {
                     new Alert(Alert.AlertType.WARNING, "User Not Found in DB!!!").show();
+                    txtUsername.clear();
+                    txtPassword.clear();
+                    txtUsername.requestFocus();
                 }
             }catch (SQLException | ClassNotFoundException e){
                 new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();

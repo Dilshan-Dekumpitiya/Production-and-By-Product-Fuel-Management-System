@@ -196,11 +196,6 @@ public class DashboardFormController implements Initializable {
         setUI("/view/order-details-form.fxml");
     }
 
-    /*@FXML
-    void btnGetReportOnAction(ActionEvent event) throws IOException {
-        setUI("/view/get-report-form.fxml");
-    }*/
-
     @FXML
     void btnLogoutOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) dashboardContext.getScene().getWindow();

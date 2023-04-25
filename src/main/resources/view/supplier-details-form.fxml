@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="639.0" prefWidth="1054.0" styleClass="anchorPane" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.SupplierDetailsFormController">
+<AnchorPane prefHeight="639.0" prefWidth="1054.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.SupplierDetailsFormController">
    <children>
       <Label layoutX="21.0" layoutY="7.0" prefHeight="47.0" prefWidth="204.0" text="Suppliers Details" textFill="WHITE">
          <font>

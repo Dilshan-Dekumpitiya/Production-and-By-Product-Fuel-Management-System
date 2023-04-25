@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="scheduleDetailsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.74" prefHeight="303.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.ScheduleDetailsFormController">
+<Pane fx:id="scheduleDetailsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.74" prefHeight="303.0" prefWidth="600.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.ScheduleDetailsFormController">
    <children>
       <JFXButton layoutX="14.0" layoutY="14.0" onAction="#btnBackOnAction" prefHeight="30.0" prefWidth="79.0" styleClass="btnclear" text="Back">
          <font>
