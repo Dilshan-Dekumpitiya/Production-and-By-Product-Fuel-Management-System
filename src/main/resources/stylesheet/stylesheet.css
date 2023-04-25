@@ -1,18 +1,35 @@
 .btnclear{
     -fx-background-color:  #d2dae2;
     -fx-background-radius: 10;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+    -fx-max-width: 100px;
+    -fx-max-height: 30px;
 }
 .btnadd{
     -fx-background-color:  #2980b9;
     -fx-background-radius: 10;
+    -fx-min-width: 150px;
+    -fx-min-height: 30px;
+    -fx-max-width: 150px;
+    -fx-max-height: 30px;
 }
 .btndelete{
     -fx-background-color:  #e74c3c;
     -fx-background-radius: 10;
+    -fx-min-width: 150px;
+    -fx-min-height: 30px;
+    -fx-max-width: 150px;
+    -fx-max-height: 30px;
+
 }
 .btnPlaceOrder{
     -fx-background-color: #9b59b6;
     -fx-background-radius: 10;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+    -fx-max-width: 100px;
+    -fx-max-height: 30px;
 }
 .anchorPane{
     -fx-background-color:   #02030A;
@@ -74,10 +91,10 @@
 .table-view .column-header{
     -fx-border-style: solid;
     -fx-border-color: rgb(130, 130, 130);
-    -fx-border-radius: 5px;
+    /*-fx-border-radius: 5px;
     -fx-background-radius: 5px;
     -fx-border-insets: 0 1 1 0, 0 0 0 0;
-    -fx-border-width: 0.083333em, 0.083333em;
+    -fx-border-width: 0.083333em, 0.083333em;*/
 }
 
 .table-view .column-header .label{
