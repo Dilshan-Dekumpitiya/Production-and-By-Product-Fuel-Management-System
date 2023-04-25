@@ -47,6 +47,10 @@
     -fx-background-color:  #1F2127;   /*#1F2127*/
 }
 
+.dashboardTotalOilLable{
+    -fx-background-color:  #1F2127;
+    -fx-background-radius: 15;
+}
 .pane{
     -fx-background-color:   #3d3d3d;
     -fx-background-radius: 10;
@@ -79,7 +83,7 @@
 
 .labeltimeDate{
     -fx-text-fill: white;
-    -fx-font-size: 18px;
+    -fx-font-size: 17px;
 }
 .loginlabel{
     -fx-text-fill: white;
@@ -87,7 +91,7 @@
 }
 .dashboardleftsidepane{
     -fx-background-color: #3d3d3d ; /*#1F2127*/
--fx-background-radius: 10;
+    -fx-background-radius: 10;
 }
 
 /* Table Modify */
@@ -144,64 +148,34 @@
     -fx-background-radius: 1;
 }*/
 
-/* Bar Chart */
+                          /* Bar Chart */
 
-/*
-.chart-legend . chart-title {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-fill: #000000;
-}
-
-!* Styling the chart legend *!
+/* Styling the chart legend */
 .chart-legend {
-    -fx-font-size: 14px;
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Set background color to white with 50% opacity */
 }
 
-!* Styling the chart axes *!
+/* Styling the chart title */
+.chart-legend . chart-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill:black ;
+
+}
+
+/* Styling the chart axes */
 .chart-legend  . chart-axis {
     -fx-font-size: 14px;
-    -fx-text-fill: #000000;
+    -fx-text-fill: black;
 }
 
-!* Styling the chart bars *!
+/* Styling the chart bars */
 .chart-legend .series0 {
-    -fx-bar-fill: #0066cc; !* Bar fill color for series 0 *!
+    -fx-bar-fill: #0066cc; /*!* Bar fill color for series 0 *!*/
 }
 
 .chart-legend .series1 {
-    -fx-bar-fill: #e84118; !* Bar fill color for series 1 *!
+    -fx-bar-fill: #e84118; /*!* Bar fill color for series 1 *!*/
 }
 
 
-!* Styling the chart bar labels *!
-.chart-legend  .chart-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #000000;
-}
-
-!* Styling the chart data series *!
-.chart-series-line {
-    !* Customize the appearance of the data series line *!
-}
-
-.chart-series-symbol {
-    !* Customize the appearance of the data series symbols *!
-}
-
-.chart-series-area-fill {
-    !* Customize the appearance of the data series area fill *!
-}*/
-
-.bar-chart {
-    -fx-background-color: white;
-
-}
-
-.bar-chart .series0 {
-    -fx-bar-fill: #0066cc;
-}
-
-.bar-chart .series1 {
-    -fx-bar-fill: #e84118;
-}

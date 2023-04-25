@@ -128,7 +128,8 @@ public class DashboardFormController implements Initializable {
 
         // Add the data series to the bar chart
         barChartStockvsOilFuel.getData().addAll(seriesOil,seriesByProduct);
-
+       // barChartStockvsOilFuel.setTitle("Stock Vs Oil Production and By-Product Fuel");
+      //  barChartStockvsOilFuel.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: #cccccc;");
     }
 
     private void dateTimeInit() {

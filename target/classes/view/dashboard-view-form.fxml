@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="dashboardContext" minHeight="650.0" minWidth="1366.0" prefHeight="768.0" prefWidth="1366.0" styleClass="anchorPaneDashboard" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.DashboardFormController">
    <children>
-      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" styleClass="labeltimeDate" textFill="#ffffffa8">
+      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1242.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" styleClass="labeltimeDate" text="label" textFill="#ffffffa8">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
@@ -140,14 +140,14 @@
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane fx:id="dashboardDetailsPane" layoutX="300.0" layoutY="47.0" prefHeight="639.0" prefWidth="1054.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
+      <AnchorPane fx:id="dashboardDetailsPane" layoutX="300.0" layoutY="47.0" prefHeight="639.0" prefWidth="1054.0" styleClass="pane">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="217.0" text="Dashboard" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Pane layoutX="540.0" layoutY="64.0" prefHeight="98.0" prefWidth="262.0" styleClass="pane">
+            <Pane layoutX="481.0" layoutY="58.0" prefHeight="98.0" prefWidth="262.0" styleClass="dashboardTotalOilLable">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="292.0" text="Total Oil Qty On Hand (kL)      " textFill="#f80303">
                      <font>
@@ -161,8 +161,8 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lblGreeting" layoutX="187.0" layoutY="14.0" prefHeight="36.0" prefWidth="313.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" />
-            <BarChart fx:id="barChartStockvsOilFuel" layoutX="12.0" layoutY="175.0" prefHeight="442.0" prefWidth="1030.0" styleClass="bar-chart" stylesheets="@../stylesheet/stylesheet.css" title="Stock vs Oil Output,By Product Fuel">
+            <Label fx:id="lblGreeting" layoutX="187.0" layoutY="14.0" prefHeight="36.0" prefWidth="313.0" style="-fx-text-fill: #ff7f50; -fx-font-weight: bold;" text="time" />
+            <BarChart fx:id="barChartStockvsOilFuel" layoutX="12.0" layoutY="175.0" prefHeight="442.0" prefWidth="1030.0" styleClass="chart-legend" stylesheets="@../stylesheet/stylesheet.css" title="Stock Vs Oil Production and By-Product Fuel">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -170,7 +170,6 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <Label layoutX="32.0" layoutY="122.0" prefHeight="53.0" prefWidth="408.0" text="Stock Vs Oil Production and By-Product Fuel" />
          </children>
       </AnchorPane>
       <Label fx:id="lblTime" alignment="CENTER_RIGHT" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="1119.0" layoutY="16.0" prefHeight="25.0" prefWidth="112.0" styleClass="labeltimeDate" text="label" textAlignment="RIGHT" textFill="#ffffffa8">
@@ -178,6 +177,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Separator layoutX="1239.0" layoutY="25.0" orientation="VERTICAL" prefHeight="13.0" prefWidth="6.0" />
+      <Separator layoutX="1242.0" layoutY="23.0" orientation="VERTICAL" prefHeight="13.0" prefWidth="6.0" />
    </children>
 </AnchorPane>
