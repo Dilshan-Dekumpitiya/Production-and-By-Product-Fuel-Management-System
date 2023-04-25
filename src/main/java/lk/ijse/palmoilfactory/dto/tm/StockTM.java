@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class StockTM {
     private String stockId;
-    private int ffbInput;
+    private double ffbInput;
     private String date;
     private String time;
     private String supplierID;

@@ -76,7 +76,7 @@ public class OilProductionFormController implements Initializable {
         return null;
     }
 
-    public static String ffbInputOilQty(int ffbInput) {
+    public static String ffbInputOilQty(double ffbInput) {
 
         double totalPressLiquid=ffbInput*0.3*0.88;
 

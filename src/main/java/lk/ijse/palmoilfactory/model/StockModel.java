@@ -14,7 +14,7 @@ import java.util.List;
 
 public class StockModel {
 
-    public static boolean addStock(String stockId, int ffbInput, String date, String time ,String supId) throws SQLException, ClassNotFoundException {
+    public static boolean addStock(String stockId, double ffbInput, String date, String time ,String supId) throws SQLException, ClassNotFoundException {
 
         String sql="INSERT INTO ffbstock(stockId,ffbInput,date,time,supId)"+"VALUES(?,?,?,?,?)";
 
@@ -29,7 +29,7 @@ public class StockModel {
 
         if(resultSet.next()) {
             String  stkId = resultSet.getString(1);
-            int ffbInput = resultSet.getInt(2);
+            double ffbInput = resultSet.getInt(2);
             String date = resultSet.getString(3);
             String time = resultSet.getString(4);
             String supId = resultSet.getString(5);
@@ -39,7 +39,7 @@ public class StockModel {
         return null;
     }
 
-    public static boolean updateStock(String stockId, int ffbInput, String date, String time, String supId) throws SQLException, ClassNotFoundException {
+    public static boolean updateStock(String stockId, double ffbInput, String date, String time, String supId) throws SQLException, ClassNotFoundException {
 
         String sql="UPDATE ffbstock SET ffbInput = ?, date = ?, time = ? , supId = ? WHERE stockId = ?";
 

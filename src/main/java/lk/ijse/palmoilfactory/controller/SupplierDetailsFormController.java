@@ -142,8 +142,26 @@ public class SupplierDetailsFormController implements Initializable {
             if (buttonType.get() == yes) {
                 txtSupplierId.setText(tblSupplier.getSelectionModel().getSelectedItem().getSupId());
                 btnSearchSupplierOnAction(e);
-                btnDeleteSupplierOnAction(e);
+              //  btnDeleteSupplierOnAction(e);
+                String supId=txtSupplierId.getText();
+                try {
 
+                    boolean isDeleted = SupplierModel.deleteSupplier(supId);
+                    if (isDeleted) {
+                        tblSupplier.getItems().clear();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted Successfully").show();
+                        clearFields();
+                        getAllSupplierToTable(searchText);
+
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    }
+                } catch (SQLException exception) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+                } catch (ClassNotFoundException exception) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+                }
                 tblSupplier.getItems().clear();
                 getAllSupplierToTable(searchText);
             }
@@ -286,24 +304,34 @@ public class SupplierDetailsFormController implements Initializable {
             new Alert(Alert.AlertType.WARNING,"Please Input Supplier ID and Search Supplier is exist").show();
         }else {
             String supId = txtSupplierId.getText();
-            try {
 
-                boolean isDeleted = SupplierModel.deleteSupplier(supId);
-                if (isDeleted) {
-                    tblSupplier.getItems().clear();
-                    new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted Successfully").show();
-                    clearFields();
-                    getAllSupplierToTable(searchText);
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+
+            if (buttonType.get() == yes) {
+                txtSupplierId.setText(tblSupplier.getSelectionModel().getSelectedItem().getSupId());
+                try {
+
+                    boolean isDeleted = SupplierModel.deleteSupplier(supId);
+                    if (isDeleted) {
+                        tblSupplier.getItems().clear();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Supplier Deleted Successfully").show();
+                        clearFields();
+                        getAllSupplierToTable(searchText);
+
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+                } catch (ClassNotFoundException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
-
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
+
         }
     }
 

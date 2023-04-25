@@ -28,6 +28,7 @@ import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.EmployeeModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
+import lk.ijse.palmoilfactory.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
@@ -174,7 +175,29 @@ public class EmployeeDetailsFormController implements Initializable {
             if (buttonType.get() == yes) {
                 txtEmployeeId.setText(tblEmployeeDetails.getSelectionModel().getSelectedItem().getEmpId());
                 btnSearchEmployeeOnAction(e);
-                btnDeleteEmployeeOnAction(e);
+              //  btnDeleteEmployeeOnAction(e);
+
+                String empId = txtEmployeeId.getText();
+                try {
+
+                    boolean isDeleted = EmployeeModel.deleteEmployee(empId);
+                    if (isDeleted) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Employee Deleted Successfully").show();
+                        clearFields();
+                        tblEmployeeDetails.getItems().clear();
+                        getAllEmployeesToTable("");
+                        loadSchIds();
+                        loadEmpType();
+
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    }
+                } catch (SQLException exception) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+                } catch (ClassNotFoundException exception) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+                }
 
                 tblEmployeeDetails.getItems().clear();
                 getAllEmployeesToTable("");
@@ -348,7 +371,15 @@ public class EmployeeDetailsFormController implements Initializable {
 
     @FXML
     void txtEmployeeIdOnAction(ActionEvent event) {
-        btnSearchEmployeeOnAction(event);
+        String empId=txtEmployeeId.getText();
+        if (Regex.validateEMPID(empId)){
+            btnSearchEmployeeOnAction(event);
+            txtEmployeeName.requestFocus();
+        }else {
+            txtEmployeeId.clear();
+            new Alert(Alert.AlertType.WARNING, "No matching employee ID please Input EMP format!!!").show();
+        }
+       // btnSearchEmployeeOnAction(event);
     }
 
     @FXML
@@ -363,32 +394,51 @@ public class EmployeeDetailsFormController implements Initializable {
 
     @FXML
     void txtEmployeeContactOnAction(ActionEvent event) {
-        txtEmployeeSalary.requestFocus();
+        String contact=txtEmployeeContact.getText();
+        if (Regex.validateContact(contact)){
+            txtEmployeeSalary.requestFocus();
+        }else {
+            new Alert(Alert.AlertType.WARNING, "No matching contact number please Input correct format!!!").show();
+            txtEmployeeContact.clear();
+        }
+
     }
 
     @FXML
     void btnDeleteEmployeeOnAction(ActionEvent event) {
-        if(txtEmployeeId.getText().isEmpty() || txtEmployeeName.getText().isEmpty() || txtEmployeeAddress.getText().isEmpty() || txtEmployeeContact.getText().isEmpty() || txtEmployeeSalary.getText().isEmpty() || cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()){
-            new Alert(Alert.AlertType.WARNING,"Please Input Employee ID and Search Employee is exist").show();
-        }else {
+        if (txtEmployeeId.getText().isEmpty() || txtEmployeeName.getText().isEmpty() || txtEmployeeAddress.getText().isEmpty() || txtEmployeeContact.getText().isEmpty() || txtEmployeeSalary.getText().isEmpty() || cmbEmployeetype.getSelectionModel().isEmpty() || cmbEmployeeSchId.getSelectionModel().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please Input Employee ID and Search Employee is exist").show();
+        } else {
             String empId = txtEmployeeId.getText();
-            try {
 
-                boolean isDeleted = EmployeeModel.deleteEmployee(empId);
-                if (isDeleted) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Employee Deleted Successfully").show();
-                    clearFields();
-                    tblEmployeeDetails.getItems().clear();
-                    getAllEmployeesToTable("");
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+
+            if (buttonType.get() == yes) {
+                txtEmployeeId.setText(tblEmployeeDetails.getSelectionModel().getSelectedItem().getEmpId());
+                btnSearchEmployeeOnAction(event);
+                try {
+
+                    boolean isDeleted = EmployeeModel.deleteEmployee(empId);
+                    if (isDeleted) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Employee Deleted Successfully").show();
+                        clearFields();
+                        tblEmployeeDetails.getItems().clear();
+                        getAllEmployeesToTable("");
+                        loadEmpType();
+                        loadSchIds();
+
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+                } catch (ClassNotFoundException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
-
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
         }
     }
@@ -414,6 +464,8 @@ public class EmployeeDetailsFormController implements Initializable {
         txtEmployeeId.clear();
         txtEmployeeId.requestFocus();
         btnAddEmployee.setText("Add Employee");
+        loadEmpType();
+        loadSchIds();
     }
 
 }

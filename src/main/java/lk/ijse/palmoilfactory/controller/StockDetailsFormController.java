@@ -24,6 +24,7 @@ import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
+import lk.ijse.palmoilfactory.util.Regex;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -158,9 +159,36 @@ public class StockDetailsFormController implements Initializable {
             Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
 
             if (buttonType.get() == yes) {
+                String stockId = txtStockId.getText();
+
+                boolean isDeleted;
+
                 txtStockId.setText(tblStockDetails.getSelectionModel().getSelectedItem().getStockId());
-                btnSearchStockOnAction(e);
-                btnDeleteStockOnAction(e);
+                 btnSearchStockOnAction(e);
+                // btnDeleteStockOnAction(e);
+             try {
+                isDeleted = StockModel.deleteStock(stockId);
+                if (isDeleted) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
+                    //int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
+                    /*String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
+                    OilProductionModel.subtractionOilQty(Double.parseDouble(ffbInputOilQty));*/
+                    txtStockId.clear();
+                    txtFFBInput.clear();
+                    cmbSupplierId.getItems().clear();
+                    tblStockDetails.getItems().clear();
+                    getAllStocksToTable("");
+                    loadSupplierIds();
+
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                }
+            } catch (SQLException exception) {
+                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+            } catch (ClassNotFoundException exception) {
+                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+            }
 
                 tblStockDetails.getItems().clear();
                 getAllStocksToTable(searchText);
@@ -212,7 +240,7 @@ public class StockDetailsFormController implements Initializable {
             new Alert(Alert.AlertType.WARNING,"Please Input data to Add Stock").show();
         }else {
             String stockId = txtStockId.getText();
-            int ffbInput = Integer.parseInt(txtFFBInput.getText());
+            double ffbInput = Double.parseDouble(txtFFBInput.getText());
             dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
             lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
@@ -234,6 +262,7 @@ public class StockDetailsFormController implements Initializable {
                     tblStockDetails.getItems().clear();
                     getAllStocksToTable("");
                     loadSupplierIds();
+                    txtStockId.requestFocus();
 
                 } else {
                     new Alert(Alert.AlertType.WARNING, "Stock Not Added Please Try Again").show();
@@ -308,7 +337,24 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void txtStockIdOnAction(ActionEvent event) {
-        btnSearchStockOnAction(event);
+        String stockId=txtStockId.getText();
+        if (Regex.validateStockId(stockId)){
+            btnSearchStockOnAction(event);
+        }else {
+            txtStockId.clear();
+            new Alert(Alert.AlertType.WARNING, "No matching stock ID please Input FFB format!!!").show();
+        }
+    }
+
+    @FXML
+    void txtFFBInputOnAction(ActionEvent event) {
+        String ffbInput=txtFFBInput.getText();
+        if (Regex.validateFFBInput(ffbInput)){
+           // btnSearchStockOnAction(event);
+        }else {
+            txtFFBInput.clear();
+            new Alert(Alert.AlertType.WARNING, "No Matching Input!!!").show();
+        }
     }
 
     @FXML
@@ -319,29 +365,40 @@ public class StockDetailsFormController implements Initializable {
             String stockId = txtStockId.getText();
 
             boolean isDeleted;
-            try {
 
-                isDeleted = StockModel.deleteStock(stockId);
-                if (isDeleted) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
-                    //int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> buttonType = new Alert(Alert.AlertType.INFORMATION, "Are you sure to Delete?", yes, no).showAndWait();
+
+            if (buttonType.get() == yes) {
+                txtStockId.setText(tblStockDetails.getSelectionModel().getSelectedItem().getStockId());
+                try {
+
+                    isDeleted = StockModel.deleteStock(stockId);
+                    if (isDeleted) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Stock Deleted Successfully").show();
+                        //int ffbInput = StockModel.searchByStockIdFFBInput(stockId);
                     /*String ffbInputOilQty = OilProductionFormController.ffbInputOilQty(ffbInput);
                     OilProductionModel.subtractionOilQty(Double.parseDouble(ffbInputOilQty));*/
-                    txtStockId.clear();
-                    txtFFBInput.clear();
-                    cmbSupplierId.getItems().clear();
-                    tblStockDetails.getItems().clear();
-                    getAllStocksToTable("");
+                        txtStockId.clear();
+                        txtFFBInput.clear();
+                        cmbSupplierId.getItems().clear();
+                        tblStockDetails.getItems().clear();
+                        getAllStocksToTable("");
+                        loadSupplierIds();
 
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Delete Fail").show();
+                    }
+                } catch (SQLException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
+
+                } catch (ClassNotFoundException e) {
+                    new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
                 }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
-
-            } catch (ClassNotFoundException e) {
-                new Alert(Alert.AlertType.WARNING, "OOPSSS!! something happened!!!").show();
             }
+
         }
     }
 
@@ -356,6 +413,7 @@ public class StockDetailsFormController implements Initializable {
         txtStockId.clear();
         txtStockId.requestFocus();
         btnAddStock.setText("Save Stock");
+        loadSupplierIds();
     }
 
 
