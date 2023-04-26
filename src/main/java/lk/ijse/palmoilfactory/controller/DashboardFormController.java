@@ -112,6 +112,7 @@ public class DashboardFormController implements Initializable {
                 String stockId = stockIds.get(i);
                 String totalOileveryStock1=OilProductionModel.getTotalOileveryStock(stockId);
                 Double totalOileveryStock= Double.valueOf(totalOileveryStock1);
+
                 String totalfueleveryStock1=OilProductionModel.getTotalFueleveryStock(stockId);
                 Double totalfueleveryStock= Double.valueOf(totalfueleveryStock1);
 

@@ -416,5 +416,10 @@ public class StockDetailsFormController implements Initializable {
         loadSupplierIds();
     }
 
+    @FXML
+    void btnGetReportOnAction(ActionEvent event) {
+
+    }
+
 
 }

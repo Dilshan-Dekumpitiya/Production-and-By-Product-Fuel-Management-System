@@ -13,13 +13,20 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.dto.tm.SupplierTM;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 import lk.ijse.palmoilfactory.util.CrudUtil;
 import lk.ijse.palmoilfactory.util.Regex;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -349,4 +356,20 @@ public class SupplierDetailsFormController implements Initializable {
         txtSearch.requestFocus();
         btnSaveSupplier.setText("Save Supplier");
     }
+
+    @FXML
+    void btnGetReportOnAction(ActionEvent event) throws JRException, SQLException, ClassNotFoundException {
+        String billPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\supplierReport.jrxml";
+        String sql="select * from supplier";
+        String path = FileSystems.getDefault().getPath("/reports/supplierReport.jrxml").toAbsolutePath().toString();
+        JasperDesign jasdi = JRXmlLoader.load(billPath);
+        JRDesignQuery newQuery = new JRDesignQuery();
+        newQuery.setText(sql);
+        jasdi.setQuery(newQuery);
+        JasperReport js = JasperCompileManager.compileReport(jasdi);
+        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+        JasperViewer viewer = new JasperViewer(jp, false);
+        viewer.show();
+    }
+
 }

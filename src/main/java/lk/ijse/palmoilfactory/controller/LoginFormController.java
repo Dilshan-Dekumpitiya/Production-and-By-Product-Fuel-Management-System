@@ -2,6 +2,7 @@ package lk.ijse.palmoilfactory.controller;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.sun.nio.sctp.Notification;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,16 +11,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.palmoilfactory.model.LoginModel;
 import lk.ijse.palmoilfactory.util.Regex;
+import org.controlsfx.control.NotificationPane;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,8 +70,20 @@ public class LoginFormController implements Initializable {
                 boolean isUserVerified = LoginModel.userCheckedInDB(username,password); //check in the DB
                 if (isUserVerified) {
 
-                    new Alert(Alert.AlertType.CONFIRMATION,"Login successful!").showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Login successful!");
+                    alert.showAndWait();
+
+                    /*Notifications.create()
+                            .graphic(new ImageView(new Image("/img/login-notification.png")))
+                            .text("Login Successful")
+                            .title("Successful")
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.TOP_RIGHT)
+                           // .darkStyle()
+                            .show();*/
+
                     stage.close();
+
                     stage2.show();
                 } else {
                     new Alert(Alert.AlertType.WARNING, "User Not Found in DB!!!").show();
@@ -72,9 +91,12 @@ public class LoginFormController implements Initializable {
                     txtPassword.clear();
                     txtUsername.requestFocus();
                 }
-            }catch (SQLException | ClassNotFoundException e){
+            }catch (SQLException exception ){
+                new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();
+            } catch (ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR,"Oops something wrong!!!").show();
             }
+
         }else {
             new Alert(Alert.AlertType.ERROR,"Invalid Input !").show();
             txtUsername.clear();

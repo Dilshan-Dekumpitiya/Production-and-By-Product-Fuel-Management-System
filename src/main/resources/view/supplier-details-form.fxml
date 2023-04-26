@@ -25,12 +25,12 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="666.0" layoutY="216.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" styleClass="btnclear" text="Clear">
+            <JFXButton layoutX="595.0" layoutY="216.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="125.0" styleClass="btnclear" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="364.0" layoutY="216.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btndelete" text="Delete Supplier">
+            <JFXButton layoutX="328.0" layoutY="216.0" onAction="#btnDeleteSupplierOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btndelete" text="Delete Supplier">
                <font>
                   <Font size="14.0" />
                </font>
@@ -78,6 +78,7 @@
                   <Image url="@../img/search-img.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="808.0" layoutY="219.0" maxWidth="129.0" onAction="#btnGetReportOnAction" prefHeight="30.0" prefWidth="129.0" styleClass="btnGetReport" text="Get Report" />
          </children>
       </Pane>
       <TableView fx:id="tblSupplier" layoutX="34.0" layoutY="355.0" prefHeight="270.0" prefWidth="986.0">

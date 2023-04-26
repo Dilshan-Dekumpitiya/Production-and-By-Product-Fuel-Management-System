@@ -51,17 +51,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnAddStock" layoutX="392.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnadd" text="Save Stock">
+            <JFXButton fx:id="btnAddStock" layoutX="360.0" layoutY="167.0" onAction="#btnAddStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnadd" text="Save Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="586.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btndelete" text="Delete Stock">
+            <JFXButton layoutX="538.0" layoutY="168.0" onAction="#btnDeleteStockOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btndelete" text="Delete Stock">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="767.0" layoutY="167.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnclear" text="Clear">
+            <JFXButton layoutX="716.0" layoutY="168.0" onAction="#btnClearOnAction" prefHeight="30.0" prefWidth="115.0" styleClass="btnclear" text="Clear">
                <font>
                   <Font size="14.0" />
                </font>
@@ -74,6 +74,7 @@
             <JFXComboBox fx:id="cmbSupplierId" layoutX="194.0" layoutY="170.0" prefHeight="25.0" prefWidth="153.0" promptText="supplier id" styleClass="cmb" unFocusColor="BLACK" />
             <Label fx:id="lblTime" layoutX="631.0" layoutY="110.0" prefHeight="25.0" prefWidth="220.0" stylesheets="@../stylesheet/stylesheet.css" />
             <DatePicker fx:id="dtpckrDate" layoutX="194.0" layoutY="122.0" prefHeight="25.0" prefWidth="231.0" />
+            <JFXButton layoutX="845.0" layoutY="171.0" onAction="#btnGetReportOnAction" styleClass="btnGetReport" text="Get Report" />
          </children>
       </Pane>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="47.0" prefWidth="204.0" text="Stock Details" textFill="WHITE">
