@@ -39,6 +39,14 @@
     -fx-max-width: 100px;
     -fx-max-height: 30px;
 }
+.btnGetReport{
+    -fx-background-color: #feca57;
+    -fx-background-radius: 10;
+    -fx-min-width: 100px;
+    -fx-min-height: 30px;
+    -fx-max-width: 100px;
+    -fx-max-height: 30px;
+}
 .anchorPane{
     -fx-background-color:  #3d3d3d;
     -fx-background-radius: 10;
