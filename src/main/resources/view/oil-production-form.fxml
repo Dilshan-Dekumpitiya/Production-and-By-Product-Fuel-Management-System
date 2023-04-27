@@ -68,6 +68,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <JFXButton layoutX="743.0" layoutY="177.0" onAction="#btnGetReportOnAction" styleClass="btnGetReport" text="Get Report" />
          </children>
       </Pane>
    </children>

@@ -11,12 +11,12 @@
 		<property name="com.jaspersoft.studio.field.label" value="stockId"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="steam"/>
 	</field>
-	<field name="fruit" class="java.lang.Integer">
+	<field name="fruit" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.name" value="fruit"/>
 		<property name="com.jaspersoft.studio.field.label" value="fruit"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="steam"/>
 	</field>
-	<field name="emptyBunch" class="java.lang.Integer">
+	<field name="emptyBunch" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.name" value="emptyBunch"/>
 		<property name="com.jaspersoft.studio.field.label" value="emptyBunch"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="steam"/>

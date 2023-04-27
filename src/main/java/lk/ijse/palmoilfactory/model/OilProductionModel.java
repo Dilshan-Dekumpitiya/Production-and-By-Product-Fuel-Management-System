@@ -43,7 +43,7 @@ public class OilProductionModel {
     }
 
     public static String getTotalOileveryStock(String stockId) throws SQLException, ClassNotFoundException {
-        int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+        double ffbinput = StockModel.searchByStockIdFFBInput(stockId);
 
         double totalPressLiquid=ffbinput*0.3*0.88;
 
@@ -55,7 +55,7 @@ public class OilProductionModel {
     }
 
     public static String getTotalFueleveryStock(String stockId) throws SQLException, ClassNotFoundException {
-        int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+        double ffbinput = StockModel.searchByStockIdFFBInput(stockId);
 
         double totalPressFiber=ffbinput*0.135;
        // txtTotalPressFiber.setText(String.valueOf(totalPressFiber));
@@ -67,5 +67,13 @@ public class OilProductionModel {
         String totalFuel = String.valueOf(totalPressFiber+totalShell+totalEBFiber);
 
         return totalFuel;
+    }
+
+    public static boolean addOilProduction(String stockId, double totalEBLiquid, double totalPressLiquid, String date, String time) throws SQLException, ClassNotFoundException {
+        String sql="INSERT INTO oilproduction(stockId,totalEBLiquid,totalPressLiquid,date,time) VALUES(?,?,?,?,?)";
+
+        return CrudUtil.execute(sql,stockId,totalEBLiquid,totalPressLiquid,date,time);
+
+
     }
 }

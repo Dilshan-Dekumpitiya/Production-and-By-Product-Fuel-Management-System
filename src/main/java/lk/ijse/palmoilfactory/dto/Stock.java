@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Stock {
     private String stockId;
-    private double ffbInput;
+    private Double ffbInput;
     private String date;
     private String time;
     private String supId;

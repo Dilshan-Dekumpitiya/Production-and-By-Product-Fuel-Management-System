@@ -9,11 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.SteamModel;
 import lk.ijse.palmoilfactory.model.StockModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -109,7 +116,7 @@ public class OilProductionFormController implements Initializable {
         String stockId = cmbStockId.getSelectionModel().getSelectedItem();
         try {
 
-            int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+            double ffbinput = StockModel.searchByStockIdFFBInput(stockId);
 
             double totalPressLiquid=ffbinput*0.3*0.88;
             txtTotalPressLiquid.setText(String.valueOf(totalPressLiquid));
@@ -145,5 +152,35 @@ public class OilProductionFormController implements Initializable {
             txtTotalOilOutput.clear();
             loadStockIds();
         }
+    }
+
+    @FXML
+    void btnGetReportOnAction(ActionEvent event) {
+        Thread t1=new Thread(
+                () -> {
+                    String reportPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\oilProductionDetailsReport.jrxml";
+                    String sql="select * from oilproduction";
+                    String path = FileSystems.getDefault().getPath("/reports/oilProductionDetailsReport.jrxml").toAbsolutePath().toString();
+                    JasperDesign jasdi = null;
+                    try {
+                        jasdi = JRXmlLoader.load(reportPath);
+                        JRDesignQuery newQuery = new JRDesignQuery();
+                        newQuery.setText(sql);
+                        jasdi.setQuery(newQuery);
+                        JasperReport js = JasperCompileManager.compileReport(jasdi);
+                        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+                        JasperViewer viewer = new JasperViewer(jp, false);
+                        viewer.show();
+                    } catch (JRException e) {
+                        e.printStackTrace();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+        t1.start();
     }
 }

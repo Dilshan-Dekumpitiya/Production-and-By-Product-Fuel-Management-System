@@ -1052,15 +1052,15 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="312" parent="301" name="bunchFiber">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="313" parent="301" name="shell">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="314" parent="301" name="pressFiber">
       <Position>4</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="315" parent="301" name="date">
       <Position>5</Position>
@@ -1133,7 +1133,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="330" parent="303" name="ffbInput">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="331" parent="303" name="date">
       <Position>3</Position>
@@ -1169,11 +1169,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="338" parent="304" name="totalEBLiquid">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="339" parent="304" name="totalPressLiquid">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="340" parent="304" name="date">
       <Position>4</Position>
@@ -1236,11 +1236,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="353" parent="307" name="fruit">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="354" parent="307" name="emptyBunch">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
+      <DataType>double|0s</DataType>
     </column>
     <column id="355" parent="307" name="date">
       <Position>4</Position>

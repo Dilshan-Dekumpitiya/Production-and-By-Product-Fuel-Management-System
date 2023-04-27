@@ -32,7 +32,7 @@ public class StockModel {
 
         if(resultSet.next()) {
             String  stkId = resultSet.getString(1);
-            double ffbInput = resultSet.getInt(2);
+            double ffbInput = resultSet.getDouble(2);
             String date = resultSet.getString(3);
             String time = resultSet.getString(4);
             String supId = resultSet.getString(5);
@@ -69,14 +69,14 @@ public class StockModel {
         return null;
     }
 
-    public static int searchByStockIdFFBInput(String stockId) throws SQLException, ClassNotFoundException {
+    public static double searchByStockIdFFBInput(String stockId) throws SQLException, ClassNotFoundException {
 
         String sql="SELECT ffbInput from ffbstock WHERE stockId = ? ";
 
         ResultSet resultSet=CrudUtil.execute(sql,stockId);
 
         if(resultSet.next()){
-            return resultSet.getInt("ffbInput");
+            return resultSet.getDouble("ffbInput");
         }
         return 0;
     }
@@ -111,7 +111,7 @@ public class StockModel {
         ResultSet resultSet=CrudUtil.execute(sql);
 
         if(resultSet.next()){
-            return Double.parseDouble(resultSet.getString("total"));
+            return Double.parseDouble(String.valueOf(resultSet.getDouble("total")));
         }
         return -1;
 
@@ -126,7 +126,7 @@ public class StockModel {
         while (resultSet.next()) {
             stockData.add(new Stock(
                     resultSet.getString(1),
-                    resultSet.getInt(2),
+                    resultSet.getDouble(2),
                     resultSet.getString(3),
                     resultSet.getString(4),
                     resultSet.getString(5)
@@ -136,11 +136,11 @@ public class StockModel {
 
     }
 
-    public static int getStockIdsCount() throws SQLException, ClassNotFoundException {
+   /* public static int getStockIdsCount() throws SQLException, ClassNotFoundException {
         String sql = "SELECT COUNT(stockId) as stockIdCount from ffbstock";
 
         return CrudUtil.execute(sql);
-    }
+    }*/
 
     public static List<String> getStockIds() throws SQLException, ClassNotFoundException {
 
@@ -164,13 +164,26 @@ public class StockModel {
 
             con.setAutoCommit(false);
 
-            boolean isAdded = StockModel.addStock(stockId, ffbInput, date, time,supId);
+            boolean isAddedToStock = StockModel.addStock(stockId, ffbInput, date, time,supId);
 
+            //For steam table
             double fruitOutput=ffbInput*0.3;
             double emptyBunchoutput=ffbInput*0.7;
-            if (isAdded) {
+
+            //For oil production table
+            double totalPressLiquid=ffbInput*0.3*0.88;
+            double totalEBLiquid=ffbInput*0.7*0.72;
+
+            //For by product fuel table
+            double totalPressFiber=ffbInput*0.135;
+            double totalShell=ffbInput*0.03;
+            double totalEBFiber=ffbInput*0.03;
+
+            if (isAddedToStock) {
                 boolean isAddedToSteam = SteamModel.addSteam(stockId,fruitOutput,emptyBunchoutput,date,time);
-                if (isAddedToSteam) {
+                boolean isAddedToOilProduction=OilProductionModel.addOilProduction(stockId,totalEBLiquid,totalPressLiquid,date,time);
+                boolean isAddedToByProduct=ByProductionFuelModel.addByProductFuel(stockId,totalEBFiber,totalShell,totalPressFiber,date,time);
+                if (isAddedToSteam && isAddedToOilProduction && isAddedToByProduct) {
                     con.commit();
                     return true;
                 }

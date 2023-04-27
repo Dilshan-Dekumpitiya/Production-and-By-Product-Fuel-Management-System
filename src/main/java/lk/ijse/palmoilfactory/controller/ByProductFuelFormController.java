@@ -64,7 +64,7 @@ public class ByProductFuelFormController implements Initializable {
         String stockId = cmbStockId.getSelectionModel().getSelectedItem();
         try {
 
-            int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+            double ffbinput = StockModel.searchByStockIdFFBInput(stockId);
 
             double totalPressFiber=ffbinput*0.135;
             txtTotalPressFiber.setText(String.valueOf(totalPressFiber));

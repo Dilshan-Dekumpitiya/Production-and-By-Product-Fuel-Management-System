@@ -67,7 +67,7 @@ public class SteamDetailsFormController implements Initializable {
         String stockId = cmbStockId.getSelectionModel().getSelectedItem();
         try {
 
-            int ffbinput = StockModel.searchByStockIdFFBInput(stockId);
+            double ffbinput = StockModel.searchByStockIdFFBInput(stockId);
 
             double fruitOutput=ffbinput*0.3;
             txtFruitOutput.setText(String.valueOf(fruitOutput));
