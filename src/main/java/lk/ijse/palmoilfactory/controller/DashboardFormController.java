@@ -91,16 +91,16 @@ public class DashboardFormController implements Initializable {
         } else if (hour >= 12 && hour < 17) {
             lblGreeting.setText("Good Afternoon !!!");
         } else {
-            lblGreeting.setText("Good evening !!!");
+            lblGreeting.setText("Good Evening !!!");
         }
 
         // Chart Initialize --> Oil Production
         XYChart.Series seriesOil = new XYChart.Series<>();
-        seriesOil.setName("Oil Production");
+        seriesOil.setName("Oil Production Quantity");
 
         //By product fuel chart
         XYChart.Series seriesByProduct = new XYChart.Series<>();
-        seriesByProduct.setName("By Product Fuel Production");
+        seriesByProduct.setName("By Product Fuel Quantity");
 
         // Add data points
 

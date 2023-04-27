@@ -52,11 +52,11 @@
     -fx-background-radius: 10;
 }
 .anchorPaneDashboard{
-    -fx-background-color:  #1F2127;   /*#1F2127*/
+    -fx-background-color:  #1B1464;   /*#1F2127*/
 }
 
 .dashboardTotalOilLable{
-    -fx-background-color:  #1F2127;
+    -fx-background-color:  #3d3d3d;
     -fx-background-radius: 15;
 }
 .pane{
@@ -68,6 +68,9 @@
     -fx-prompt-text-fill: black;
     -fx-text-fill: white;
     -fx-background-color: white;
+}
+.imageView{
+    -fx-background-radius: 10;
 }
 
 .dashboardbtn{
@@ -96,6 +99,11 @@
 .loginlabel{
     -fx-text-fill: white;
     -fx-font-size: 12px;
+}
+.loginTitlelabel{
+    -fx-text-fill: black;
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
 }
 .dashboardleftsidepane{
     -fx-background-color: #3d3d3d ; /*#1F2127*/
@@ -161,6 +169,7 @@
 /* Styling the chart legend */
 .chart-legend {
     -fx-background-color: rgba(255, 255, 255, 0.5); /* Set background color to white with 50% opacity */
+/*rgba(255, 255, 255, 0.5)*/
 }
 
 /* Styling the chart title */
