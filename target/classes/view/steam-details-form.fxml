@@ -29,25 +29,25 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="443.0" layoutY="104.0" prefHeight="36.0" prefWidth="246.0" text="Stock Time                    :">
+            <Label layoutX="443.0" layoutY="104.0" prefHeight="36.0" prefWidth="273.0" text="Stock Time                           :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtFruitOutput" layoutX="216.0" layoutY="65.0" prefHeight="25.0" prefWidth="204.0" styleClass="textfield" unFocusColor="BLACK" />
-            <JFXTextField fx:id="txtStockDate" layoutX="194.0" layoutY="110.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
-            <Label layoutX="23.0" layoutY="116.0" prefHeight="36.0" prefWidth="178.0" text="Stock Date       :">
+            <JFXTextField fx:id="txtFruitOutput" layoutX="224.0" layoutY="65.0" prefHeight="25.0" prefWidth="196.0" styleClass="textfield" unFocusColor="BLACK" />
+            <JFXTextField fx:id="txtStockDate" layoutX="218.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" styleClass="textfield" unFocusColor="BLACK" />
+            <Label layoutX="23.0" layoutY="116.0" prefHeight="36.0" prefWidth="220.0" text="Stock Date               :">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtStockTime" layoutX="670.0" layoutY="110.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
-            <Label layoutX="20.0" layoutY="14.0" prefHeight="36.0" prefWidth="178.0" text="Stock ID            : ">
+            <JFXTextField fx:id="txtStockTime" layoutX="711.0" layoutY="110.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
+            <Label layoutX="20.0" layoutY="14.0" prefHeight="36.0" prefWidth="220.0" text="Stock ID                    : ">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="cmbStockId" layoutX="194.0" layoutY="20.0" onAction="#cmbStockIdOnAction" prefHeight="25.0" prefWidth="220.0" promptText="stock id" styleClass="cmb" unFocusColor="BLACK" />
+            <JFXComboBox fx:id="cmbStockId" layoutX="227.0" layoutY="20.0" onAction="#cmbStockIdOnAction" prefHeight="25.0" prefWidth="190.0" promptText="stock id" styleClass="cmb" unFocusColor="BLACK" />
             <Label layoutX="443.0" layoutY="60.0" prefHeight="36.0" prefWidth="283.0" text="Empty Bunch Output  (MT)   : ">
                <font>
                   <Font size="20.0" />
