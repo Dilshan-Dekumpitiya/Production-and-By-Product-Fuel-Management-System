@@ -21,4 +21,12 @@ public class SteamModel {
         return ids;
 
     }
+
+
+    public static boolean addSteam(String stockId, double fruitOutput, double emptyBunchoutput, String date, String time) throws SQLException, ClassNotFoundException {
+        String sql="INSERT INTO steam(stockId,fruit,emptyBunch,date,time) VALUES(?,?,?,?,?)";
+
+        return CrudUtil.execute(sql, stockId, fruitOutput, emptyBunchoutput, date,time);
+
+    }
 }

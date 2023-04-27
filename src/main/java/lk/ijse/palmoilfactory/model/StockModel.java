@@ -19,7 +19,10 @@ public class StockModel {
         String sql="INSERT INTO ffbstock(stockId,ffbInput,date,time,supId)"+"VALUES(?,?,?,?,?)";
 
         return CrudUtil.execute(sql,stockId,ffbInput,date,time,supId);
+
+
     }
+
 
     public static Stock searchStock(String stockId) throws SQLException, ClassNotFoundException {
 
@@ -154,4 +157,60 @@ public class StockModel {
 
     }
 
-}
+    public static boolean placeStock(String stockId, double ffbInput, String date, String time, String supId) throws SQLException {
+        Connection con = null;
+        try {
+            con = DBConnection.getInstance().getConnection();
+
+            con.setAutoCommit(false);
+
+            boolean isAdded = StockModel.addStock(stockId, ffbInput, date, time,supId);
+
+            double fruitOutput=ffbInput*0.3;
+            double emptyBunchoutput=ffbInput*0.7;
+            if (isAdded) {
+                boolean isAddedToSteam = SteamModel.addSteam(stockId,fruitOutput,emptyBunchoutput,date,time);
+                if (isAddedToSteam) {
+                    con.commit();
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException | ClassNotFoundException er) {
+            er.printStackTrace();
+            con.rollback();
+            return false;
+
+        } finally { //update or not AutoCommit should true
+            con.setAutoCommit(true);
+        }
+    }
+
+    }
+
+    /*public static boolean placeStock(String stockId, double ffbInput, String valueOf, String text, String supId) {
+        Connection con = null;
+        try {
+            con = DBConnection.getInstance().getConnection();
+
+            con.setAutoCommit(false);
+
+            boolean isAdded = StockModel.addStock(stockId, ffbInput, valueOf, String text, String supId);
+            if (isAdded) {
+                boolean isUpdated = OilProductionModel.subtractionOilQtyTototalOil(qty);
+                if (isUpdated) {
+                    con.commit();
+                    return true;
+                }
+            }
+            return false;
+        } catch (SQLException | ClassNotFoundException er) {
+            er.printStackTrace();
+            con.rollback();
+            return false;
+
+        } finally { //update or not AutoCommit should true
+            con.setAutoCommit(true);
+        }
+    }*/
+

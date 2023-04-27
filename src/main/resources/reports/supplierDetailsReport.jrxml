@@ -42,9 +42,10 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="93" splitType="Stretch">
+		<band height="95" splitType="Stretch">
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="500" y="60" width="80" height="30" uuid="ef56bad2-2328-43fd-9d38-2c3d95a55a98"/>
+				<reportElement x="460" y="60" width="100" height="30" uuid="ef56bad2-2328-43fd-9d38-2c3d95a55a98"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
@@ -62,6 +63,10 @@
 			<line>
 				<reportElement x="0" y="81" width="560" height="1" uuid="1a0d2b7d-bbd0-455e-bdad-6d32d9c83298"/>
 			</line>
+			<image>
+				<reportElement x="270" y="40" width="50" height="40" uuid="58703d13-badb-411f-bde4-47195c5e3082"/>
+				<imageExpression><![CDATA["E:/1.GDSE/1st Semester/9.My Final Project-1st Semester/AEN Palm Oil Factory Project/production-and-fuel-management-system/src/main/resources/img/login-logo.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -71,7 +76,7 @@
 				<textElement>
 					<font size="14" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Supplier Details]]></text>
+				<text><![CDATA[Supplier Details Report]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -81,28 +86,36 @@
 				<reportElement x="80" y="10" width="100" height="30" uuid="6020a2f3-ac12-467d-9659-244b8ebb476e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eacd09b4-e5ea-4840-b020-b2290e2b4ada"/>
 				</reportElement>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Supplier ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="210" y="10" width="100" height="30" uuid="656589e4-649a-4c2a-a503-4dffd5497667">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57424fc0-413e-4a60-a3c9-212b121f56be"/>
 				</reportElement>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="330" y="10" width="100" height="30" uuid="7ea8f264-51e0-47ed-9889-3cba451522d3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bfe1a9a7-187f-4904-b986-824d5904d94b"/>
 				</reportElement>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Address]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="445" y="10" width="100" height="30" uuid="83e0a119-4255-467e-9b5e-39fdafff76d5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8eaf8a6b-80f7-43d9-9f8c-50b69d824be4"/>
 				</reportElement>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Contact]]></text>
 			</staticText>
 			<line>

@@ -358,18 +358,34 @@ public class SupplierDetailsFormController implements Initializable {
     }
 
     @FXML
-    void btnGetReportOnAction(ActionEvent event) throws JRException, SQLException, ClassNotFoundException {
-        String billPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\supplierReport.jrxml";
-        String sql="select * from supplier";
-        String path = FileSystems.getDefault().getPath("/reports/supplierReport.jrxml").toAbsolutePath().toString();
-        JasperDesign jasdi = JRXmlLoader.load(billPath);
-        JRDesignQuery newQuery = new JRDesignQuery();
-        newQuery.setText(sql);
-        jasdi.setQuery(newQuery);
-        JasperReport js = JasperCompileManager.compileReport(jasdi);
-        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
-        JasperViewer viewer = new JasperViewer(jp, false);
-        viewer.show();
+    void btnGetReportOnAction(ActionEvent event)  {
+        Thread t1=new Thread(
+                () -> {
+                    String reportPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\supplierDetailsReport.jrxml";
+                    String sql="select * from supplier";
+                    String path = FileSystems.getDefault().getPath("/reports/supplierDetailsReport.jrxml").toAbsolutePath().toString();
+                    JasperDesign jasdi = null;
+                    try {
+                        jasdi = JRXmlLoader.load(reportPath);
+                        JRDesignQuery newQuery = new JRDesignQuery();
+                        newQuery.setText(sql);
+                        jasdi.setQuery(newQuery);
+                        JasperReport js = JasperCompileManager.compileReport(jasdi);
+                        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+                        JasperViewer viewer = new JasperViewer(jp, false);
+                        viewer.show();
+                    } catch (JRException e) {
+                        e.printStackTrace();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+        t1.start();
+
     }
 
 }

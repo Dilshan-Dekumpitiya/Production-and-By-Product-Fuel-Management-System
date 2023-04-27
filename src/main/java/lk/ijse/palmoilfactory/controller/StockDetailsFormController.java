@@ -17,6 +17,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
+import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Stock;
 import lk.ijse.palmoilfactory.dto.Supplier;
 import lk.ijse.palmoilfactory.dto.tm.StockTM;
@@ -25,8 +26,14 @@ import lk.ijse.palmoilfactory.model.OilProductionModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 import lk.ijse.palmoilfactory.util.Regex;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -241,15 +248,17 @@ public class StockDetailsFormController implements Initializable {
         }else {
             String stockId = txtStockId.getText();
             double ffbInput = Double.parseDouble(txtFFBInput.getText());
+            String date=String.valueOf(dtpckrDate.getValue());
             dtpckrDate.setValue(LocalDate.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
             lblTime.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("     hh:mm:ss ")));
+            String time=lblTime.getText();
             String supId = String.valueOf(cmbSupplierId.getSelectionModel().getSelectedItem());
 
             boolean isAdded;
 
             if (btnAddStock.getText().equalsIgnoreCase("Save Stock")){
             try {
-               isAdded = StockModel.addStock(stockId, ffbInput, String.valueOf(dtpckrDate.getValue()), lblTime.getText(),supId);
+               isAdded = StockModel.placeStock(stockId, ffbInput, date,time ,supId); //Transaction
 
                 if (isAdded) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Stock Added").show();
@@ -418,7 +427,32 @@ public class StockDetailsFormController implements Initializable {
 
     @FXML
     void btnGetReportOnAction(ActionEvent event) {
+        Thread t1=new Thread(
+                () -> {
+                    String reportPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\stockDetailsReport.jrxml";
+                    String sql="select * from ffbstock";
+                    String path = FileSystems.getDefault().getPath("/reports/stockDetailsReport.jrxml").toAbsolutePath().toString();
+                    JasperDesign jasdi = null;
+                    try {
+                        jasdi = JRXmlLoader.load(reportPath);
+                        JRDesignQuery newQuery = new JRDesignQuery();
+                        newQuery.setText(sql);
+                        jasdi.setQuery(newQuery);
+                        JasperReport js = JasperCompileManager.compileReport(jasdi);
+                        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+                        JasperViewer viewer = new JasperViewer(jp, false);
+                        viewer.show();
+                    } catch (JRException e) {
+                        e.printStackTrace();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
 
+                });
+
+        t1.start();
     }
 
 
