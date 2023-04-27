@@ -20,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import lk.ijse.palmoilfactory.db.DBConnection;
 import lk.ijse.palmoilfactory.dto.Employee;
 import lk.ijse.palmoilfactory.dto.Stock;
 import lk.ijse.palmoilfactory.dto.Supplier;
@@ -29,9 +30,15 @@ import lk.ijse.palmoilfactory.model.EmployeeModel;
 import lk.ijse.palmoilfactory.model.StockModel;
 import lk.ijse.palmoilfactory.model.SupplierModel;
 import lk.ijse.palmoilfactory.util.Regex;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.FileSystems;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -467,5 +474,36 @@ public class EmployeeDetailsFormController implements Initializable {
         loadEmpType();
         loadSchIds();
     }
+
+    @FXML
+    void btnGetReportOnAction(ActionEvent event) {
+        Thread t1=new Thread(
+                () -> {
+                    String reportPath = "E:\\1.GDSE\\1st Semester\\9.My Final Project-1st Semester\\AEN Palm Oil Factory Project\\production-and-fuel-management-system\\src\\main\\resources\\reports\\employeeDetailsReport.jrxml";
+                    String sql="select * from employee";
+                    String path = FileSystems.getDefault().getPath("/reports/employeeDetailsReport.jrxml").toAbsolutePath().toString();
+                    JasperDesign jasdi = null;
+                    try {
+                        jasdi = JRXmlLoader.load(reportPath);
+                        JRDesignQuery newQuery = new JRDesignQuery();
+                        newQuery.setText(sql);
+                        jasdi.setQuery(newQuery);
+                        JasperReport js = JasperCompileManager.compileReport(jasdi);
+                        JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
+                        JasperViewer viewer = new JasperViewer(jp, false);
+                        viewer.show();
+                    } catch (JRException e) {
+                        e.printStackTrace();
+                    } catch (SQLException exception) {
+                        exception.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+        t1.start();
+    }
+
 
 }

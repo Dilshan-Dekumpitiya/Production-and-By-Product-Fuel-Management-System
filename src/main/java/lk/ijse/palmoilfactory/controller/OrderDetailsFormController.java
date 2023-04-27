@@ -206,4 +206,9 @@ public class OrderDetailsFormController implements Initializable {
         getOrderDetailToTable("");
         txtQty.requestFocus();
     }
+
+    @FXML
+    void btnGetReportOnAction(ActionEvent event) {
+
+    }
 }
