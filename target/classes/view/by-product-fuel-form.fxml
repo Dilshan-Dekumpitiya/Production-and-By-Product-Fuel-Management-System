@@ -64,6 +64,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="txtTotalFuel" layoutX="253.0" layoutY="234.0" prefHeight="25.0" prefWidth="220.0" styleClass="textfield" unFocusColor="BLACK" />
+            <JFXButton layoutX="706.0" layoutY="233.0" onAction="#btnGetReportOnAction" styleClass="btnGetReport" text="Get Report" />
          </children>
       </Pane>
    </children>
