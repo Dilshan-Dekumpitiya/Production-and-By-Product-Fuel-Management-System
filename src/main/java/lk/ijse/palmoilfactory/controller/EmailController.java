@@ -57,7 +57,7 @@ public class EmailController {
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(recepient));
             message.setSubject("Welcome to the AEN Palm Oil Processing (Pvt) Ltd System");
-            message.setText("We are glad to have you on board with the Aquarium Management System.you are now able to manage your factory efficiently and easily.\nIf you have any questions or concerns, please feel free to reach out to us. Our team is always here to support you.\n\nBest regards,\nDilshan Dekumpitiya");
+            message.setText("We are glad to have you on board with the AEN Palm Oil Factory Management System.you are now able to manage your factory efficiently and easily.\nIf you have any questions or concerns, please feel free to reach out to us. Our team is always here to support you.\n\nBest regards,\nDilshan Dekumpitiya");
             return message;
         } catch (Exception ex) {
             System.out.println(EmailController.class.getName());
