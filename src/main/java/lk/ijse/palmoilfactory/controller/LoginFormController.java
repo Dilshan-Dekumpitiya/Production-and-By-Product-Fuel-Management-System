@@ -34,6 +34,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class LoginFormController implements Initializable {
 
@@ -84,7 +86,36 @@ public class LoginFormController implements Initializable {
 
                     stage.close();
 
+
+
+                    /*ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                EmailController.sendMail("dilshandekumpitiya@gmail.com");
+                            } catch (Exception e) {
+                                System.out.println("Failed to send e-mail.Network err!");
+//                            e.printStackTrace();
+                            }
+                        }
+                    });
+                    executor.shutdown();*/
+
                     stage2.show();
+
+                    Thread mailThread=new Thread(()->{
+                        try {
+                            EmailController.sendMail("dilshandekumpitiya@gmail.com");
+                        } catch (Exception e) {
+                           // System.out.println("Failed to send e-mail.Network err!");
+//                            e.printStackTrace();
+                            System.out.println(e);
+                        }
+                    });
+
+                    mailThread.start();
+
                 } else {
                     new Alert(Alert.AlertType.WARNING, "User Not Found in DB!!!").show();
                     txtUsername.clear();
