@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import lk.ijse.palmoilfactory.model.LoginModel;
 import lk.ijse.palmoilfactory.util.Regex;
@@ -72,37 +73,12 @@ public class LoginFormController implements Initializable {
                 boolean isUserVerified = LoginModel.userCheckedInDB(username,password); //check in the DB
                 if (isUserVerified) {
 
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Login successful!");
-                    alert.showAndWait();
-
-                    /*Notifications.create()
-                            .graphic(new ImageView(new Image("/img/login-notification.png")))
-                            .text("Login Successful")
-                            .title("Successful")
-                            .hideAfter(Duration.seconds(5))
-                            .position(Pos.TOP_RIGHT)
-                           // .darkStyle()
-                            .show();*/
-
                     stage.close();
 
-
-
-                    /*ExecutorService executor = Executors.newSingleThreadExecutor();
-                    executor.submit(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                EmailController.sendMail("dilshandekumpitiya@gmail.com");
-                            } catch (Exception e) {
-                                System.out.println("Failed to send e-mail.Network err!");
-//                            e.printStackTrace();
-                            }
-                        }
-                    });
-                    executor.shutdown();*/
-
                     stage2.show();
+
+                    Notifications notification = NotificationController.notification("Login Successful", "Login Alert");
+                    notification.show();
 
                     Thread mailThread=new Thread(()->{
                         try {
