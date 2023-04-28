@@ -152,21 +152,21 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Pane layoutX="527.0" layoutY="40.0" opacity="0.74" prefHeight="98.0" prefWidth="262.0" styleClass="dashboardTotalOilLable">
+            <Pane layoutX="527.0" layoutY="40.0" opacity="0.8" prefHeight="98.0" prefWidth="262.0" styleClass="dashboardTotalOilLable">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="292.0" text="Total Oil Qty On Hand (kL)      " textFill="#f80303">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTotalOilQtyOnHand" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="46.0" prefHeight="36.0" prefWidth="204.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" textAlignment="CENTER" textFill="#f80303">
+                  <Label fx:id="lblTotalOilQtyOnHand" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="46.0" prefHeight="36.0" prefWidth="204.0" style="-fx-text-fill: #8c7ae6; -fx-font-weight: bold;" text="aa" textAlignment="CENTER" textFill="#f80303">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="lblGreeting" layoutX="82.0" layoutY="89.0" prefHeight="36.0" prefWidth="313.0" style="-fx-text-fill: black; -fx-font-weight: bold;" text="time" />
+            <Label fx:id="lblGreeting" layoutX="82.0" layoutY="89.0" prefHeight="36.0" prefWidth="313.0" style="-fx-text-fill: #ED4C67; -fx-font-weight: bold;" text="time" />
             <BarChart fx:id="barChartStockvsOilFuel" layoutX="12.0" layoutY="175.0" prefHeight="442.0" prefWidth="1030.0" styleClass="chart-legend" stylesheets="@../stylesheet/stylesheet.css" title="Stock Vs Oil Production and By-Product Fuel">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />

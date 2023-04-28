@@ -5,6 +5,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 100px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 }
 .btnScheduleDetail{
     -fx-background-color:  #10ac84;
@@ -13,6 +14,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 130px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 }
 .btnadd{
     -fx-background-color:  #5352ed;
@@ -21,6 +23,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 150px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 }
 .btndelete{
     -fx-background-color:  #e74c3c;
@@ -29,6 +32,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 150px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 
 }
 .btnPlaceOrder{
@@ -38,6 +42,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 100px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 }
 .btnGetReport{
     -fx-background-color: #feca57;
@@ -46,6 +51,7 @@
     -fx-min-height: 30px;
     -fx-max-width: 100px;
     -fx-max-height: 30px;
+    -fx-opacity: 1;
 }
 .btnLogin{
     -fx-background-color:  #30336b;
@@ -107,8 +113,13 @@
 }
 
 .loginlabel{
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+.loginFields{
     -fx-text-fill: black;
     -fx-font-size: 12px;
+    -fx-font-weight: bold;
 }
 .loginTitlelabel{
     -fx-text-fill: #130f40;

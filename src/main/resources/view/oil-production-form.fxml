@@ -22,7 +22,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="34.0" layoutY="72.0" opacity="0.74" prefHeight="266.0" prefWidth="986.0" styleClass="pane">
+      <Pane layoutX="34.0" layoutY="72.0" opacity="0.9" prefHeight="266.0" prefWidth="986.0" styleClass="pane">
          <children>
             <Label layoutX="23.0" layoutY="61.0" prefHeight="36.0" prefWidth="315.0" text="Total EB Liquid Output (kL)           : ">
                <font>

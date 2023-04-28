@@ -23,7 +23,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="34.0" layoutY="64.0" opacity="0.74" prefHeight="270.0" prefWidth="986.0" styleClass="pane">
+      <Pane layoutX="34.0" layoutY="64.0" opacity="0.9" prefHeight="270.0" prefWidth="986.0" styleClass="pane">
          <children>
             <JFXButton fx:id="btnSaveSupplier" layoutX="60.0" layoutY="216.0" onAction="#btnSaveSupplierOnAction" prefHeight="30.0" prefWidth="156.0" styleClass="btnadd" text="Save Supplier">
                <font>

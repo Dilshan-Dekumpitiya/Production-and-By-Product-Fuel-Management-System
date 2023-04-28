@@ -33,6 +33,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -107,6 +108,8 @@ public class DashboardFormController implements Initializable {
         try {
          //   int stockIdCount = StockModel.getStockIdsCount();
             List<String> stockIds = StockModel.getStockIds();
+
+            Collections.sort(stockIds);
 
             for (int i = 0; i < stockIds.size(); i++) {
                 String stockId = stockIds.get(i);

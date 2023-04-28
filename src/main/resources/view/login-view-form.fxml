@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="loginContext" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="750.0" style="-fx-background-color: #1F2127;" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.palmoilfactory.controller.LoginFormController">
    <children>
-      <ImageView fitHeight="532.0" fitWidth="750.0" opacity="0.66" pickOnBounds="true" preserveRatio="true" styleClass="loginTitlelabel">
+      <ImageView fitHeight="532.0" fitWidth="750.0" opacity="0.66" pickOnBounds="true" preserveRatio="true" styleClass="loginlabel">
          <image>
             <Image url="@../img/login-img.jpg" />
          </image>
@@ -29,8 +29,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXPasswordField fx:id="txtPassword" layoutX="40.0" layoutY="231.0" onAction="#txtPasswordOnAction" prefHeight="30.0" prefWidth="239.0" promptText="password here" styleClass="loginlabel" />
-            <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="40.0" layoutY="164.0" onAction="#txtUsernameOnAction" prefHeight="30.0" prefWidth="239.0" promptText="username here" styleClass="loginlabel" stylesheets="@../stylesheet/stylesheet.css" />
+            <JFXPasswordField fx:id="txtPassword" layoutX="40.0" layoutY="231.0" onAction="#txtPasswordOnAction" prefHeight="30.0" prefWidth="239.0" promptText="password here" styleClass="loginFields" />
+            <JFXTextField fx:id="txtUsername" focusColor="WHITE" layoutX="40.0" layoutY="164.0" onAction="#txtUsernameOnAction" prefHeight="30.0" prefWidth="239.0" promptText="username here" styleClass="loginFields" stylesheets="@../stylesheet/stylesheet.css" />
             <ImageView fitHeight="93.0" fitWidth="107.0" layoutX="112.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/login-logo.jpg" />

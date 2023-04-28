@@ -22,7 +22,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="34.0" layoutY="75.0" opacity="0.74" prefHeight="290.0" prefWidth="986.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
+      <Pane layoutX="34.0" layoutY="75.0" opacity="0.9" prefHeight="290.0" prefWidth="986.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
             <Label layoutX="23.0" layoutY="61.0" prefHeight="36.0" prefWidth="301.0" text="Total Press Fiber (MT)     : ">
                <font>

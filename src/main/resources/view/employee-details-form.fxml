@@ -24,7 +24,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane fx:id="empdetailsPane" layoutX="44.0" layoutY="101.0" opacity="0.74" prefHeight="303.0" prefWidth="986.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
+      <Pane fx:id="empdetailsPane" layoutX="34.0" layoutY="76.0" opacity="0.9" prefHeight="303.0" prefWidth="986.0" styleClass="pane" stylesheets="@../stylesheet/stylesheet.css">
          <children>
             <JFXButton fx:id="btnAddEmployee" layoutX="57.0" layoutY="240.0" onAction="#btnAddEmployeeOnAction" prefHeight="30.0" prefWidth="176.0" styleClass="btnadd" text="Add Employee">
                <font>
@@ -104,7 +104,7 @@
             <JFXButton layoutX="843.0" layoutY="243.0" onAction="#btnGetReportOnAction" styleClass="btnGetReport" text="Get Report" />
          </children>
       </Pane>
-      <TableView fx:id="tblEmployeeDetails" layoutX="44.0" layoutY="417.0" prefHeight="211.0" prefWidth="986.0">
+      <TableView fx:id="tblEmployeeDetails" layoutX="34.0" layoutY="401.0" prefHeight="211.0" prefWidth="986.0">
          <columns>
             <TableColumn fx:id="colEMPID" prefWidth="105.0" text="EMP ID" />
             <TableColumn fx:id="colEMPName" prefWidth="179.0" text="EMP Name" />

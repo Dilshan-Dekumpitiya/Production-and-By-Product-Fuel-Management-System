@@ -22,6 +22,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -99,10 +100,21 @@ public class OilProductionFormController implements Initializable {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
             List<String> iDs = SteamModel.getStockIDs();
+           // obList.addAll(iDs);
 
+            Collections.sort(iDs);
             for (String id : iDs) {
                 obList.add(id);
             }
+
+            /*for (String id : iDs) {
+                if (id.equals("FFB001")) {
+                    obList.add(0, id); // Add "FFB001" to the beginning of the list
+                } else {
+                    obList.add(id); // Add all other IDs to the end of the list
+                }
+            }
+*/
             cmbStockId.setItems(obList);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "OOPSSS!! something happened!!!").show();

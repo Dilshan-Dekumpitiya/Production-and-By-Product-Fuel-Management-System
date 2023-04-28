@@ -20,6 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.net.URL;
 import java.nio.file.FileSystems;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -54,6 +55,8 @@ public class ByProductFuelFormController implements Initializable {
         try {
             ObservableList<String> obList = FXCollections.observableArrayList();
             List<String> iDs = SteamModel.getStockIDs();
+
+            Collections.sort(iDs);
 
             for (String id : iDs) {
                 obList.add(id);
