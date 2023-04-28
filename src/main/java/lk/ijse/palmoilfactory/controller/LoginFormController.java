@@ -109,7 +109,7 @@ public class LoginFormController implements Initializable {
                             EmailController.sendMail("dilshandekumpitiya@gmail.com");
                         } catch (Exception e) {
                            // System.out.println("Failed to send e-mail.Network err!");
-//                            e.printStackTrace();
+                           //e.printStackTrace();
                             System.out.println(e);
                         }
                     });

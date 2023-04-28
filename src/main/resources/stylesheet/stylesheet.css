@@ -47,6 +47,14 @@
     -fx-max-width: 100px;
     -fx-max-height: 30px;
 }
+.btnLogin{
+    -fx-background-color:  #30336b;
+    -fx-background-radius: 10;
+    -fx-min-width: 90px;
+    -fx-min-height: 40px;
+    -fx-max-width: 90px;
+    -fx-max-height: 40px;
+}
 .anchorPane{
     -fx-background-color:  #3d3d3d;
     -fx-background-radius: 10;
@@ -62,6 +70,7 @@
 .pane{
     -fx-background-color:   #3d3d3d;
     -fx-background-radius: 10;
+
 }
 
 .cmb{
@@ -96,12 +105,13 @@
     -fx-text-fill: white;
     -fx-font-size: 17px;
 }
+
 .loginlabel{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-size: 12px;
 }
 .loginTitlelabel{
-    -fx-text-fill: black;
+    -fx-text-fill: #130f40;
     -fx-font-size: 35px;
     -fx-font-weight: bold;
 }

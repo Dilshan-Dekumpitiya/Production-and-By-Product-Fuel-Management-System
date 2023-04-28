@@ -15,8 +15,8 @@ public class EmailController {
         properties.put("mail.smtp.starttls.enabled", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
-        String myAccountEmail = "dildekumpersonal@gmail.com";
-        String password = "hjvhgguibymqgrcb";
+        String myAccountEmail = "aenpalmoilprocessingpvtltd@gmail.com";
+        String password = "ctctxiwckcjstjgx";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
