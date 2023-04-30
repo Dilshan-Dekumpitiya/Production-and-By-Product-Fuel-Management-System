@@ -82,7 +82,7 @@ public class LoginFormController implements Initializable {
 
                     Thread mailThread=new Thread(()->{
                         try {
-                            EmailController.sendMail("dilshandekumpitiya@gmail.com");
+                            EmailController.sendMail("aenpalmoilprocessingpvtltd@gmail.com");
                         } catch (Exception e) {
                            // System.out.println("Failed to send e-mail.Network err!");
                            //e.printStackTrace();
