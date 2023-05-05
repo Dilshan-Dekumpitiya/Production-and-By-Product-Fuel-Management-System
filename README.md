@@ -1,6 +1,6 @@
 # production-and-by product fuel-management-system
 ## This is my 1st year 1st semester final individual project
-### In here I implemented production-and-fuel-management-system to AEN Palm Oil Factory which located in Maragahadeniya,Baduraliya,Sri Lanka.
+### In here I implemented production-and-by product fuel-management-system to AEN Palm Oil Factory which located in Maragahadeniya,Baduraliya,Sri Lanka.
 #### Technologies I used - Java 11,MySQL,Java FX,Jasper Studio,Intellij with Maven Buildiing System
 ##### To run this project - Need Java FX SDK as VM option and Java FX libraries(lib) 
 
