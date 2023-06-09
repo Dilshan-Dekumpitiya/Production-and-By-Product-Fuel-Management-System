@@ -7,5 +7,5 @@
 [MySQL DB Queries - 1st Use for factory](https://docs.google.com/document/d/1ErqZ-qJMV2g8niaYjYb5Nva7f1qxlblNBFeZfZuOa9Q/edit?usp=sharing) <br />
 [MySQL DB Queries (Dummy Data)](https://docs.google.com/document/d/12fuj-3HfXLzM5ijyk7ipg-8CqQCwT-3MQklT_9BmvHc/edit?usp=sharing)
 
-######LICENSE
+##### LICENSE
 [MIT License](LICENSE)
